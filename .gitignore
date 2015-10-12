@@ -1,0 +1,6 @@
+/node_modules
+*.orig
+/.tmp
+/dist
+/test-failed-*.png
+/output
