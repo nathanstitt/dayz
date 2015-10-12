@@ -1,6 +1,6 @@
-## A day/week/monthly calendar
+## A day/week/monthly calendar component for React
 
-
+Currently only displays events and lacks click callbacks
 
 ### Development
 
