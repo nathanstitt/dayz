@@ -119,8 +119,8 @@ class Dayz extends React.Component {
     }
 
     calculateLayout(props) {
-        const range = new DateRange( props.date.clone().startOf( props.display ),
-                                     props.date.clone().endOf(   props.display ) );
+        const range = moment.range( props.date.clone().startOf( props.display ),
+                                    props.date.clone().endOf(   props.display ) );
 
         if ( props.display === 'month' ){
             range.start.subtract(range.start.weekday(), 'days');
