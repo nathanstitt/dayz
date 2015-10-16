@@ -54,7 +54,7 @@
   "scripts": {
     "start": "webpack-dev-server --hot --progress --colors --display-chunks --display-modules --display-origins",
     "build": "NODE_ENV=production webpack --optimize-minimize --progress --colors",
-    "test": "BABEL_JEST_STAGE=0 jest"
+    "test": "BABEL_JEST_STAGE=0 jest --watch"
   },
   "jest": {
     "testDirectoryName": "test",
