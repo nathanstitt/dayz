@@ -26,6 +26,10 @@ class EventsCollection {
     each(fn, scope){
         each(this.events, fn, scope);
     }
+
+    length(){
+        return this.events.length;
+    }
 }
 
 export default EventsCollection;
