@@ -34,7 +34,13 @@ class Dayz extends React.Component {
         const classes = ['event', `span-${layout.span}`];
         if (layout.startsBefore) classes.push('is-continuation');
         if (layout.endsAfter)    classes.push('is-continued');
-        if (layout.stack)        classes.push(`stack-${layout.stack}`)
+        if (layout.stack)        classes.push(`stack-${layout.stack}`);
+        let state = {};
+        const range = layout.event.range()
+        if (!layout.event.isMultiDay()) {
+            classes.push(`hour-${range.start.hour()}`);
+            classes.push(`duration-${range.diff('hours')}`);
+        }
         return (
             <div key={layout.event.key} className={classes.join(' ')}>
                 {layout.event.render()}
@@ -58,14 +64,48 @@ class Dayz extends React.Component {
         );
     }
 
+    renderYLabel(day){
+        const label = this.props.display == 'month' ? day.format('dddd') : day.format('ddd, MMM Do')
+        return (
+            <div key={day.format('YYYYMMDD')} className="label">
+                {label}
+            </div>
+        );
+    }
+
+    renderLabels(){
+        const xlabels = [];
+        const ylabels = [];
+        if (this.props.display == 'day'){
+            xlabels.push( this.renderYLabel(this.props.date) )
+        } else {
+            const day = this.state.layout.range.start.clone();
+            for (let i=0; i<7; i++){
+                xlabels.push(this.renderYLabel(day));
+                day.add(1, 'day');
+            }
+        }
+        if (this.props.display != 'month'){
+            const start = moment().startOf('day');
+            for (let hour=0; hour<24; hour++){
+                start.add(1, 'hour')
+                    ylabels.push(<div className="hour">{start.format('ha')}</div>)
+            }
+        }
+        return {xlabels, ylabels};
+    }
+
     render() {
         const classes = ["dayz", this.props.display];
         const days = []
+        const {xlabels, ylabels} = this.renderLabels()
         this.state.range.by('days', (day) => days.push(this.renderDay(day)) )
 
         return (
             <div className={classes.join(' ')}>
-                {days}
+                <div className="x-labels">{xlabels}</div>
+                <div className="y-labels">{ylabels}</div>
+                <div className="days">{days}</div>
             </div>
         );
     }
@@ -79,8 +119,8 @@ class Dayz extends React.Component {
     }
 
     calculateLayout(props) {
-        const range = new DateRange(props.date.clone().startOf( props.display ),
-                                    props.date.clone().endOf(   props.display ) );
+        const range = new DateRange( props.date.clone().startOf( props.display ),
+                                     props.date.clone().endOf(   props.display ) );
 
         if ( props.display === 'month' ){
             range.start.subtract(range.start.weekday(), 'days');

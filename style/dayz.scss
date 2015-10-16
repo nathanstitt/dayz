@@ -1,51 +1,122 @@
-html{
-    height: 100%;
-    position: absolute;
-
-}
-body {
-    min-height: 100%;
-    margin: 0;
-    > div {
-        position: fixed;
-        height: 100%;
-        width: 100%;
-    }
-}
-
 .dayz {
     $arrow-width: 10px;
     $event-color: lightcoral;
+    $x-label-height: 20px;
+    $y-label-width: 60px;
+    $line-color: lightBlue;
+    $hour-percent: 100%/24;
     width: 100%;
     height: 100%;
     margin-left: auto;
     margin-right: auto;
 
-    display: flex;
     box-sizing: border-box;
+
+    .x-labels {
+        width: 100%;
+        height: $x-label-height;
+        flex-direction: row;
+        .label {
+            color: #555;
+            padding-left: 0.5rem;
+            box-sizing: border-box;
+            width: 14.2857%;
+            display: inline-block;
+            vertical-align: top;
+            white-space: nowrap;
+        }
+    }
+
+    .days {
+        height: calc(100% - #{$x-label-height});
+        display: flex;
+    }
+
+
     .day {
         box-sizing: border-box;
+        border: 1px solid lightgrey;
         &.outside {
             background-color: lightGrey;
         }
     }
-    &.month {
+
+    &.week, &.day {
+        .event {
+            $hour: 1;
+            @while $hour < 24 {
+                &.hour-#{$hour}     { top: ($hour - 1) * $hour-percent; }
+                &.duration-#{$hour} { height: $hour * $hour-percent; }
+                $hour: $hour + 1;
+            }
+        }
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .y-labels {
+            width: $y-label-width;
+            height: calc(100% - #{$x-label-height});
+            box-sizing: border-box;
+            .hour {
+                text-align: center;
+                height: 4.16%;
+                margin-bottom: 0.1px;
+            }
+        }
+        .x-labels {
+            margin-left: $y-label-width;
+        }
+        .days {
+            flex-direction: row;
+            width: calc(100% - #{$y-label-width});
+            .day {
+                height: 100%;
+                .label { display: none; }
+                background-image: linear-gradient(#ccc 1px, transparent 1px);
+                background-size: 100% 4.16%;
+            }
+        }
+
+    }
+    &.day {
+        .days {
+            .day{
+                width: 100%;
+            }
+        }
+    }
+    &.week {
+        .days {
+            .day{
+                width: 14.2857%;
+            }
+        }
+    }
+
+    &.month .days {
         flex-direction: row;
         flex-wrap: wrap;
         // 1/7th
         .day {
             width: 14.2857%;
-            border: 1px solid lightgrey;
             flex-grow: 1;
+            height: 20%;
             .label {
                 display: inline-block;
                 margin-left: 0.5rem;
                 margin-top: 0.5rem;
                 font-size: 1.1rem;
             }
+            .event {
+                &.span-1{
+
+                }
+            }
         }
     }
 
+    // styling in common for events in all displays
     .event {
         background: $event-color;
         box-sizing: border-box;
@@ -53,13 +124,13 @@ body {
         z-index: 1;
         position: relative;
 
-        border: 1px solid lightBlue;
+        border: 1px solid $line-color;
         border-radius: 4px;
         padding-left: 0.4rem;
 
         $stack: 1;
         @while $stack < 10 {
-            &.stack-#{$stack} { margin-top: $stack * 12%; }
+            &.stack-#{$stack} { top: ($stack) * 20px; }
             $stack: $stack + 1;
         }
 
