@@ -2,7 +2,7 @@
   "name": "dayz",
   "version": "0.0.1",
   "description": "A Day/Week/Month display React component",
-  "main": "dayz.js",
+  "main": "lib/dayz.js",
   "directories": {
     "test": "test"
   },
@@ -36,6 +36,7 @@
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.4",
     "gulp": "^3.9.0",
+    "gulp-babel": "^5.3.0",
     "gulp-exec": "^2.1.2",
     "gulp-run": "^1.6.11",
     "gulp-util": "^3.0.6",
@@ -53,7 +54,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --hot --progress --colors --display-chunks --display-modules --display-origins",
-    "build": "NODE_ENV=production webpack --optimize-minimize --progress --colors",
+    "build": "NODE_ENV=production webpack --optimize-minimize --progress --colors; gulp",
     "test": "BABEL_JEST_STAGE=0 jest --watch"
   },
   "jest": {

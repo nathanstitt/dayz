@@ -2,29 +2,33 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var isProduction = process.env['NODE_ENV'] === 'production';
 
-module.exports = {
+var config = {
     cache: {},
     devtool: isProduction ? undefined : 'source-map',
-    entry:   (isProduction ?  [ './style/dayz.scss', './src/dayz.jsx' ] :
-              [ './test/view.scss', './test/view.jsx' ]),
+    entry:   (isProduction ? ['./style/dayz.scss','./src/dayz.jsx'] : ['./test/view.scss','./test/view.jsx']),
     output: {
         path: isProduction ? 'dist' : 'dist/',
         publicPath: isProduction ? '' : '/dist/',
         filename: 'dayz.js'
     },
-    plugins: [ new ExtractTextPlugin('dayz.css') ],
+    plugins: [ new ExtractTextPlugin('./dist/dayz.css') ],
     module: {
         loaders: [
             { test: /\.jsx?$/, query: {optional: ['runtime'], stage: 0},
-              exclude: [/node_modules/],
-              loader: 'babel-loader' },
-            { test: /\.scss$/,
-              loaders: ["style", "css", "sass"] }
+              exclude: [/node_modules/], loader: 'babel-loader' },
+            { test: /\.scss$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader") }
         ]
     },
+    plugins: [
+        new ExtractTextPlugin("dayz.css")
+    ],
     resolve: {
         extensions: ['', '.js', '.jsx']
     },
+    externals: {
+
+    },
+
     devServer: {
         contentBase: './',
         host: 'localhost',
@@ -47,3 +51,8 @@ module.exports = {
 
     }
 };
+if (isProduction){
+    config.externals.react = 'React';
+}
+
+module.exports = config;

@@ -6,3 +6,4 @@ Currently only displays events and lacks click callbacks
 
 - `npm start` starts up a local development webserver which rebuilds files when changed
 - `npm test` runs unit tests
+- `npm run build` compiles files in preparation for publishing
