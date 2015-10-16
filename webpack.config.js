@@ -9,7 +9,9 @@ var config = {
     output: {
         path: isProduction ? 'dist' : 'dist/',
         publicPath: isProduction ? '' : '/dist/',
-        filename: 'dayz.js'
+        filename: 'dayz.js',
+        libraryTarget: 'umd',
+        library: 'Dayz'
     },
     plugins: [ new ExtractTextPlugin('./dist/dayz.css') ],
     module: {
@@ -53,6 +55,8 @@ var config = {
 };
 if (isProduction){
     config.externals.react = 'React';
+    config.externals.moment = 'moment';
+    config.externals['moment-range'] = 'moment.range';
 }
 
 module.exports = config;
