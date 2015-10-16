@@ -6,6 +6,10 @@ function cacheKey(day){
     return day.format('YYYYMMDD');
 }
 
+function lengthCompare(layout){
+    layout.event.range().start.diff(layout.event.range().end);
+}
+
 class Layout {
 
     constructor(events, range, options) {
@@ -14,11 +18,11 @@ class Layout {
         this.range = range;
         const cacheMethod = ('day' === options.display) ? 'addtoDaysCache' : 'calculateSpanningLayout';
         // console.log("Events: " , events);
-        events.each(function(event){
+        events.each( function(event){
 
             // console.log('Range: ', `${range.start.toString()} : ${range.end.toString()}`);
-            // console.log('Event: ', `${event.range().start.toString()} : ${event.end.toString()}`);
-            // console.log( range.overlaps(event.range) );
+            // console.log('Event: ', `${event.range().start.toString()} : ${event.range().end.toString()}`);
+            // console.log( range.overlaps(event.range()) );
 
             // we only care about events that are in the range we were provided
             if (range.overlaps(event.range())){
@@ -26,9 +30,9 @@ class Layout {
             }
         }, this);
 
-        if ('month' === options.display) {
-            this.calculateStacking();
-        }
+
+        this.calculateStacking();
+
     }
 
     calculateStacking(){
@@ -36,19 +40,34 @@ class Layout {
         do {
             const weeklyEvents = [];
             for (let i=0; i<7; i++){
-                const layouts = this.forDay(day) || [];
-                for (const layout of layouts){
-                    weeklyEvents.push(layout);
+                const layouts = sortBy(this.forDay(day), lengthCompare);
+                if (layouts.length){
+                    this.cache[ cacheKey(day) ] = layouts;
+                    for (const layout of layouts){
+                        weeklyEvents.push(layout);
+                    }
                 }
                 day.add(1, 'day')
             }
 
             const sortedEvents = sortBy(weeklyEvents, function(layout){
-                layout.event.range().start.diff(layout.event.range().end);
+
             });
 
+
             for (let i=0; i<sortedEvents.length; i++){
-                sortedEvents[i].stack=i;
+                const event = sortedEvents[i];
+                event.stack = 0;
+
+                // find out how many events are before this one
+                for (let pi=i-1; pi>=0; pi--){
+                    if (sortedEvents[pi].event.range().start.isSame(event.event.range().start,'d')){
+                        event.stack=1;  // the one right before this has the same day so we only stack one high
+                        break;
+                    } else {
+                        event.stack++;
+                    }
+                }
             }
 
             // console.log('Range: ', `${day.toString()} : ${this.range.end.toString()}`);
