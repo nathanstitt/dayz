@@ -5,10 +5,8 @@ var isProduction = process.env['NODE_ENV'] === 'production';
 module.exports = {
     cache: {},
     devtool: isProduction ? undefined : 'source-map',
-    entry: [
-        './style/dayz.scss',
-        (isProduction ? './src/dayz.jsx' : './src/view.js')
-    ],
+    entry:   (isProduction ?  [ './style/dayz.scss', './src/dayz.jsx' ] :
+              [ './test/view.scss', './test/view.jsx' ]),
     output: {
         path: isProduction ? 'dist' : 'dist/',
         publicPath: isProduction ? '' : '/dist/',

@@ -1,0 +1,30 @@
+html{
+    height: 100%;
+    position: absolute;
+
+}
+body {
+    min-height: 100%;
+    margin: 0;
+    > div {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+    }
+}
+@import '../style/dayz';
+
+
+.test-wrapper {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 1rem;
+}
+
+.dayz {
+    height: calc(100% - 50px);
+}
+
+.tools {
+    line-height: 50px;
+}
