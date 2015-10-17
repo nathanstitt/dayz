@@ -8,7 +8,15 @@ class Day extends React.Component {
     static propTypes = {
         labelComponent: React.PropTypes.func,
         day:            React.PropTypes.object.isRequired,
-        layout:         React.PropTypes.instanceOf(Layout)
+        layout:         React.PropTypes.instanceOf(Layout),
+        onClick:        React.PropTypes.func,
+        onEventClick:   React.PropTypes.func
+    }
+
+    onClick(ev) {
+        if (!this.props.onClick){ return }
+        const hours = 24 * ( (ev.pageY - ev.target.offsetTop) / ev.target.offsetHeight );
+        this.props.onClick( this.props.day.clone().startOf('day').add( hours, 'hour' ), ev.target );
     }
 
     render() {
@@ -18,11 +26,19 @@ class Day extends React.Component {
         if (this.props.layout.isDateOutsideRange(this.props.day)){
             classes.push('outside');
         }
+
         const events = map( this.props.layout.forDay(this.props.day), (layout) =>
-                    <Event key={layout.event.key} layout={layout} day={this.props.day} /> );
+            <Event
+                onClick={this.props.onEventClick}
+                key={layout.event.key}
+                layout={layout} day={this.props.day} />
+        );
 
         return (
-            <div className={classes.join(' ')} key={this.props.day.format('YYYYMMDD')}>
+            <div onClick={ (e) => this.onClick(e) }
+                 className={classes.join(' ')}
+                 key={this.props.day.format('YYYYMMDD')}
+            >
                 <Label day={this.props.day} className="label">{this.props.day.format('D')}</Label>
                 {events}
             </div>

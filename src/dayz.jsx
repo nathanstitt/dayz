@@ -19,7 +19,9 @@ class Dayz extends React.Component {
         date:              React.PropTypes.object.isRequired,
         dayComponent:      React.PropTypes.func,
         events:            React.PropTypes.instanceOf(EventsCollection),
-        dayLabelComponent: React.PropTypes.func
+        dayLabelComponent: React.PropTypes.func,
+        onDayClick:        React.PropTypes.func,
+        onEventClick:      React.PropTypes.func
     }
 
     static defaultProps = {
@@ -59,6 +61,7 @@ class Dayz extends React.Component {
 
         this.state.range.by('days', (day) =>
             days.push(<Day key={day.format('YYYYMMDD')} day={day} layout={this.state.layout}
+                           onClick={this.props.onDayClick} onEventClick={this.props.onEventClick}
                            labelComponent={this.props.dayLabelComponent} />)
         );
 

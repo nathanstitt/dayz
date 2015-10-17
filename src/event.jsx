@@ -4,7 +4,14 @@ import EventModel from './data/event';
 class Event extends React.Component {
 
     static propTypes = {
-        layout: React.PropTypes.object.isRequired
+        layout:  React.PropTypes.object.isRequired,
+        onClick: React.PropTypes.func
+    }
+
+    onClick(ev) {
+        if (!this.props.onClick){ return }
+        this.props.onClick(this.props.layout.event, ev.target);
+        ev.stopPropagation();
     }
 
     render() {
@@ -19,7 +26,10 @@ class Event extends React.Component {
                 classes.push(`duration-${range.diff('hours')}`);
             }
         return (
-            <div key={this.props.layout.event.key} className={classes.join(' ')}>
+            <div onClick={ (e) => this.onClick(e) }
+                 key={this.props.layout.event.key}
+                 className={classes.join(' ')}
+            >
                 {this.props.layout.event.render()}
             </div>
         );
