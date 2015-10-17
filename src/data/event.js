@@ -34,6 +34,10 @@ class Event {
     isMultiDay() {
         this.attributes.range.end.diff(this.range.start, 'days') > 1
     }
+
+    content() {
+        return this.attributes.content;
+    }
 }
 
 export default Event;
