@@ -19,7 +19,7 @@ class Event extends React.Component {
         if (this.props.layout.startsBefore) classes.push('is-continuation');
         if (this.props.layout.endsAfter)    classes.push('is-continued');
         if (this.props.layout.stack)        classes.push(`stack-${this.props.layout.stack}`);
-        let state = {};
+
         const range = this.props.layout.event.range()
             if (!this.props.layout.event.isMultiDay()) {
                 classes.push(`hour-${range.start.hour()}`);

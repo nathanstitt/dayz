@@ -4,9 +4,6 @@ import values  from 'lodash/object/values'
 import flatten from 'lodash/array/flatten'
 import sortBy from 'lodash/collection/sortby'
 
-function cacheKey(date){ return date.format('YYYYMMDD'); }
-
-
 function lengthCompare(event){
     return event.attributes.range.start.diff(event.attributes.range.end);
 }
