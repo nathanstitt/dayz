@@ -16,7 +16,11 @@ class Day extends React.Component {
     onClick(ev) {
         if (!this.props.onClick){ return }
         const hours = 24 * ( (ev.pageY - ev.target.offsetTop) / ev.target.offsetHeight );
-        this.props.onClick( this.props.day.clone().startOf('day').add( hours, 'hour' ), ev.target );
+        this.props.onClick( ev, this.props.day.clone().startOf('day').add( hours, 'hour' ) );
+    }
+    onEventClick(ev) {
+        if (!this.props.onEventClick){ return }
+        this.props.onEventClick(ev, this.props.layout);
     }
 
     render() {
@@ -29,7 +33,7 @@ class Day extends React.Component {
 
         const events = map( this.props.layout.forDay(this.props.day), (layout) =>
             <Event
-                onClick={this.props.onEventClick}
+                onClick={ (e) => this.onEventClick(e) }
                 key={layout.event.key}
                 layout={layout} day={this.props.day} />
         );
