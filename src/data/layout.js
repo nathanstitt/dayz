@@ -1,13 +1,8 @@
 import moment from 'moment'
-import sortBy from 'lodash/collection/sortby'
 import range  from 'moment-range';
 
 function cacheKey(day){
     return day.format('YYYYMMDD');
-}
-
-function lengthCompare(layout){
-    layout.event.range().start.diff(layout.event.range().end);
 }
 
 class Layout {
@@ -40,7 +35,7 @@ class Layout {
         do {
             const weeklyEvents = [];
             for (let i=0; i<7; i++){
-                const layouts = sortBy(this.forDay(day), lengthCompare);
+                const layouts = this.forDay(day);
                 if (layouts.length){
                     this.cache[ cacheKey(day) ] = layouts;
                     for (const layout of layouts){
@@ -50,22 +45,18 @@ class Layout {
                 day.add(1, 'day')
             }
 
-            const sortedEvents = sortBy(weeklyEvents, function(layout){
-
-            });
-
-
-            for (let i=0; i<sortedEvents.length; i++){
-                const event = sortedEvents[i];
-                event.stack = 0;
-
-                // find out how many events are before this one
+            for (let i=0; i < weeklyEvents.length; i++){
+                const layout = weeklyEvents[i];
+                layout.stack = 0;
+                // find out how many layouts are before this one
                 for (let pi=i-1; pi>=0; pi--){
-                    if (sortedEvents[pi].event.range().start.isSame(event.event.range().start,'d')){
-                        event.stack=1;  // the one right before this has the same day so we only stack one high
+                    const se = weeklyEvents[pi];
+
+                    if (se.event.range().start.isSame(layout.event.range().start,'d')){
+                        layout.stack=1;  // the one right before this has the same day so we only stack one high
                         break;
                     } else {
-                        event.stack++;
+                        layout.stack++;
                     }
                 }
             }
