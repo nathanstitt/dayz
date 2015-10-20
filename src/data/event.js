@@ -38,6 +38,15 @@ class Event {
     content() {
         return this.attributes.content;
     }
+
+    _start() {
+        return this.attributes.range.start;
+    }
+
+    _end() {
+        return this.attributes.range.end;
+    }
+
 }
 
 export default Event;

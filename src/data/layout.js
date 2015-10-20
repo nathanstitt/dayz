@@ -13,6 +13,7 @@ class Layout {
         this.range = range;
         const cacheMethod = ('day' === options.display) ? 'addtoDaysCache' : 'calculateSpanningLayout';
         // console.log("Events: " , events);
+        if (! events){ return }
         events.each( function(event){
 
             // console.log('Range: ', `${range.start.toString()} : ${range.end.toString()}`);
@@ -25,9 +26,22 @@ class Layout {
             }
         }, this);
 
-
         this.calculateStacking();
+    }
 
+    hourRangeForWeek(firstDay){
+        const day = firstDay.clone();
+        const range = [7, 19];
+        for (let i=0; i<7; i++){
+            const layouts = this.forDay(day);
+            for (let i=0; i < layouts.length; i++){
+
+                range[0] = Math.min( layouts[i].event._start().hour(), range[0] );
+                range[1] = Math.max( layouts[i].event._end().hour(),   range[1] );
+            }
+            day.add(1, 'day');
+        }
+        return range;
     }
 
     calculateStacking(){
