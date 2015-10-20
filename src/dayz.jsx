@@ -10,11 +10,9 @@ import YLabels   from './y-labels'
 
 import EventsCollection from './data/events-collection'
 
-class Dayz extends React.Component {
+const Dayz = React.createClass({
 
-    static EventsCollection = EventsCollection
-
-    static propTypes = {
+    propTypes: {
         display:           React.PropTypes.oneOf(['month', 'week', 'day']),
         date:              React.PropTypes.object.isRequired,
         dayComponent:      React.PropTypes.func,
@@ -22,25 +20,23 @@ class Dayz extends React.Component {
         dayLabelComponent: React.PropTypes.func,
         onDayClick:        React.PropTypes.func,
         onEventClick:      React.PropTypes.func
-    }
+    },
 
-    static defaultProps = {
-        dayLabelComponent: Label,
-        dayComponent:      Day,
-        display:           'month'
-    }
-
-    constructor(props) {
-        super(props);
-    }
+    getDefaultProps() {
+        return {
+            dayLabelComponent: Label,
+            dayComponent:      Day,
+            display:           'month'
+        };
+    },
 
     componentWillMount() {
         this.calculateLayout(this.props);
-    }
+    },
 
     componentWillReceiveProps(nextProps){
         this.calculateLayout(nextProps);
-    }
+    },
 
     calculateLayout(props) {
         const range = moment.range( props.date.clone().startOf( props.display ),
@@ -51,8 +47,7 @@ class Dayz extends React.Component {
         }
         const layout = new Layout(props.events, range, { display: props.display, date: props.date})
         this.setState({ range, layout })
-    }
-
+    },
 
     render() {
         const Day = this.props.dayComponent;
@@ -74,7 +69,8 @@ class Dayz extends React.Component {
         );
     }
 
-}
+});
 
+Dayz.EventsCollection = EventsCollection;
 
 export default Dayz;

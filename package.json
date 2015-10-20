@@ -21,9 +21,7 @@
     "url": "https://github.com/nathanstitt/dayz/issues"
   },
   "homepage": "https://github.com/nathanstitt/dayz#readme",
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "peerDependencies": {
     "lodash": "^3.10.1",
     "moment": "^2.10.6",
@@ -47,6 +45,7 @@
     "gulp-watch": "^4.3.5",
     "jest-cli": "^0.5.10",
     "node-sass": "^3.3.3",
+    "react-addons-test-utils": "^0.14.0",
     "sass-loader": "^3.0.0",
     "scss": "^0.2.4",
     "scss-loader": "0.0.1",
