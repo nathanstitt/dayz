@@ -3,25 +3,21 @@ import Layout from './data/layout';
 import Event  from './event';
 import map    from 'lodash/collection/map';
 
-class Day extends React.Component {
+const Day = React.createClass({
 
-    static propTypes = {
+    propTypes: {
         labelComponent: React.PropTypes.func,
         day:            React.PropTypes.object.isRequired,
         layout:         React.PropTypes.instanceOf(Layout),
         onClick:        React.PropTypes.func,
         onEventClick:   React.PropTypes.func
-    }
+    },
 
     onClick(ev) {
         if (!this.props.onClick){ return }
         const hours = 24 * ( (ev.pageY - ev.target.offsetTop) / ev.target.offsetHeight );
         this.props.onClick( ev, this.props.day.clone().startOf('day').add( hours, 'hour' ) );
-    }
-    onEventClick(ev) {
-        if (!this.props.onEventClick){ return }
-        this.props.onEventClick(ev, this.props.layout);
-    }
+    },
 
     render() {
         const Label = this.props.labelComponent;
@@ -33,13 +29,13 @@ class Day extends React.Component {
 
         const events = map( this.props.layout.forDay(this.props.day), (layout) =>
             <Event
-                onClick={ (e) => this.onEventClick(e) }
+                onClick={this.props.onEventClick}
                 key={layout.event.key}
                 layout={layout} day={this.props.day} />
         );
 
         return (
-            <div onClick={ (e) => this.onClick(e) }
+            <div onClick={this.onClick}
                  className={classes.join(' ')}
                  key={this.props.day.format('YYYYMMDD')}
             >
@@ -50,6 +46,6 @@ class Day extends React.Component {
 
     }
 
-}
+});
 
 export default Day;

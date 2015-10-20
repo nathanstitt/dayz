@@ -3,13 +3,12 @@ import Layout from './data/layout';
 import Event  from './event';
 import map    from 'lodash/collection/map';
 
-class XLabels extends React.Component {
+const XLabels = React.createClass({
 
-    static propTypes = {
+    propTypes: {
         display: React.PropTypes.oneOf(['month', 'week', 'day']),
         date:    React.PropTypes.object.isRequired
-    }
-
+    },
 
     render() {
         let days = [];
@@ -36,6 +35,6 @@ class XLabels extends React.Component {
 
     }
 
-}
+});
 
 export default XLabels;

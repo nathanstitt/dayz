@@ -4,13 +4,12 @@ import Layout from './data/layout';
 import Event  from './event';
 import map    from 'lodash/collection/map';
 
-class YLabels extends React.Component {
+const YLabels = React.createClass({
 
-    static propTypes = {
+    propTypes: {
         display: React.PropTypes.oneOf(['month', 'week', 'day']),
         date:    React.PropTypes.object.isRequired
-    }
-
+    },
 
     render() {
         if (this.props.display == 'month'){
@@ -30,6 +29,6 @@ class YLabels extends React.Component {
         );
     }
 
-}
+});
 
 export default YLabels;

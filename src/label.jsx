@@ -1,11 +1,11 @@
 import React from 'react';
 import Layout from './data/layout';
 
-class Label extends React.Component {
+const Label = React.createClass({
 
-    static propTypes = {
+    propTypes: {
         day: React.PropTypes.object.isRequired
-    }
+    },
 
     render() {
         return (
@@ -13,7 +13,7 @@ class Label extends React.Component {
         );
     }
 
-}
+});
 
 
 export default Label;
