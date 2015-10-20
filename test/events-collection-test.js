@@ -1,7 +1,7 @@
 jest.autoMockOff()
 
-const EventsCollection = require('../src/events-collection');
-const Event = require('../src/event');
+const EventsCollection = require('../src/data/events-collection');
+const Event = require('../src/data/event');
 const moment = require('moment');
 const Range  = require('moment-range');
 

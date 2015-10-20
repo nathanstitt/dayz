@@ -3,9 +3,9 @@ jest.autoMockOff()
 
 const moment = require('moment');
 const Range  = require('moment-range');
-const Layout = require('../src/layout');
-const Event  = require('../src/event');
-const EventsCollection = require('../src/events-collection');
+const Layout = require('../src/data/layout');
+const Event  = require('../src/data/event');
+const EventsCollection = require('../src/data/events-collection');
 
 const TestEventRange = function(startAt, endAt){
     startAt = moment(startAt); endAt = moment(endAt).endOf('day');
@@ -19,7 +19,7 @@ const TestEventRange = function(startAt, endAt){
 }
 
 const TestEventDay = function(date, startAt, endAt){
-    const event  = new Event({ range: moment.range( moment(startAt), moment(endAt).endOf('day') ) })
+    const event  = new Event({ range: moment.range( moment(startAt), moment(endAt) ) })
     const events = new EventsCollection([event]);
     const layout = new Layout( events,
                                moment.range( moment(date), moment(date).endOf('day') ),
@@ -47,7 +47,7 @@ describe( 'Event Layout calculations', function() {
         });
 
         it('events starts before it', function(){
-            const {layout, event} = TestEventDay('2015-10-20', '2015-10-15', '2015-10-20');
+            const {layout, event} = TestEventDay('2015-10-20', '2015-10-15', '2015-10-20 10:15:00');
             expect( layout.forDay( moment('2015-10-20') ) ).toEqual([{
                 startsBefore: true, endsAfter: false, span: 1, event: event, stack: 0
             }]);
@@ -146,4 +146,23 @@ describe( 'Event Layout calculations', function() {
         });
 
     });
+
+    describe('hour ranges', function(){
+
+        it( 'min/max', function(){
+            const {layout, event} = TestEventDay('2015-10-15', '2015-10-15 06:15:00', '2015-10-20 21:12:11');
+            const range = layout.hourRangeForWeek(moment('2015-10-11'));
+            expect(range[0]).toEqual(event._start().hour());
+            expect(range[1]).toEqual(event._end().hour());
+        });
+
+        it('sets a default min/max', function(){
+            const {layout, event} = TestEventDay('2015-10-15', '2015-10-15 12:15:00', '2015-10-20 13:12:11');
+            const range = layout.hourRangeForWeek(moment('2015-10-11'));
+            expect(range[0]).toEqual(7);
+            expect(range[1]).toEqual(19);
+        });
+
+    });
+
 });
