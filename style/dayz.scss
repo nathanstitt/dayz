@@ -9,23 +9,22 @@ $dayz-heading-label-color:  #555 !default;
 .dayz {
 
     // these are internal
-    $hour-percent:   100% / 24;
-    $day-width:      100% / 7;
+    $hour-percent: 100% / 24;
+    $day-width:    100% / 7;
+    width:      100%;
+    height:     100%;
     box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-
-    display: flex;
+    display:    flex;
+    flex-wrap:  wrap;
     flex-direction: column;
-    flex-wrap: wrap;
-    align-items: stretch;
+    align-items:    stretch;
 
     .x-labels {
         flex-basis: $dayz-x-label-height;
         display: flex;
         flex-direction: row;
         height: 20px;
-        .label {
+        .day-label {
             flex-grow: 1;
             padding-left: 8px;
         }
@@ -38,14 +37,16 @@ $dayz-heading-label-color:  #555 !default;
         position: relative;
 
         .y-labels {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             flex-basis: $dayz-y-label-width;
             display: flex;
             flex-direction: column;
             width: 100%;
-            position: absolute;
-            height: 100%;
 
             .hour {
+                width: 100%;
                 flex: 1;
                 display: flex;
                 justify-content: center;
@@ -74,20 +75,19 @@ $dayz-heading-label-color:  #555 !default;
         .x-labels{ padding-left: $dayz-y-label-width; }
         .days {
             margin-left: $dayz-y-label-width;
-
-            .day {
-                flex-basis: 100%;
-                .label { display: none; }
-                .event {
-                    $hour: 1;
-                    @while $hour < 24 {
-                        &.hour-#{$hour}     { top: ($hour - 1) * $hour-percent; }
-                        &.duration-#{$hour} { height: calc(#{$hour * $hour-percent} + 2px); }
-                        $hour: $hour + 1;
-                    }
-                    &.span-1 {
-                        position: absolute;
-                    }
+        }
+        .day {
+            flex-basis: 100%;
+            .label { display: none; }
+            .event {
+                $hour: 1;
+                @while $hour < 24 {
+                    &.hour-#{$hour}     { top: ($hour - 1) * $hour-percent; }
+                    &.duration-#{$hour} { height: calc(#{$hour * $hour-percent} + 2px); }
+                    $hour: $hour + 1;
+                }
+                &.span-1 {
+                    position: absolute;
                 }
             }
         }
