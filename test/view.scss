@@ -19,12 +19,20 @@ body {
     box-sizing: border-box;
     height: 100%;
     padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+
 }
 
 .dayz {
-    height: calc(100% - 50px);
+    flex: 1;
 }
 
+
 .tools {
-    line-height: 50px;
+    flex-basis: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
