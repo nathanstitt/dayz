@@ -3,128 +3,106 @@ $dayz-event-color:          lightcoral !default;
 $dayz-x-label-height:       20px !default;
 $dayz-y-label-width:        60px !default;
 $dayz-grid-line-color:      lightBlue !default;
+$dayz-border-color:         lightgrey !default;
 $dayz-heading-label-color:  #555 !default;
 
 .dayz {
 
     // these are internal
-    $hour-percent:   100%/24;
+    $hour-percent:   100% / 24;
     $day-width:      100% / 7;
-
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
 
     .x-labels {
-        width: 100%;
-        height: $dayz-x-label-height;
+        flex-basis: $dayz-x-label-height;
+        display: flex;
         flex-direction: row;
+        height: 20px;
         .label {
-            color: $dayz-heading-label-color;
-            padding-left: 0.5rem;
-            box-sizing: border-box;
-            width: $day-width;
-            display: inline-block;
-            vertical-align: top;
-            white-space: nowrap;
+            flex-grow: 1;
+            padding-left: 8px;
         }
     }
 
-    .days {
-        height: calc(100% - #{$dayz-x-label-height});
+    .body {
+        flex-grow: 1;
         display: flex;
+        flex-direction: row;
         position: relative;
-    }
 
+        .y-labels {
+            flex-basis: $dayz-y-label-width;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            position: absolute;
+            height: 100%;
+
+            .hour {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                text-indent: 8px;
+                text-align: left;
+                border-bottom: 1px solid $dayz-border-color;
+            }
+        }
+
+        .days {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            box-sizing: border-box;
+        }
+    }
 
     .day {
+        border: 1px solid $dayz-border-color;
         box-sizing: border-box;
-        border: 1px solid lightgrey;
-        &.outside {
-            background-color: lightGrey;
-        }
     }
 
     &.week, &.day {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-
-        .event {
-            $hour: 1;
-            @while $hour < 24 {
-                &.hour-#{$hour}     { top: ($hour - 1) * $hour-percent; }
-                &.duration-#{$hour} { height: calc(#{$hour * $hour-percent} + 2px); }
-                $hour: $hour + 1;
-            }
-            &.span-1 {
-                position: absolute;
-
-            }
-        }
-
-        .y-labels {
-            width: $dayz-y-label-width;
-            height: calc(100% - #{$dayz-x-label-height});
-            box-sizing: border-box;
-            .hour {
-                text-align: center;
-                height: 4.16%;
-                margin-bottom: 0.1px;
-            }
-        }
-
-        .x-labels {
+        .x-labels{ padding-left: $dayz-y-label-width; }
+        .days {
             margin-left: $dayz-y-label-width;
-        }
 
-        .days {
-            flex-direction: row;
-            width: calc(100% - #{$dayz-y-label-width});
             .day {
-                height: 100%;
+                flex-basis: 100%;
                 .label { display: none; }
-                background-image: linear-gradient(#ccc 1px, transparent 1px);
-                background-size: 100% 4.2%;
-            }
-        }
-
-    }
-
-    &.day {
-        .days {
-            .day{
-                width: 100%;
+                .event {
+                    $hour: 1;
+                    @while $hour < 24 {
+                        &.hour-#{$hour}     { top: ($hour - 1) * $hour-percent; }
+                        &.duration-#{$hour} { height: calc(#{$hour * $hour-percent} + 2px); }
+                        $hour: $hour + 1;
+                    }
+                    &.span-1 {
+                        position: absolute;
+                    }
+                }
             }
         }
     }
 
     &.week {
-        .days {
-            .day{
-                width: $day-width;
-            }
-        }
-        .event.span-1 {
+        .day .event.span-1 {
             width: $day-width;
         }
     }
 
-    &.month .days {
-        flex-direction: row;
-        flex-wrap: wrap;
-        .day {
-            width: $day-width;
-            flex-grow: 1;
-            height: 20%;
-            .label {
-                display: inline-block;
-                margin-left: 0.5rem;
-                margin-top: 0.5rem;
-                font-size: 1.1rem;
-            }
+    &.month {
+        .days {
+            flex-flow: wrap;
+            .day{ flex-basis: $day-width; }
         }
     }
 
@@ -170,9 +148,9 @@ $dayz-heading-label-color:  #555 !default;
             display: block;
             position: absolute;
             top: 50%;
-            margin-top: -$dayz-event-arrow-width;
             width: 0;
             height: 0;
+            margin-top:    -$dayz-event-arrow-width;
             border-top:    $dayz-event-arrow-width solid transparent;
             border-right:  $dayz-event-arrow-width solid transparent;
             border-bottom: $dayz-event-arrow-width solid transparent;
