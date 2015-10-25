@@ -63,8 +63,10 @@ const Dayz = React.createClass({
         return (
             <div className={classes.join(' ')}>
                 <XLabels date={this.props.date} display={this.props.display} />
-                <YLabels date={this.props.date} display={this.props.display} />
-                <div className="days">{days}</div>
+                <div className="body">
+                    <YLabels date={this.props.date} display={this.props.display} />
+                    <div className="days">{days}</div>
+                </div>
             </div>
         );
     }
