@@ -1,5 +1,4 @@
 import React   from 'react';
-import Emitter from 'tiny-emitter';
 import range   from 'moment-range';
 import assign  from 'lodash/object/assign';
 
@@ -11,7 +10,6 @@ class Event {
         this.attributes = attributes;
         this.isEvent = true;
         this.key = EVENT_COUNTER++;
-
         if (!this.attributes.range){
             throw new Error("Must provide range");
         }
@@ -33,7 +31,9 @@ class Event {
 
     set(attributes) {
         assign(this.attributes, attributes);
-        this.emit('change');
+        if (this.collection){
+            this.collection.emit('change');
+        }
     }
 
     range() {
@@ -44,21 +44,24 @@ class Event {
         this.attributes.range.end.diff(this.range.start, 'days') > 1
     }
 
+    daysMinuteRange() {
+        const startOfDay = this.attributes.range.start.clone().startOf('day');
+        return {start: this.attributes.range.start.diff(startOfDay, 'minute'),
+                end: this.attributes.range.end.diff(startOfDay, 'minute') };
+    }
+
     content() {
         return this.attributes.content;
     }
 
-    _start() {
+    start() {
         return this.attributes.range.start;
     }
 
-    _end() {
+    end() {
         return this.attributes.range.end;
     }
 
 }
-
-assign( Event.prototype, Emitter.prototype )
-
 
 export default Event;

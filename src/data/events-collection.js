@@ -24,14 +24,10 @@ class EventsCollection {
         if (!event.isEvent){
             event = new Event(event);
         }
-        event.on('change', this.onEventChange, this);
+        event.collection = this;
         this.events.push(event);
         this.emit('change');
         return event;
-    }
-
-    onEventChange(){
-        this.emit('change');
     }
 
     each(fn, scope){
