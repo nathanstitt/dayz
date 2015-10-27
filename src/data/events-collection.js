@@ -1,8 +1,8 @@
-import Event   from './event'
-import each    from 'lodash/collection/each'
-import values  from 'lodash/object/values'
-import flatten from 'lodash/array/flatten'
-import sortBy from 'lodash/collection/sortby'
+import Event   from './event';
+import each    from 'lodash/collection/each';
+import values  from 'lodash/object/values';
+import flatten from 'lodash/array/flatten';
+import sortBy  from 'lodash/collection/sortby';
 
 function lengthCompare(event){
     return event.attributes.range.start.diff(event.attributes.range.end);
@@ -12,7 +12,7 @@ class EventsCollection {
     static Event = Event
 
     constructor(events=[]) {
-        this.events = []
+        this.emitter = new Emitter();
         for (let i = 0, length = events.length; i<length; i++){
             this.add(events[i]);
         }

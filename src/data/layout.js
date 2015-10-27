@@ -1,4 +1,4 @@
-import moment from 'moment'
+import moment from 'moment';
 import range  from 'moment-range';
 
 function cacheKey(day){
