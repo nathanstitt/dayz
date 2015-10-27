@@ -10,14 +10,14 @@
     * Styles are written in `scss` with variables that can be modified for customized builds.
 * Care is taken to retain elements when switching view types, this allows minimal DOM reflow and allows nice animation effects where events warp into position.
 
-
-
+Pre version `1.0.0` breaking changes will happen on the `minor` version while feature and patches accompany a patch bump.
 
 ![alt tag](http://nathan.stitt.org/images/dayz-screenshot.png)
 
 ## Demo
 
 An interactive demo can be viewed at: http://nathan.stitt.org/dayz/  It lacks polish but is somewhat functional ;)
+
 
 ## Usage
 
