@@ -2,6 +2,7 @@ import React     from 'react';
 import moment    from 'moment';
 import DateRange from 'moment-range';
 import extend    from 'lodash/object/extend'
+import omit      from 'lodash/object/omit'
 import Layout    from './data/layout'
 import Day       from './day'
 import Label     from './label'
@@ -38,9 +39,19 @@ const Dayz = React.createClass({
         this.calculateLayout(nextProps);
     },
 
+    onEventsChange() {
+        this.calculateLayout(this.props);
+    },
+
     calculateLayout(props) {
         const range = moment.range( props.date.clone().startOf( props.display ),
                                     props.date.clone().endOf(   props.display ) );
+
+        if (props.events) {
+            if (this.props.events){ this.props.events.off('change', this.onEventAdd); }
+            props.events.on('change', this.onEventsChange, this);
+        }
+
         if ( props.display === 'month' ){
             range.start.subtract(range.start.weekday(), 'days');
             range.end.add(6 - range.end.weekday(), 'days');

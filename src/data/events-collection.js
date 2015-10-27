@@ -1,7 +1,9 @@
 import Event   from './event';
+import Emitter from 'tiny-emitter';
 import each    from 'lodash/collection/each';
 import values  from 'lodash/object/values';
 import flatten from 'lodash/array/flatten';
+import assign  from 'lodash/object/assign';
 import sortBy  from 'lodash/collection/sortby';
 
 function lengthCompare(event){
@@ -11,19 +13,25 @@ function lengthCompare(event){
 class EventsCollection {
     static Event = Event
 
-    constructor(events=[]) {
-        this.emitter = new Emitter();
+    constructor(events = []) {
+        this.events  = [];
         for (let i = 0, length = events.length; i<length; i++){
             this.add(events[i]);
         }
     }
 
     add(event) {
-        // console.log("Add event: ", event);
         if (!event.isEvent){
             event = new Event(event);
         }
+        event.on('change', this.onEventChange, this);
         this.events.push(event);
+        this.emit('change');
+        return event;
+    }
+
+    onEventChange(){
+        this.emit('change');
     }
 
     each(fn, scope){
@@ -34,5 +42,7 @@ class EventsCollection {
         return this.events.length;
     }
 }
+
+assign( EventsCollection.prototype, Emitter.prototype )
 
 export default EventsCollection;

@@ -1,5 +1,7 @@
-import React from 'react';
-import range from 'moment-range';
+import React   from 'react';
+import Emitter from 'tiny-emitter';
+import range   from 'moment-range';
+import assign  from 'lodash/object/assign';
 
 let EVENT_COUNTER = 1;
 
@@ -24,7 +26,14 @@ class Event {
     }
 
     defaultRenderImplementation(date, options) {
-        return React.createElement('div', {}, this.attributes.content || range.start.format('MMM DD YYYY') );
+        return React.createElement('div', {},
+            this.attributes.content || range.start.format('MMM DD YYYY')
+        );
+    }
+
+    set(attributes) {
+        assign(this.attributes, attributes);
+        this.emit('change');
     }
 
     range() {
@@ -48,5 +57,8 @@ class Event {
     }
 
 }
+
+assign( Event.prototype, Emitter.prototype )
+
 
 export default Event;
