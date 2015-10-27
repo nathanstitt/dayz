@@ -5,10 +5,13 @@ const DateRange = require('moment-range');
 const React     = require('react');
 const ReactDOM  = require('react-dom');
 
+let COUNT = 1;
+
 class DayzTest extends React.Component {
 
     constructor(props) {
         super(props);
+        this.addEvent = this.addEvent.bind(this)
         this.changeDisplay = this.changeDisplay.bind(this)
         const date = moment("2015-09-11");
         this.state = {
@@ -34,11 +37,22 @@ class DayzTest extends React.Component {
         console.log(event.content());
     }
 
-    onDayClick(date){
+    onDayClick(date) {
         console.log( date.toString() )
     }
 
-    render(){
+    addEvent() {
+        const event = this.state.events.add(
+            { content: `Event ${COUNT++}`,
+              range: new DateRange( this.state.date.clone().add(COUNT, 'hour'),
+                                    this.state.date.clone().add(COUNT+1, 'hour') ) }
+        );
+        setTimeout( function(){
+            event.set({ content: (event.content() + ' : updated') });
+        }, 4000);
+    }
+
+    render() {
         return (
             <div className="test-wrapper">
                 <Dayz {...this.state} onDayClick={this.onDayClick} onEventClick={this.onEventClick} />
@@ -52,6 +66,8 @@ class DayzTest extends React.Component {
                     </label><label>
                         Day: <input type="radio" name="style"   value="day"   onChange={this.changeDisplay}
                                     checked={this.state.display == 'day'}   />
+                    </label><label>
+                        <button onClick={this.addEvent}>+</button>
                     </label>
                 </div>
             </div>
@@ -59,8 +75,6 @@ class DayzTest extends React.Component {
     }
 
 }
-
-
 
 
 const div = document.createElement('div');
