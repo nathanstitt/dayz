@@ -15,7 +15,8 @@ const Day = React.createClass({
 
     onClick(ev) {
         if (!this.props.onClick){ return }
-        const hours = 24 * ( (ev.pageY - ev.target.offsetTop) / ev.target.offsetHeight );
+        const bounds = ev.currentTarget.getBoundingClientRect();
+        const hours = 24 * ((ev.clientY - bounds.top) / ev.target.offsetHeight );
         this.props.onClick( ev, this.props.day.clone().startOf('day').add( hours, 'hour' ) );
     },
 

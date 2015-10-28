@@ -1,5 +1,6 @@
 import moment from 'moment';
 import range  from 'moment-range';
+import EventLayout from './event-layout';
 
 function cacheKey(day){
     return day.format('YYYYMMDD');
@@ -36,8 +37,8 @@ class Layout {
             const layouts = this.forDay(day);
             for (let i=0; i < layouts.length; i++){
 
-                range[0] = Math.min( layouts[i].event._start().hour(), range[0] );
-                range[1] = Math.max( layouts[i].event._end().hour(),   range[1] );
+                range[0] = Math.min( layouts[i].event.start().hour(), range[0] );
+                range[1] = Math.max( layouts[i].event.end().hour(),   range[1] );
             }
             day.add(1, 'day');
         }
@@ -91,9 +92,11 @@ class Layout {
     // a single day is easy, just add the event to that day
     addtoDaysCache(event){
         // console.log(`${event.range().start.toString()} isBefore: ${startAt.toString()}`);
-        this.addToCache(this.range.start, { startsBefore: this.range.start.isAfter( event.range().start ),
-                                            endsAfter: this.range.end.isBefore(event.range().end),
-                                            event, span: 1 });
+        const layout = new EventLayout(event, this.range);
+        this.addToCache(this.range.start, layout);
+        // this.addToCache(this.range.start, { startsBefore: this.range.start.isAfter( event.range().start ),
+        //                                     endsAfter: this.range.end.isBefore(event.range().end),
+        //                                     event, span: 1 });
     }
 
     // other layouts must break at week boundaries, with indicators if they were/are continuing
@@ -103,23 +106,16 @@ class Layout {
         const start = moment.max(this.range.start, event.range().start);
 
         do {
-            //console.log(`isBefore: ${event.range().start.toString()} isBefore ${start.toString()} == ${event.range().start.isBefore(start)}`);
-            // console.log("Start: ", start);
+            const layout = new EventLayout(event, moment.range(start, start.clone().endOf('week')) );
 
-            const endOfWeek = start.clone().endOf('week')
+            this.addToCache(start, layout );
 
-            const startsBefore  = event.range().start.isBefore(start);
-            const endsAfter = event.range().end.isAfter(endOfWeek);
+            // { startsBefore, endsAfter, event,
+            //                          span: moment.min(endOfWeek, event.range().end).diff(start, 'day')+1
 
-            //console.log(`${endOfWeek.toString()} : ${event.range().end.toString()}`);
-            //console.log(`span: ${moment.min(endOfWeek, event.range().end).day()+1}`)
-
-            this.addToCache(start, { startsBefore, endsAfter, event,
-                                     span: moment.min(endOfWeek, event.range().end).diff(start, 'day')+1
-                                   });
             // go to first day of next week
             start.add(7-start.day(), 'day');
-            //            console.log(`Moved to ${start.format('ddd DD')} -> ${start.toString()} isBefore ${endOfWeek.toString()} == ${start.isBefore(end)}`);
+
         } while (!start.isAfter(end));
 
     }

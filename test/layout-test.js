@@ -152,8 +152,8 @@ describe( 'Event Layout calculations', function() {
         it( 'min/max', function(){
             const {layout, event} = TestEventDay('2015-10-15', '2015-10-15 06:15:00', '2015-10-20 21:12:11');
             const range = layout.hourRangeForWeek(moment('2015-10-11'));
-            expect(range[0]).toEqual(event._start().hour());
-            expect(range[1]).toEqual(event._end().hour());
+            expect(range[0]).toEqual(event.start().hour());
+            expect(range[1]).toEqual(event.end().hour());
         });
 
         it('sets a default min/max', function(){

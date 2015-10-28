@@ -35,6 +35,14 @@ const Dayz = React.createClass({
         this.calculateLayout(this.props);
     },
 
+    componentWillUnmount() {
+        this.detachEventBindings();
+    },
+
+    detachEventBindings() {
+        if (this.props.events){ this.props.events.off('change', this.onEventAdd); }
+    },
+
     componentWillReceiveProps(nextProps){
         this.calculateLayout(nextProps);
     },
@@ -46,13 +54,11 @@ const Dayz = React.createClass({
     calculateLayout(props) {
         const range = moment.range( props.date.clone().startOf( props.display ),
                                     props.date.clone().endOf(   props.display ) );
-
         if (props.events) {
-            if (this.props.events){ this.props.events.off('change', this.onEventAdd); }
+            this.detachEventBindings();
             props.events.on('change', this.onEventsChange, this);
         }
-
-        if ( props.display === 'month' ){
+        if ( props.display === 'month' ) {
             range.start.subtract(range.start.weekday(), 'days');
             range.end.add(6 - range.end.weekday(), 'days');
         }

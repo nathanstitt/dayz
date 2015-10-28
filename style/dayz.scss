@@ -80,12 +80,6 @@ $dayz-heading-label-color:  #555 !default;
             flex-basis: 100%;
             .label { display: none; }
             .event {
-                $hour: 1;
-                @while $hour < 24 {
-                    &.hour-#{$hour}     { top: ($hour - 1) * $hour-percent; }
-                    &.duration-#{$hour} { height: calc(#{$hour * $hour-percent} + 2px); }
-                    $hour: $hour + 1;
-                }
                 &.span-1 {
                     position: absolute;
                 }

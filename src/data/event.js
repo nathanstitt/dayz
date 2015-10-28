@@ -40,8 +40,8 @@ class Event {
         return this.attributes.range.clone();
     }
 
-    isMultiDay() {
-        this.attributes.range.end.diff(this.range.start, 'days') > 1
+    isSingleDay() {
+        return this.attributes.range.end.diff(this.attributes.range.start, 'days') <= 1
     }
 
     daysMinuteRange() {

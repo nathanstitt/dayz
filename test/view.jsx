@@ -45,7 +45,7 @@ class DayzTest extends React.Component {
         const event = this.state.events.add(
             { content: `Event ${COUNT++}`,
               range: new DateRange( this.state.date.clone().add(COUNT, 'hour'),
-                                    this.state.date.clone().add(COUNT+1, 'hour') ) }
+                                    this.state.date.clone().add(COUNT, 'hour').add(45, 'minutes') ) }
         );
         setTimeout( function(){
             event.set({ content: (event.content() + ' : updated') });
