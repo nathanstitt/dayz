@@ -11,8 +11,9 @@ class DayzTest extends React.Component {
 
     constructor(props) {
         super(props);
-        this.addEvent = this.addEvent.bind(this)
-        this.changeDisplay = this.changeDisplay.bind(this)
+        this.addEvent = this.addEvent.bind(this);
+        this.onEventClick = this.onEventClick.bind(this);
+        this.changeDisplay = this.changeDisplay.bind(this);
         const date = moment("2015-09-11");
         this.state = {
             date,
@@ -33,11 +34,11 @@ class DayzTest extends React.Component {
         this.setState({ display: ev.target.value })
     }
 
-    onEventClick(event) {
-        console.log(event.content());
+    onEventClick(ev, event) {
+        this.state.events.setEditing( this.state.events.isEditing(event) ? false : event );
     }
 
-    onDayClick(date) {
+    onDayClick(ev, date) {
         console.log( date.toString() )
     }
 
@@ -47,15 +48,26 @@ class DayzTest extends React.Component {
               range: new DateRange( this.state.date.clone().add(COUNT, 'hour'),
                                     this.state.date.clone().add(COUNT, 'hour').add(45, 'minutes') ) }
         );
+        //
         setTimeout( function(){
             event.set({ content: (event.content() + ' : updated') });
         }, 4000);
     }
 
+    editComponent(props) {
+        return (
+            <span>editing!</span>
+        );
+    }
+
     render() {
         return (
             <div className="test-wrapper">
-                <Dayz {...this.state} onDayClick={this.onDayClick} onEventClick={this.onEventClick} />
+                <Dayz {...this.state}
+                      editComponent={this.editComponent}
+                      onDayClick={this.onDayClick}
+                      onEventClick={this.onEventClick}
+                />
                 <div className="tools">
                     <label>
                         Month: <input type="radio" name="style" value="month" onChange={this.changeDisplay}

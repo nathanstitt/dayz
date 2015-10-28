@@ -6,6 +6,7 @@ import map    from 'lodash/collection/map';
 const Day = React.createClass({
 
     propTypes: {
+        editComponent:  React.PropTypes.func,
         labelComponent: React.PropTypes.func,
         day:            React.PropTypes.object.isRequired,
         layout:         React.PropTypes.instanceOf(Layout),
@@ -23,18 +24,19 @@ const Day = React.createClass({
     render() {
         const Label = this.props.labelComponent;
         const classes=['day'];
-
         if (this.props.layout.isDateOutsideRange(this.props.day)){
             classes.push('outside');
         }
-
         const events = map( this.props.layout.forDay(this.props.day), (layout) =>
             <Event
+                isEditing={this.props.layout.isEditing(layout.event)}
+                editComponent={this.props.editComponent}
                 onClick={this.props.onEventClick}
                 key={layout.event.key}
-                layout={layout} day={this.props.day} />
+                day={this.props.day}
+                layout={layout}
+            />
         );
-
         return (
             <div onClick={this.onClick}
                  className={classes.join(' ')}
@@ -44,7 +46,6 @@ const Day = React.createClass({
                 {events}
             </div>
         );
-
     }
 
 });

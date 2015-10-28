@@ -15,9 +15,18 @@ class EventsCollection {
 
     constructor(events = []) {
         this.events  = [];
-        for (let i = 0, length = events.length; i<length; i++){
+        for (let i = 0, length = events.length; i<length; i++) {
             this.add(events[i]);
         }
+    }
+
+    isEditing( event ) {
+        return this.editing === event;
+    }
+
+    setEditing(event) {
+        this.editing = event;
+        this.emit('change');
     }
 
     add(event) {
@@ -30,11 +39,11 @@ class EventsCollection {
         return event;
     }
 
-    each(fn, scope){
+    each(fn, scope) {
         each(sortBy(this.events, lengthCompare), fn, scope);
     }
 
-    length(){
+    length() {
         return this.events.length;
     }
 }

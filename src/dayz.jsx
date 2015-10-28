@@ -17,6 +17,7 @@ const Dayz = React.createClass({
         display:           React.PropTypes.oneOf(['month', 'week', 'day']),
         date:              React.PropTypes.object.isRequired,
         dayComponent:      React.PropTypes.func,
+        editComponent:     React.PropTypes.func,
         events:            React.PropTypes.instanceOf(EventsCollection),
         dayLabelComponent: React.PropTypes.func,
         onDayClick:        React.PropTypes.func,
@@ -70,13 +71,16 @@ const Dayz = React.createClass({
         const Day = this.props.dayComponent;
         const classes = ["dayz", this.props.display];
         const days = []
-
         this.state.range.by('days', (day) =>
-            days.push(<Day key={day.format('YYYYMMDD')} day={day} layout={this.state.layout}
-                           onClick={this.props.onDayClick} onEventClick={this.props.onEventClick}
-                           labelComponent={this.props.dayLabelComponent} />)
+            days.push(<Day key={day.format('YYYYMMDD')}
+                           day={day}
+                           layout={this.state.layout}
+                           editComponent={this.props.editComponent}
+                           onClick={this.props.onDayClick}
+                           onEventClick={this.props.onEventClick}
+                           labelComponent={this.props.dayLabelComponent}
+                      />)
         );
-
         return (
             <div className={classes.join(' ')}>
                 <XLabels date={this.props.date} display={this.props.display} />
