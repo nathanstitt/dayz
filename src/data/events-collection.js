@@ -20,15 +20,6 @@ class EventsCollection {
         }
     }
 
-    isEditing( event ) {
-        return this.editing === event;
-    }
-
-    setEditing(event) {
-        this.editing = event;
-        this.emit('change');
-    }
-
     add(event) {
         if (!event.isEvent){
             event = new Event(event);

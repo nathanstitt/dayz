@@ -29,7 +29,6 @@ const Day = React.createClass({
         }
         const events = map( this.props.layout.forDay(this.props.day), (layout) =>
             <Event
-                isEditing={this.props.layout.isEditing(layout.event)}
                 editComponent={this.props.editComponent}
                 onClick={this.props.onEventClick}
                 key={layout.event.key}
