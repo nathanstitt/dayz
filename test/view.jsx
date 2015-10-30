@@ -35,7 +35,7 @@ class DayzTest extends React.Component {
     }
 
     onEventClick(ev, event) {
-        this.state.events.setEditing( this.state.events.isEditing(event) ? false : event );
+        event.set({editing: !event.isEditing()})
     }
 
     onDayClick(ev, date) {
