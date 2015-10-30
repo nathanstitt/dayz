@@ -12,6 +12,10 @@ const EventLayout = require('../src/data/event-layout');
 
 const date = moment('2015-09-12');
 
+const fakeLayout = {
+    displayingAs(){ return 'week' }
+};
+
 describe('Dayz', function() {
 
     it('renders a single-day event', function() {
@@ -19,7 +23,8 @@ describe('Dayz', function() {
             content: 'test',
             range: moment.range( date.clone().add(8, 'hours'), date.clone().add(10, 'hours'))
         });
-        const layout = new EventLayout(eventModel, moment.range(date, date.clone().add(1, 'day') ));
+        const layout = new EventLayout(fakeLayout,
+                                       eventModel, moment.range(date, date.clone().add(1, 'day') ));
         const event  = TestUtils.renderIntoDocument( <EventComp layout={layout} /> );
         const div    = ReactDOM.findDOMNode(event);
         expect( div.style.top ).toEqual('33.33%' )
@@ -33,13 +38,14 @@ describe('Dayz', function() {
             content: 'test',
             range: moment.range( date.clone(), date.clone().add(3, 'days'))
         });
-        const layout = new EventLayout(eventModel, moment.range(date, date.clone().add(1, 'day') ));
+        const layout = new EventLayout(fakeLayout, eventModel, moment.range(date, date.clone().add(1, 'day') ));
         const event  = TestUtils.renderIntoDocument( <EventComp layout={layout} /> );
         const div    = ReactDOM.findDOMNode(event);
-        expect( eventModel.isSingleDay() ).toBe(true);
+        expect( eventModel.isSingleDay() ).toBe(false);
         expect( div.style.length ).toBe(0);
         expect( div.classList.contains('event') ).toBe(true)
-        expect( div.classList.contains('span-2') ).toBe(true)
+        expect( div.classList.contains('span-1') ).toBe(true)
+        expect( div.classList.contains('is-continued') ).toBe(true)
     });
 
 });

@@ -25,7 +25,9 @@ class DayzTest extends React.Component {
                   range: new DateRange( date.clone().hour(8),
                                         date.clone().hour(10) ) },
                 { content: "A Longer Event",
-                  range: moment.range( date.clone().subtract(2,'days'), date.clone().add(8,'days') ) }
+                  range: moment.range( date.clone().subtract(2,'days'), date.clone().add(8,'days') ) },
+                { content: "Weeklong",
+                  range: moment.range( moment('2015-09-20'), moment('2015-09-26').endOf('day') ) }
             ])
         };
     }

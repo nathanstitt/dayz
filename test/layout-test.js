@@ -19,11 +19,11 @@ const TestEventRange = function(startAt, endAt){
 }
 
 const TestEventDay = function(date, startAt, endAt){
-    const event  = new Event({ range: moment.range( moment(startAt), moment(endAt) ) })
-    const events = new EventsCollection([event]);
+    const events = new EventsCollection();
+    const event  = events.add({ range: moment.range( moment(startAt), moment(endAt) ) });
     const layout = new Layout( events,
                                moment.range( moment(date), moment(date).endOf('day') ),
-                               {display: 'day', day: event.range().start}
+                               {display: 'day', day: startAt}
                              );
 
     return {events, layout, event};
@@ -34,81 +34,81 @@ describe( 'Event Layout calculations', function() {
     describe('day layout', function(){
         it('lays out a single day', function() {
             const {layout, event} = TestEventDay('2015-10-10', '2015-10-10', '2015-10-10');
-            expect( layout.forDay(event.range().start) ).toEqual([{
-                startsBefore: false, endsAfter: false, span: 1, event: event, stack: 0
-            }]);
+            expect( layout.forDay(event.range().start) ).toEqual([jasmine.objectContaining({
+                first: true, startsBefore: false, endsAfter: false, span: 1, event: event, stack: 0
+            })]);
         });
 
         it('events end after it', function(){
             const {layout, event} = TestEventDay('2015-10-15', '2015-10-15', '2015-10-20');
-            expect( layout.forDay( moment('2015-10-15') ) ).toEqual([{
+            expect( layout.forDay( moment('2015-10-15') ) ).toEqual([jasmine.objectContaining({
                 startsBefore: false, endsAfter: true, span: 1, event: event, stack: 0
-            }]);
+            })]);
         });
 
         it('events starts before it', function(){
             const {layout, event} = TestEventDay('2015-10-20', '2015-10-15', '2015-10-20 10:15:00');
-            expect( layout.forDay( moment('2015-10-20') ) ).toEqual([{
+            expect( layout.forDay( moment('2015-10-20') ) ).toEqual([jasmine.objectContaining({
                 startsBefore: true, endsAfter: false, span: 1, event: event, stack: 0
-            }]);
+            })]);
         });
 
         it('events elapses around it', function(){
             const {layout, event} = TestEventDay('2015-10-18', '2015-10-15', '2015-10-20');
-            expect( layout.forDay( moment('2015-10-18') ) ).toEqual([{
+            expect( layout.forDay( moment('2015-10-18') ) ).toEqual([jasmine.objectContaining({
                 startsBefore: true, endsAfter: true, span: 1, event: event, stack: 0
-            }]);
+            })]);
         });
     })
 
     describe('week or month layout', function(){
         it ('can exactly span a week', function(){
             const {layout, event} = TestEventRange('2015-10-11', '2015-10-17');
-            expect([{
+            expect(layout.forDay(moment('2015-10-11') )).toEqual([jasmine.objectContaining({
                 startsBefore: false, endsAfter: false,
                 span: 7, event: event, stack: 0
-            }]).toEqual( layout.forDay(moment('2015-10-11') ) )
+            })])
         })
 
         it ('can start before but end on a week', function(){
             const {layout, event} = TestEventRange('2015-10-10', '2015-10-17');
-            expect([{
+            expect(layout.forDay(moment('2015-10-10'))).toEqual([jasmine.objectContaining({
                 startsBefore: false, endsAfter: true,
                 span: 1, event: event, stack: 0
-            }]).toEqual(layout.forDay(moment('2015-10-10')));
+            })])
 
-            expect([{
+            expect(layout.forDay(moment('2015-10-11'))).toEqual([jasmine.objectContaining({
                 startsBefore: true, endsAfter: false,
                 span: 7, event: event, stack: 0
-            }]).toEqual(layout.forDay(moment('2015-10-11')));
+            })])
 
         });
 
         it ('can start on a week, but end past it', function(){
             const {layout, event} = TestEventRange('2015-10-11', '2015-10-18');
-            expect( layout.forDay(event.range().start) ).toEqual([{
+            expect( layout.forDay(event.range().start) ).toEqual([jasmine.objectContaining({
                 startsBefore: false, endsAfter: true,
                 span: 7, event: event, stack: 0
-            }])
-            expect(layout.forDay(moment('2015-10-18'))).toEqual([{
+            })])
+            expect(layout.forDay(moment('2015-10-18'))).toEqual([jasmine.objectContaining({
                 startsBefore: true, endsAfter: false,
                 span: 1, event: event, stack: 0
-            }]);
+            })]);
         });
 
         it ('can span past a month', function(){
             const {layout, event} = TestEventRange('2015-09-28', '2015-11-03');
-            expect(layout.forDay(moment('2015-09-28'))).toEqual([{
+            expect(layout.forDay(moment('2015-09-28'))).toEqual([jasmine.objectContaining({
                 span: 6, event: event, stack: 0, startsBefore: false, endsAfter: true,
-            }])
+            })])
             for (const date of ['2015-10-04', '2015-10-11', '2015-10-18', '2015-10-25']){
-                expect(layout.forDay(moment('2015-10-04'))).toEqual([{
+                expect(layout.forDay(moment('2015-10-04'))).toEqual([jasmine.objectContaining({
                     span: 7, startsBefore: true, endsAfter: true, event: event, stack: 0
-                }])
+                })])
             }
-            expect(layout.forDay(moment('2015-11-01'))).toEqual([{
+            expect(layout.forDay(moment('2015-11-01'))).toEqual([jasmine.objectContaining({
                 span: 3, startsBefore: true, endsAfter: false, event: event, stack: 0
-            }])
+            })])
         });
     });
 
