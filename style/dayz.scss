@@ -36,6 +36,7 @@ $dayz-heading-label-color:  #555 !default;
         flex-direction: row;
         position: relative;
 
+
         .y-labels {
             position: absolute;
             width: 100%;
@@ -44,8 +45,7 @@ $dayz-heading-label-color:  #555 !default;
             display: flex;
             flex-direction: column;
             width: 100%;
-
-            .hour {
+            .all-day, .hour {
                 width: 100%;
                 flex: 1;
                 display: flex;
@@ -54,6 +54,9 @@ $dayz-heading-label-color:  #555 !default;
                 text-indent: 8px;
                 text-align: left;
                 border-bottom: 1px solid $dayz-border-color;
+            }
+            .all-day {
+                flex-grow: 0;
             }
         }
 
@@ -78,12 +81,19 @@ $dayz-heading-label-color:  #555 !default;
         }
         .day {
             flex-basis: 100%;
-            .label { display: none; }
-            .event {
-                &.span-1 {
-                    position: absolute;
-                }
+            display: flex;
+            flex-direction: column;
+            .all-day {
+                flex: 1;
+                flex-grow: 0;
             }
+            .events {
+                flex: 1;
+                position: relative;
+                .event.span-1 { width: 100%; }
+            }
+            .label { display: none; }
+            .event.span-1 { position: absolute; }
         }
     }
 
@@ -96,7 +106,12 @@ $dayz-heading-label-color:  #555 !default;
     &.month {
         .days {
             flex-flow: wrap;
-            .day{ flex-basis: $day-width; }
+            .day{
+                flex-basis: $day-width;
+                .event {
+                    height: $dayz-x-label-height;
+                }
+            }
         }
     }
 
@@ -132,7 +147,7 @@ $dayz-heading-label-color:  #555 !default;
                     border-bottom-left-radius: 0;
                 }
                 &.is-continued.is-continuation {
-                    width: calc(#{$span * 100%} + #{$span * 2px - ($dayz-event-arrow-width*3)});
+                    width: calc(#{$span * 100%} + #{$span * 8px - ($dayz-event-arrow-width*3)});
                 }
             }
         }

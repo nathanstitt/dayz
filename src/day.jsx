@@ -1,7 +1,6 @@
 import React  from 'react';
 import Layout from './data/layout';
 import Event  from './event';
-import map    from 'lodash/collection/map';
 
 const Day = React.createClass({
 
@@ -9,7 +8,7 @@ const Day = React.createClass({
         editComponent:  React.PropTypes.func,
         labelComponent: React.PropTypes.func,
         day:            React.PropTypes.object.isRequired,
-        layout:         React.PropTypes.instanceOf(Layout),
+        layout:         React.PropTypes.instanceOf(Layout).isRequired,
         onClick:        React.PropTypes.func,
         onEventClick:   React.PropTypes.func
     },
@@ -27,22 +26,29 @@ const Day = React.createClass({
         if (this.props.layout.isDateOutsideRange(this.props.day)){
             classes.push('outside');
         }
-        const events = map( this.props.layout.forDay(this.props.day), (layout) =>
-            <Event
-                editComponent={this.props.editComponent}
-                onClick={this.props.onEventClick}
-                key={layout.event.key}
-                day={this.props.day}
-                layout={layout}
-            />
-        );
+        const singleDayEvents = [];
+        const allDayEvents    = [];
+        for( const layout of this.props.layout.forDay(this.props.day) ){
+            const event = (
+                <Event
+                    editComponent={this.props.editComponent}
+                    onClick={this.props.onEventClick}
+                    key={layout.event.key}
+                    day={this.props.day}
+                    layout={layout}
+                />
+            );
+            (layout.event.isSingleDay() ? singleDayEvents : allDayEvents).push(event);
+        }
+
         return (
             <div onClick={this.onClick}
                  className={classes.join(' ')}
                  key={this.props.day.format('YYYYMMDD')}
             >
                 <Label day={this.props.day} className="label">{this.props.day.format('D')}</Label>
-                {events}
+                <div {...this.props.layout.propsForAllDayEventContainer()}>{allDayEvents}</div>
+                <div className="events">{singleDayEvents}</div>
             </div>
         );
     }

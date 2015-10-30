@@ -13,16 +13,25 @@ class Layout {
         this.cache = Object.create(null);
         this.range = range;
         this.events = events;
+        let multiDayCount = 0;
         const cacheMethod = ('day' === options.display) ? 'addtoDaysCache' : 'calculateSpanningLayout';
         if (! events){ return }
         events.each( function(event){
             // we only care about events that are in the range we were provided
             if (range.overlaps(event.range())){
                 this[cacheMethod](event);
+                if (!event.isSingleDay()){
+                    multiDayCount += 1;
+                }
             }
         }, this);
-
+        this.multiDayCount = multiDayCount;
         this.calculateStacking();
+    }
+
+    propsForAllDayEventContainer() {
+        const style = this.multiDayCount ? { flexBasis: this.multiDayCount*20} : { display: 'none' }
+        return { className: 'all-day', style };
     }
 
     hourRangeForWeek(firstDay){

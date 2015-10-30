@@ -21,9 +21,9 @@ class DayzTest extends React.Component {
             events: new Dayz.EventsCollection([
                 { content: 'A short event',
                   range: new DateRange( date.clone(), date.clone().add(1, 'day') ) },
-                { content: 'Two Hours ~ 8-10',
-                  range: new DateRange( date.clone().hour(8),
-                                        date.clone().hour(10) ) },
+                { content: 'Two Hours',
+                  range: new DateRange( date.clone().hour(20),
+                                        date.clone().hour(22) ) },
                 { content: "A Longer Event",
                   range: moment.range( date.clone().subtract(2,'days'), date.clone().add(8,'days') ) },
                 { content: "Weeklong",

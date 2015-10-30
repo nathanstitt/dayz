@@ -8,7 +8,8 @@ const YLabels = React.createClass({
 
     propTypes: {
         display: React.PropTypes.oneOf(['month', 'week', 'day']),
-        date:    React.PropTypes.object.isRequired
+        date:    React.PropTypes.object.isRequired,
+        layout:  React.PropTypes.instanceOf(Layout).isRequired
     },
 
     render() {
@@ -23,9 +24,15 @@ const YLabels = React.createClass({
             start.add(1, 'hour');
             labels.push(<div key={start.format('ha')} className="hour">{start.format('ha')}</div>);
         }
+        const multiDay = <div {...this.props.layout.propsForAllDayEventContainer()}>All Day</div>
 
         return (
-            <div className="y-labels">{labels}</div>
+            <div>
+                <div className="y-labels">
+                    {multiDay}
+                    {labels}
+                </div>
+            </div>
         );
     }
 
