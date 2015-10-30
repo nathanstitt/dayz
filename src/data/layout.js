@@ -1,6 +1,7 @@
 import moment from 'moment';
 import range  from 'moment-range';
 import EventLayout from './event-layout';
+import C from './constants'
 
 function cacheKey(day){
     return day.format('YYYYMMDD');
@@ -30,7 +31,7 @@ class Layout {
     }
 
     propsForAllDayEventContainer() {
-        const style = this.multiDayCount ? { flexBasis: this.multiDayCount*20} : { display: 'none' }
+        const style = this.multiDayCount ? { flexBasis: this.multiDayCount*C.eventHeight} : { display: 'none' }
         return { className: 'all-day', style };
     }
 
