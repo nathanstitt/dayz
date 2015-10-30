@@ -1,6 +1,6 @@
 $dayz-event-arrow-width:    10px !default;
 $dayz-event-color:          lightcoral !default;
-$dayz-x-label-height:       20px !default;
+$dayz-event-height:         20px !default;
 $dayz-y-label-width:        60px !default;
 $dayz-grid-line-color:      lightBlue !default;
 $dayz-border-color:         lightgrey !default;
@@ -20,10 +20,8 @@ $dayz-heading-label-color:  #555 !default;
     align-items:    stretch;
 
     .x-labels {
-        flex-basis: $dayz-x-label-height;
         display: flex;
         flex-direction: row;
-        height: 20px;
         .day-label {
             flex-grow: 1;
             padding-left: 8px;
@@ -86,6 +84,9 @@ $dayz-heading-label-color:  #555 !default;
             .all-day {
                 flex: 1;
                 flex-grow: 0;
+                .event {
+                    height: $dayz-event-height;
+                }
             }
             .events {
                 flex: 1;
@@ -109,7 +110,7 @@ $dayz-heading-label-color:  #555 !default;
             .day{
                 flex-basis: $day-width;
                 .event {
-                    height: $dayz-x-label-height;
+                    height: $dayz-event-height;
                 }
             }
         }
