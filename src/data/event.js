@@ -36,12 +36,16 @@ class Event {
         }
     }
 
+    isEditing() {
+        return !!this.attributes.editing;
+    }
+
     range() {
         return this.attributes.range.clone();
     }
 
     isSingleDay() {
-        return this.attributes.range.end.diff(this.attributes.range.start, 'days') <= 1
+        return this.attributes.range.end.diff(this.attributes.range.start, 'hours') < 24
     }
 
     daysMinuteRange() {

@@ -1,17 +1,35 @@
 import moment from 'moment';
 import range  from 'moment-range';
 
+const MINUTES_IN_DAY = 1440;
+
 class EventLayout {
 
-    constructor(event, displayRange) {
-
+    constructor(layout, event, displayRange) {
+        this.layout = layout;
         this.event = event;
         this.startsBefore = event.start().isBefore( displayRange.start );
         this.endsAfter    = event.end().isAfter(    displayRange.end   );
 
-        this.span = moment.min(displayRange.end, event.end()).diff(displayRange.start, 'day')+1
+        this.span = Math.max(
+            1, moment.min( displayRange.end.clone().add(1,'day'), event.end() ).diff(displayRange.start, 'day')
+        );
     }
 
+    isEditing() {
+        return this.first && this.event.isEditing();
+    }
+
+    inlineStyles() {
+        if (this.layout.displayingAs() == 'month' || !this.event.isSingleDay()){
+            return {};
+        } else {
+           const {start, end} = this.event.daysMinuteRange();
+           const top    = ( ( start /  MINUTES_IN_DAY ) * 100).toFixed(2) + '%';
+           const bottom = ( 100 - ( ( end / MINUTES_IN_DAY ) * 100 ) ).toFixed(2) + '%';
+           return { top, bottom };
+        }
+    }
 }
 
 
