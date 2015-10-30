@@ -10,9 +10,9 @@ class EventLayout {
         this.event = event;
         this.startsBefore = event.start().isBefore( displayRange.start );
         this.endsAfter    = event.end().isAfter(    displayRange.end   );
-
+        const latest = moment.min( displayRange.end.clone(), event.end() );
         this.span = Math.max(
-            1, moment.min( displayRange.end.clone().add(1,'day'), event.end() ).diff(displayRange.start, 'day')
+            1, Math.round(latest.diff(displayRange.start, 'day', true))
         );
     }
 
