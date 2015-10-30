@@ -24,10 +24,10 @@ class EventLayout {
         if (this.layout.displayingAs() == 'month' || !this.event.isSingleDay()){
             return {};
         } else {
-           const {start, end} = this.event.daysMinuteRange();
-           const top    = ( ( start /  MINUTES_IN_DAY ) * 100).toFixed(2) + '%';
-           const bottom = ( 100 - ( ( end / MINUTES_IN_DAY ) * 100 ) ).toFixed(2) + '%';
-           return { top, bottom };
+            const {start, end} = this.event.daysMinuteRange();
+            const top    = ( ( start /  MINUTES_IN_DAY ) * 100).toFixed(2) + '%';
+            const bottom = ( 100 - ( ( end / MINUTES_IN_DAY ) * 100 ) ).toFixed(2) + '%';
+            return { top, bottom };
         }
     }
 }
