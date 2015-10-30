@@ -120,9 +120,6 @@ class Layout {
         }
         const dayCache = this.cache[ cacheKey(date) ] || (this.cache[ cacheKey(date) ]=[]);
         dayCache.push(eventLayout);
-
-        this.layouts
-        const eventsCache = this.cache[ cacheKey(date) ] || (this.cache[ cacheKey(date) ]=[]);
     }
 
     displayingAs(){
