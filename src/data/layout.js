@@ -82,7 +82,7 @@ class Layout {
 
     // a single day is easy, just add the event to that day
     addtoDaysCache(event){
-        const layout = new EventLayout(event, this.range);
+        const layout = new EventLayout(this, event, this.range);
         this.addToCache(this.range.start, layout);
     }
 
@@ -91,7 +91,7 @@ class Layout {
         const end = moment.min(this.range.end, event.range().end);
         const start = moment.max(this.range.start, event.range().start);
         do {
-            const layout = new EventLayout(event, moment.range(start, start.clone().endOf('week')) );
+            const layout = new EventLayout(this, event, moment.range(start, start.clone().endOf('week')) );
             this.addToCache(start, layout );
             // go to first day of next week
             start.add(7-start.day(), 'day');
@@ -103,9 +103,30 @@ class Layout {
         return this.events.editing == event;
     }
 
-    addToCache(date, attributes){
+    addToCache(date, eventLayout){
+        let found = false;
+        outer_block: {
+            for (let key in this.cache ){
+                for (let layout of this.cache[key]){
+                    if (layout.event == eventLayout.event){
+                        found = true;
+                        break outer_block;
+                    }
+                }
+            }
+        }
+        if (!found){
+            eventLayout.first = true;
+        }
         const dayCache = this.cache[ cacheKey(date) ] || (this.cache[ cacheKey(date) ]=[]);
-        dayCache.push(attributes);
+        dayCache.push(eventLayout);
+
+        this.layouts
+        const eventsCache = this.cache[ cacheKey(date) ] || (this.cache[ cacheKey(date) ]=[]);
+    }
+
+    displayingAs(){
+        return this.options.display;
     }
 
 }
