@@ -107,7 +107,7 @@ $dayz-heading-label-color:  #555 !default;
     &.month {
         .days {
             flex-flow: wrap;
-            .day{
+            .day {
                 flex-basis: $day-width;
                 .event {
                     height: $dayz-event-height;
@@ -118,7 +118,6 @@ $dayz-heading-label-color:  #555 !default;
 
     // styling in common for events in all displays
     .event {
-        z-index: 1;
         background: $dayz-event-color;
         box-sizing: border-box;
         position: relative;
