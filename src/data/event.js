@@ -29,6 +29,10 @@ class Event {
         );
     }
 
+    get(key) {
+        return this.attributes[key];
+    }
+
     set(attributes) {
         assign(this.attributes, attributes);
         if (this.collection){
