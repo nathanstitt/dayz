@@ -1,13 +1,12 @@
-import React     from 'react';
-import moment    from 'moment';
-import DateRange from 'moment-range';
-import extend    from 'lodash/object/extend'
-import omit      from 'lodash/object/omit'
+import React     from 'react'
+import moment    from 'moment'
 import Layout    from './data/layout'
 import Day       from './day'
 import Label     from './label'
 import XLabels   from './x-labels'
 import YLabels   from './y-labels'
+
+require('moment-range') // needed in order to for range to install itself
 
 import EventsCollection from './data/events-collection'
 
@@ -29,50 +28,50 @@ const Dayz = React.createClass({
             dayLabelComponent: Label,
             dayComponent:      Day,
             display:           'month'
-        };
+        }
     },
 
     componentWillMount() {
-        this.calculateLayout(this.props);
+        this.calculateLayout(this.props)
     },
 
     componentWillUnmount() {
-        this.detachEventBindings();
+        this.detachEventBindings()
     },
 
     detachEventBindings() {
-        if (this.props.events){ this.props.events.off('change', this.onEventAdd); }
+        if (this.props.events){ this.props.events.off('change', this.onEventAdd) }
     },
 
     componentWillReceiveProps(nextProps){
-        this.calculateLayout(nextProps);
+        this.calculateLayout(nextProps)
     },
 
     onEventsChange() {
-        this.calculateLayout(this.props);
+        this.calculateLayout(this.props)
     },
 
     calculateLayout(props) {
         const range = moment.range( props.date.clone().startOf( props.display ),
-                                    props.date.clone().endOf(   props.display ) );
+                                    props.date.clone().endOf( props.display ) )
         if (props.events) {
-            this.detachEventBindings();
-            props.events.on('change', this.onEventsChange, this);
+            this.detachEventBindings()
+            props.events.on('change', this.onEventsChange, this)
         }
         if ( props.display === 'month' ) {
-            range.start.subtract(range.start.weekday(), 'days');
-            range.end.add(6 - range.end.weekday(), 'days');
+            range.start.subtract(range.start.weekday(), 'days')
+            range.end.add(6 - range.end.weekday(), 'days')
         }
         const layout = new Layout(props.events, range, { display: props.display, date: props.date})
         this.setState({ range, layout })
     },
 
     render() {
-        const Day = this.props.dayComponent;
-        const classes = ["dayz", this.props.display];
+        const DayComp = this.props.dayComponent
+        const classes = ["dayz", this.props.display]
         const days = []
         this.state.range.by('days', (day) =>
-            days.push(<Day key={day.format('YYYYMMDD')}
+            days.push(<DayComp key={day.format('YYYYMMDD')}
                            day={day}
                            layout={this.state.layout}
                            editComponent={this.props.editComponent}
@@ -80,7 +79,7 @@ const Dayz = React.createClass({
                            onEventClick={this.props.onEventClick}
                            labelComponent={this.props.dayLabelComponent}
                       />)
-        );
+        )
         return (
             <div className={classes.join(' ')}>
                 <XLabels date={this.props.date} display={this.props.display} />
@@ -93,11 +92,11 @@ const Dayz = React.createClass({
                     <div className="days">{days}</div>
                 </div>
             </div>
-        );
+        )
     }
 
-});
+})
 
-Dayz.EventsCollection = EventsCollection;
+Dayz.EventsCollection = EventsCollection
 
-export default Dayz;
+export default Dayz

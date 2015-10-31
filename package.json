@@ -60,7 +60,9 @@
   "scripts": {
     "start": "webpack-dev-server --hot --progress --colors --display-chunks --display-modules --display-origins",
     "build": "NODE_ENV=production webpack --optimize-minimize --progress --colors; gulp",
-    "test": "BABEL_JEST_STAGE=0 jest --watch"
+    "lint": "eslint src/* test/*.js{x}",
+    "test": "BABEL_JEST_STAGE=0 jest --watch",
+    "travis": "eslint src/* test/*.js{x} && BABEL_JEST_STAGE=0 jest"
   },
   "jest": {
     "testDirectoryName": "test",

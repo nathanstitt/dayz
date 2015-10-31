@@ -1,9 +1,9 @@
-import React  from 'react';
-import Layout from './data/layout';
-import Event  from './event';
+import React  from 'react'
+import Layout from './data/layout'
+import Event  from './event'
 
 
-const IsDayClass = new RegExp('(\\s|^)(events|day|label)(\\s|$)');
+const IsDayClass = new RegExp('(\\s|^)(events|day|label)(\\s|$)')
 
 const Day = React.createClass({
 
@@ -18,19 +18,19 @@ const Day = React.createClass({
 
     onClick(ev) {
         if (!this.props.onClick || !IsDayClass.test(ev.target.className)){ return }
-        const bounds = this.refs.events.getBoundingClientRect();
-        const hours = 24 * ((ev.clientY - bounds.top) / ev.target.offsetHeight );
-        this.props.onClick( ev, this.props.day.clone().startOf('day').add( hours, 'hour' ) );
+        const bounds = this.refs.events.getBoundingClientRect()
+        const hours = 24 * ((ev.clientY - bounds.top) / ev.target.offsetHeight )
+        this.props.onClick( ev, this.props.day.clone().startOf('day').add( hours, 'hour' ) )
     },
 
     render() {
-        const Label = this.props.labelComponent;
-        const classes=['day'];
+        const Label = this.props.labelComponent
+        const classes=['day']
         if (this.props.layout.isDateOutsideRange(this.props.day)){
-            classes.push('outside');
+            classes.push('outside')
         }
-        const singleDayEvents = [];
-        const allDayEvents    = [];
+        const singleDayEvents = []
+        const allDayEvents    = []
         for( const layout of this.props.layout.forDay(this.props.day) ){
             const event = (
                 <Event
@@ -41,7 +41,7 @@ const Day = React.createClass({
                     layout={layout}
                 />
             );
-            (layout.event.isSingleDay() ? singleDayEvents : allDayEvents).push(event);
+            (layout.event.isSingleDay() ? singleDayEvents : allDayEvents).push(event)
         }
 
         return (
@@ -50,9 +50,9 @@ const Day = React.createClass({
                 <div {...this.props.layout.propsForAllDayEventContainer()}>{allDayEvents}</div>
                 <div ref="events" className="events">{singleDayEvents}</div>
             </div>
-        );
+        )
     }
 
-});
+})
 
-export default Day;
+export default Day

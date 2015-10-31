@@ -5,4 +5,4 @@ node_js:
 after_failure:
   - npm list
 scripts:
-  test: BABEL_JEST_STAGE=0 jest
+  test: npm run travis
