@@ -28,12 +28,12 @@ const Event = React.createClass({
             edit = <this.props.editComponent parent={this} event={this.props.layout.event} />
         }
         return (
-            <div onClick={this.onClick}
+            <div
                  key={this.props.layout.event.key}
                  style={this.props.layout.inlineStyles()}
                  className={classes.join(' ')}
             >
-                {this.props.layout.event.render()}
+                <span onClick={this.onClick}>{this.props.layout.event.render()}</span>
                 {edit}
             </div>
         );
