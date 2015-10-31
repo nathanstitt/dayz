@@ -2,6 +2,9 @@ import React  from 'react';
 import Layout from './data/layout';
 import Event  from './event';
 
+
+const IsDayClass = new RegExp('(\\s|^)(events|day|label)(\\s|$)');
+
 const Day = React.createClass({
 
     propTypes: {
@@ -14,8 +17,8 @@ const Day = React.createClass({
     },
 
     onClick(ev) {
-        if (!this.props.onClick){ return }
-        const bounds = ev.currentTarget.getBoundingClientRect();
+        if (!this.props.onClick || !IsDayClass.test(ev.target.className)){ return }
+        const bounds = this.refs.events.getBoundingClientRect();
         const hours = 24 * ((ev.clientY - bounds.top) / ev.target.offsetHeight );
         this.props.onClick( ev, this.props.day.clone().startOf('day').add( hours, 'hour' ) );
     },
@@ -42,10 +45,10 @@ const Day = React.createClass({
         }
 
         return (
-            <div className={classes.join(' ')} key={this.props.day.format('YYYYMMDD')}>
+            <div onClick={this.onClick} className={classes.join(' ')}>
                 <Label day={this.props.day} className="label">{this.props.day.format('D')}</Label>
                 <div {...this.props.layout.propsForAllDayEventContainer()}>{allDayEvents}</div>
-                <div className="events" onClick={this.onClick}>{singleDayEvents}</div>
+                <div ref="events" className="events">{singleDayEvents}</div>
             </div>
         );
     }
