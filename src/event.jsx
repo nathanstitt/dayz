@@ -25,7 +25,7 @@ const Event = React.createClass({
         let edit;
         if (this.props.layout.isEditing()){
             classes.push('is-editing');
-            edit = <this.props.editComponent event={this.props.layout.event} />
+            edit = <this.props.editComponent parent={this} event={this.props.layout.event} />
         }
         return (
             <div onClick={this.onClick}
