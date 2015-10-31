@@ -42,13 +42,10 @@ const Day = React.createClass({
         }
 
         return (
-            <div onClick={this.onClick}
-                 className={classes.join(' ')}
-                 key={this.props.day.format('YYYYMMDD')}
-            >
+            <div className={classes.join(' ')} key={this.props.day.format('YYYYMMDD')}>
                 <Label day={this.props.day} className="label">{this.props.day.format('D')}</Label>
                 <div {...this.props.layout.propsForAllDayEventContainer()}>{allDayEvents}</div>
-                <div className="events">{singleDayEvents}</div>
+                <div className="events" onClick={this.onClick}>{singleDayEvents}</div>
             </div>
         );
     }
