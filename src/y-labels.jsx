@@ -1,6 +1,6 @@
-import React  from 'react'
-import moment from 'moment'
-import Layout from './data/layout'
+import React  from 'react';
+import moment from 'moment';
+import Layout from './data/layout';
 
 const YLabels = React.createClass({
 
@@ -12,17 +12,17 @@ const YLabels = React.createClass({
 
     render() {
         if (this.props.display === 'month'){
-            return null
+            return null;
         }
 
-        const start = moment().startOf('day')
-        const labels = []
+        const start = moment().startOf('day');
+        const labels = [];
 
         for (let hour=0; hour<24; hour++){
-            start.add(1, 'hour')
-            labels.push(<div key={start.format('ha')} className="hour">{start.format('ha')}</div>)
+            start.add(1, 'hour');
+            labels.push(<div key={start.format('ha')} className="hour">{start.format('ha')}</div>);
         }
-        const multiDay = <div {...this.props.layout.propsForAllDayEventContainer()}>All Day</div>
+        const multiDay = <div {...this.props.layout.propsForAllDayEventContainer()}>All Day</div>;
 
         return (
             <div>
@@ -31,9 +31,9 @@ const YLabels = React.createClass({
                     {labels}
                 </div>
             </div>
-        )
+        );
     }
 
-})
+});
 
-export default YLabels
+export default YLabels;

@@ -1,5 +1,5 @@
-import React from 'react'
-import EventLayout from './data/event-layout'
+import React from 'react';
+import EventLayout from './data/event-layout';
 
 const Event = React.createClass({
 
@@ -10,21 +10,21 @@ const Event = React.createClass({
     },
 
     onClick(ev) {
-        if (!this.props.onClick){ return }
-        this.props.onClick(ev, this.props.layout.event)
-        ev.stopPropagation()
+        if (!this.props.onClick){ return; }
+        this.props.onClick(ev, this.props.layout.event);
+        ev.stopPropagation();
     },
 
     render() {
-        const classes = ['event', `span-${this.props.layout.span}`]
-        if (this.props.layout.startsBefore) classes.push('is-continuation')
-        if (this.props.layout.endsAfter)    classes.push('is-continued')
-        if (this.props.layout.stack)        classes.push(`stack-${this.props.layout.stack}`)
+        const classes = ['event', `span-${this.props.layout.span}`];
+        if (this.props.layout.startsBefore) classes.push('is-continuation');
+        if (this.props.layout.endsAfter)    classes.push('is-continued');
+        if (this.props.layout.stack)        classes.push(`stack-${this.props.layout.stack}`);
 
-        let edit
+        let edit;
         if (this.props.layout.isEditing()){
-            classes.push('is-editing')
-            edit = <this.props.editComponent parent={this} event={this.props.layout.event} />
+            classes.push('is-editing');
+            edit = <this.props.editComponent parent={this} event={this.props.layout.event} />;
         }
         return (
             <div
@@ -35,9 +35,9 @@ const Event = React.createClass({
                 <span onClick={this.onClick}>{this.props.layout.event.render()}</span>
                 {edit}
             </div>
-        )
+        );
     }
 
-})
+});
 
-export default Event
+export default Event;

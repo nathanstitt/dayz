@@ -1,22 +1,22 @@
 /*eslint no-console: 0*/
 
-const Dayz = require('../src/dayz')
+const Dayz = require('../src/dayz');
 
-const moment    = require('moment')
-require('moment-range')
-const React     = require('react')
-const ReactDOM  = require('react-dom')
+const moment    = require('moment');
+require('moment-range');
+const React     = require('react');
+const ReactDOM  = require('react-dom');
 
-let COUNT = 1
+let COUNT = 1;
 
 class DayzTest extends React.Component {
 
     constructor(props) {
-        super(props)
-        this.addEvent = this.addEvent.bind(this)
-        this.onEventClick = this.onEventClick.bind(this)
-        this.changeDisplay = this.changeDisplay.bind(this)
-        const date = moment("2015-09-11")
+        super(props);
+        this.addEvent = this.addEvent.bind(this);
+        this.onEventClick = this.onEventClick.bind(this);
+        this.changeDisplay = this.changeDisplay.bind(this);
+        const date = moment("2015-09-11");
         this.state = {
             date,
             display: 'week',
@@ -37,25 +37,27 @@ class DayzTest extends React.Component {
                   range: moment.range( moment('2015-09-07'), moment('2015-09-12') )},
 
                 { content: '7 - 12am',
-                  range: moment.range( moment('2015-09-07').hour(7),moment('2015-09-07').hour(12))},
+                  resizable: {step: 15},
+                  range: moment.range( moment('2015-09-07').hour(7).minute(9),
+                                       moment('2015-09-07').hour(12))},
 
                 { content: '8 - 10pm',
                   range: moment.range( date.clone().hour(20),
                                        date.clone().hour(22) ) }
             ])
-        }
+        };
     }
 
     changeDisplay(ev) {
-        this.setState({ display: ev.target.value })
+        this.setState({ display: ev.target.value });
     }
 
     onEventClick(ev, event) {
-        event.set({editing: !event.isEditing()})
+        event.set({editing: !event.isEditing()});
     }
 
     onDayClick(ev, date) {
-        console.log( date.toString() )
+        console.log( date.toString() );
     }
 
     addEvent() {
@@ -63,17 +65,17 @@ class DayzTest extends React.Component {
             { content: `Event ${COUNT++}`,
               range: moment.range( this.state.date.clone().add(COUNT, 'hour'),
                                    this.state.date.clone().add(COUNT, 'hour').add(45, 'minutes'))}
-        )
+        );
         //
         setTimeout( function(){
-            event.set({ content: (event.content() + ' : updated') })
-        }, 4000)
+            event.set({ content: (event.content() + ' : updated') });
+        }, 4000);
     }
 
     editComponent() {
         return (
             <span>editing!</span>
-        )
+        );
     }
 
     render() {
@@ -102,12 +104,12 @@ class DayzTest extends React.Component {
                     </label>
                 </div>
             </div>
-        )
+        );
     }
 
 }
 
 
-const div = document.createElement('div')
-document.body.appendChild(div)
-ReactDOM.render( React.createElement(DayzTest, {} ), div )
+const div = document.createElement('div');
+document.body.appendChild(div);
+ReactDOM.render( React.createElement(DayzTest, {} ), div );
