@@ -9,7 +9,7 @@ class EventLayout {
         this.event = event
         this.startsBefore = event.start().isBefore( displayRange.start )
         this.endsAfter = event.end().isAfter( displayRange.end )
-        const latest = moment.min( displayRange.end.clone(), event.end() )
+        const latest = moment.min( displayRange.end, event.end() )
         this.span = Math.max(
             1, Math.round(latest.diff(displayRange.start, 'day', true))
         )
@@ -17,6 +17,10 @@ class EventLayout {
 
     isEditing() {
         return this.first && this.event.isEditing()
+    }
+
+    startsOnWeek(){
+        return 0 === this.event.start().day()
     }
 
     inlineStyles() {
