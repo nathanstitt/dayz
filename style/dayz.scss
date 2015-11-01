@@ -91,16 +91,20 @@ $dayz-heading-label-color:  #555 !default;
             .events {
                 flex: 1;
                 position: relative;
-                .event.span-1 { width: 100%; }
+                .event.span-1 {
+                    width: 100%;
+                    position: absolute;
+                }
             }
             .label { display: none; }
-            .event.span-1 { position: absolute; }
         }
     }
 
     &.week {
-        .day .event.span-1 {
-            width: $day-width;
+        .events {
+            .day .event.span-1 {
+                width: $day-width;
+            }
         }
     }
 
@@ -123,7 +127,11 @@ $dayz-heading-label-color:  #555 !default;
         position: relative;
         border: 1px solid $dayz-grid-line-color;
         border-radius: 4px;
-        padding-left: 0.4rem;
+
+        .evbody {
+            padding-left: 0.4rem;
+            height: 100%;
+        }
 
         $stack: 1;
         @while $stack < 10 {
@@ -137,17 +145,17 @@ $dayz-heading-label-color:  #555 !default;
             &.span-#{$span} {
                 width: calc(#{$span * 100%} + #{$span * 2px - 2px});
                 &.is-continued {
-                    width: calc(#{$span * 100%} + #{$span * 2px - ($dayz-event-arrow-width*1.5)});
+                    width: calc(#{$span * 100%} + #{($span * 2px - 2px)-$dayz-event-arrow-width});
                     border-top-right-radius: 0;
                     border-bottom-right-radius: 0;
                 }
                 &.is-continuation {
-                    width: calc(#{$span * 100%} + #{$span * 2px - ($dayz-event-arrow-width*1.5)});
+                    width: calc(#{$span * 100%} + #{($span * 2px - 2px)-$dayz-event-arrow-width});
                     border-top-left-radius: 0;
                     border-bottom-left-radius: 0;
                 }
                 &.is-continued.is-continuation {
-                    width: calc(#{$span * 100%} + #{$span * 8px - ($dayz-event-arrow-width*3)});
+                    width: calc(#{$span * 100%} + #{($span * 2px - 2px)-$dayz-event-arrow-width*2});
                 }
             }
         }
