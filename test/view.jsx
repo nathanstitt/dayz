@@ -3,7 +3,7 @@
 const Dayz = require('../src/dayz')
 
 const moment    = require('moment')
-const DateRange = require('moment-range')
+require('moment-range')
 const React     = require('react')
 const ReactDOM  = require('react-dom')
 
@@ -21,15 +21,27 @@ class DayzTest extends React.Component {
             date,
             display: 'week',
             events: new Dayz.EventsCollection([
-                { content: 'A short event',
-                  range: new DateRange( date.clone(), date.clone().add(1, 'day') ) },
-                { content: 'Two Hours',
-                  range: new DateRange( date.clone().hour(20),
-                                        date.clone().hour(22) ) },
-                { content: "A Longer Event",
-                  range: moment.range( date.clone().subtract(2,'days'),date.clone().add(8,'days'))},
+                { content: 'Continuing event Past',
+                  range: moment.range( moment('2015-09-08'), moment('2015-09-14') ) },
+
+                { content: 'Continuing event Before',
+                  range: moment.range( '2015-09-04','2015-09-09') },
+
                 { content: "Weeklong",
-                  range: moment.range( moment('2015-09-20'), moment('2015-09-26').endOf('day') ) }
+                  range: moment.range('2015-09-06',moment('2015-09-12').endOf('day') ) },
+
+                { content: "A Longer Event",
+                  range: moment.range( moment('2015-09-04'), moment('2015-09-14') )},
+
+                { content: "Inclusive",
+                  range: moment.range( moment('2015-09-07'), moment('2015-09-12') )},
+
+                { content: '7 - 12am',
+                  range: moment.range( moment('2015-09-07').hour(7),moment('2015-09-07').hour(12))},
+
+                { content: '8 - 10pm',
+                  range: moment.range( date.clone().hour(20),
+                                       date.clone().hour(22) ) }
             ])
         }
     }
@@ -49,8 +61,8 @@ class DayzTest extends React.Component {
     addEvent() {
         const event = this.state.events.add(
             { content: `Event ${COUNT++}`,
-              range: new DateRange( this.state.date.clone().add(COUNT, 'hour'),
-                                    this.state.date.clone().add(COUNT, 'hour').add(45, 'minutes'))}
+              range: moment.range( this.state.date.clone().add(COUNT, 'hour'),
+                                   this.state.date.clone().add(COUNT, 'hour').add(45, 'minutes'))}
         )
         //
         setTimeout( function(){

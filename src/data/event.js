@@ -1,5 +1,4 @@
 import React   from 'react'
-import range   from 'moment-range'
 import assign  from 'lodash/object/assign'
 
 let EVENT_COUNTER = 1
@@ -25,7 +24,7 @@ class Event {
 
     defaultRenderImplementation() {
         return React.createElement('div', {},
-            this.attributes.content || range.start.format('MMM DD YYYY')
+            this.attributes.content || this.attributes.range.start.format('MMM DD YYYY')
         )
     }
 
