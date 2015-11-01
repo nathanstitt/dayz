@@ -52,37 +52,47 @@ class Layout {
         return range
     }
 
-    calculateStacking(){
-        const day = this.range.start.clone().startOf('week')
-        do {
-            const weeklyEvents = []
-            for (let i=0; i<7; i++){
-                const layouts = this.forDay(day)
-                if (layouts.length){
-                    this.cache[ cacheKey(day) ] = layouts
-                    for (const layout of layouts){
-                        weeklyEvents.push(layout)
-                    }
+    getEventsForWeek(day){
+        day = day.clone()
+        const weeklyEvents = []
+        for (let i=0; i<7; i++){
+            const layouts = this.forDay(day)
+            if (layouts.length){
+                this.cache[ cacheKey(day) ] = layouts
+                for (const layout of layouts){
+                    if (layout.event.isSingleDay()){ continue }
+                    weeklyEvents.push(layout)
                 }
-                day.add(1, 'day')
             }
+            day.add(1, 'day')
+        }
+        return weeklyEvents
+    }
 
+    calculateStacking(){
+        const firstOfWeek = this.range.start.clone().startOf('week')
+        do {
+            const weeklyEvents = this.getEventsForWeek(firstOfWeek)
             for (let i=0; i < weeklyEvents.length; i++){
                 const layout = weeklyEvents[i]
                 layout.stack = 0
-                // find out how many layouts are before this one
+                // loop through eacy layouts are before this one
                 for (let pi=i-1; pi>=0; pi--){
-                    const se = weeklyEvents[pi]
-
-                    if (se.event.range().start.isSame(layout.event.range().start,'d')){
-                        layout.stack=1  // the one right before this has the same day so we only stack one high
+                    const prevLayout = weeklyEvents[pi]
+                    // if the previous layout starts on the same cell then we don't need
+                    // to stack it to clear previous layouts
+                    if ( (prevLayout.startsBefore && layout.startsBefore ) ||
+                         (prevLayout.event.start().isSame(layout.event.start(),'d')) ||
+                         (layout.startsBefore && prevLayout.startsOnWeek()) ||
+                         (prevLayout.startsBefore && layout.startsOnWeek()) ) {
                         break
                     } else {
                         layout.stack++
                     }
                 }
             }
-        } while(!day.isAfter(this.range.end))
+            firstOfWeek.add(7, 'day')
+        } while(!firstOfWeek.isAfter(this.range.end))
     }
 
     isDateOutsideRange(date){
@@ -102,7 +112,7 @@ class Layout {
     // other layouts must break at week boundaries, with indicators if they were/are continuing
     calculateSpanningLayout(event){
         const end = moment.min(this.range.end, event.range().end)
-        const start = moment.max(this.range.start, event.range().start)
+        const start = moment.max(this.range.start, event.range().start).clone()
         do {
             const range = moment.range(start, start.clone().endOf('week'))
             const layout = new EventLayout(this, event, range)
@@ -114,6 +124,7 @@ class Layout {
     }
 
     addToCache(date, eventLayout){
+        date = date.clone()
         let found = false
         outer_block: {
             for (let key in this.cache ){
