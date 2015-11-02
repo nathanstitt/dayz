@@ -1,7 +1,5 @@
 import moment from 'moment';
 
-const MINUTES_IN_DAY = 1440;
-
 class EventLayout {
 
     constructor(layout, event, displayRange) {
@@ -27,8 +25,10 @@ class EventLayout {
 
     adjustEventTime(startOrEnd, position, height){
         if (position < 0 || position > height ){ return; }
-        const time = this.event[startOrEnd]().startOf('day');
-        time.add(MINUTES_IN_DAY * (position / height), 'minutes');
+        const time = this.event[startOrEnd]()
+              .startOf('day')
+              .add(this.layout.displayHours[0], 'hours')
+              .add(this.layout.minutesInDay() * (position / height), 'minutes');
         const step = this.event.get('resizable').step;
         if (step){
             let rounded = Math.round( time.minute() / step ) * step;
@@ -41,9 +41,12 @@ class EventLayout {
         if (this.layout.displayingAs() === 'month' || !this.event.isSingleDay()){
             return {};
         } else {
-            const {start, end} = this.event.daysMinuteRange();
-            const top = ( ( start / MINUTES_IN_DAY ) * 100).toFixed(2) + '%';
-            const bottom = ( 100 - ( ( end / MINUTES_IN_DAY ) * 100 ) ).toFixed(2) + '%';
+            let {start, end} = this.event.daysMinuteRange();
+            start -= this.layout.displayHours[0] * 60;
+            end -= this.layout.displayHours[0] * 60;
+            const inday = this.layout.minutesInDay();
+            const top = ( ( start / inday ) * 100).toFixed(2) + '%';
+            const bottom = ( 100 - ( ( end / inday ) * 100 ) ).toFixed(2) + '%';
             return { top, bottom };
         }
     }

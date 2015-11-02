@@ -38,8 +38,8 @@ class DayzTest extends React.Component {
 
                 { content: '7 - 12am',
                   resizable: {step: 15},
-                  range: moment.range( moment('2015-09-07').hour(7).minute(9),
-                                       moment('2015-09-07').hour(12))},
+                  range: moment.range( moment('2015-09-07').hour(11),
+                                       moment('2015-09-07').hour(21))},
 
                 { content: '8 - 10pm',
                   range: moment.range( date.clone().hour(20),
@@ -85,7 +85,7 @@ class DayzTest extends React.Component {
                       editComponent={this.editComponent}
                       onDayClick={this.onDayClick}
                       onEventClick={this.onEventClick}
-                      displayHours={[7,18]}
+                      displayHours={[6,22]}
                 />
                 <div className="tools">
                     <label>

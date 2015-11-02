@@ -15,6 +15,7 @@ const Dayz = React.createClass({
     propTypes: {
         display:           React.PropTypes.oneOf(['month', 'week', 'day']),
         date:              React.PropTypes.object.isRequired,
+        displayHours:      React.PropTypes.array,
         dayComponent:      React.PropTypes.func,
         editComponent:     React.PropTypes.func,
         events:            React.PropTypes.instanceOf(EventsCollection),
@@ -26,6 +27,7 @@ const Dayz = React.createClass({
 
     getDefaultProps() {
         return {
+            displayHours:      [0, 24],
             dayLabelComponent: Label,
             dayComponent:      Day,
             display:           'month'
@@ -63,7 +65,9 @@ const Dayz = React.createClass({
             range.start.subtract(range.start.weekday(), 'days');
             range.end.add(6 - range.end.weekday(), 'days');
         }
-        const layout = new Layout(props.events, range, { display: props.display, date: props.date});
+
+        const layout = new Layout({...props, range});
+
         this.setState({ range, layout });
     },
 

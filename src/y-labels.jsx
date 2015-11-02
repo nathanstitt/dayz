@@ -15,11 +15,12 @@ const YLabels = React.createClass({
             return null;
         }
 
-        const start = moment();
+        const day = moment();
         const labels = [];
-        for (let hour=1; hour<25; hour++){
-            start.hour(hour);
-            labels.push(<div key={hour} className="hour">{start.format('ha')}</div>);
+        const [start, end] = this.props.layout.displayHours;
+        for (let hour=start; hour<=end; hour++){
+            day.hour(hour);
+            labels.push(<div key={hour} className="hour">{day.format('ha')}</div>);
         }
         const multiDay = <div {...this.props.layout.propsForAllDayEventContainer()}>All Day</div>;
 

@@ -1,4 +1,5 @@
 import moment from 'moment';
+import assign from 'lodash/object/assign';
 import EventLayout from './event-layout';
 import C from './constants';
 
@@ -8,17 +9,17 @@ function cacheKey(day){
 
 class Layout {
 
-    constructor(events, range, options) {
-        this.options = options;
+    constructor(options) {
+        assign(this, options);
         this.cache = Object.create(null);
-        this.range = range;
-        this.events = events;
+
         let multiDayCount = 0;
         const cacheMethod = (
-            ('day' === options.display) ? 'addtoDaysCache' : 'calculateSpanningLayout'
+            ('day' === this.display) ? 'addtoDaysCache' : 'calculateSpanningLayout'
         );
-        if (! events){ return; }
-        events.each( function(event){
+        if (! this.events){ return; }
+        const range = this.range;
+        this.events.each( function(event){
             // we only care about events that are in the range we were provided
             if (range.overlaps(event.range())){
                 this[cacheMethod](event);
@@ -29,6 +30,10 @@ class Layout {
         }, this);
         this.multiDayCount = multiDayCount;
         this.calculateStacking();
+    }
+
+    minutesInDay() {
+        return 60 * (this.displayHours[1] - this.displayHours[0] + 1);
     }
 
     propsForAllDayEventContainer() {
@@ -144,11 +149,11 @@ class Layout {
     }
 
     displayingAs(){
-        return this.options.display;
+        return this.display;
     }
 
     isDisplayingAsMonth(){
-        return 'month' === this.options.display;
+        return 'month' === this.display;
     }
 
 }
