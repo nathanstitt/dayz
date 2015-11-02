@@ -75,7 +75,7 @@ class Layout {
             const weeklyEvents = this.getEventsForWeek(firstOfWeek);
             for (let i=0; i < weeklyEvents.length; i++){
                 const layout = weeklyEvents[i];
-                layout.stack = 0;
+
                 // loop through eacy layouts are before this one
                 for (let pi=i-1; pi>=0; pi--){
                     const prevLayout = weeklyEvents[pi];
@@ -96,7 +96,7 @@ class Layout {
     }
 
     isDateOutsideRange(date){
-        return ('month' === this.options.display && !this.range.contains(date));
+        return (this.isDisplayingAsMonth() && !this.range.contains(date));
     }
 
     forDay(day){
@@ -145,6 +145,10 @@ class Layout {
 
     displayingAs(){
         return this.options.display;
+    }
+
+    isDisplayingAsMonth(){
+        return 'month' === this.options.display;
     }
 
 }

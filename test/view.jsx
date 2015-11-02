@@ -85,6 +85,7 @@ class DayzTest extends React.Component {
                       editComponent={this.editComponent}
                       onDayClick={this.onDayClick}
                       onEventClick={this.onEventClick}
+                      displayHours={[7,18]}
                 />
                 <div className="tools">
                     <label>

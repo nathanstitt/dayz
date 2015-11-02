@@ -128,11 +128,6 @@ $dayz-heading-label-color:  #555 !default;
         border: 1px solid $dayz-grid-line-color;
         border-radius: 4px;
 
-        .evbody {
-            padding-left: 0.4rem;
-            height: 100%;
-        }
-
         $stack: 1;
         @while $stack < 10 {
             &.stack-#{$stack} { top: ($stack) * 20px; }
@@ -158,6 +153,41 @@ $dayz-heading-label-color:  #555 !default;
                     width: calc(#{$span * 100%} + #{($span * 2px - 2px)-$dayz-event-arrow-width*2});
                 }
             }
+        }
+
+
+        &.is-resizable {
+
+            &:before,
+            &:after {
+                content: " ";
+                height: 3px;
+                background-color: red;
+                border: 1px solid black;
+                right: 15%;
+                left: 15%;
+                display: block;
+                position: absolute;
+                border-radius: 5px;
+                visibility: hidden;
+                cursor: ns-resize;
+            }
+            &:before {
+                top: -2px;
+            }
+            &:after {
+                bottom: -2px;
+            }
+            &:hover {
+                &:before, &:after {
+                    visibility: visible;
+                }
+            }
+        }
+
+        .evbody {
+            padding-left: 0.4rem;
+            height: 100%;
         }
 
         @mixin triangle() {

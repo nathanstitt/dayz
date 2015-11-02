@@ -1,5 +1,6 @@
 import React   from 'react';
 import assign  from 'lodash/object/assign';
+import Emitter from 'tiny-emitter';
 
 let EVENT_COUNTER = 1;
 
@@ -32,10 +33,13 @@ class Event {
         return this.attributes[key];
     }
 
-    set(attributes) {
+    set(attributes, options) {
         assign(this.attributes, attributes);
         if (this.collection){
             this.collection.emit('change');
+        }
+        if (!options || !options.silent){
+            this.emit('change');
         }
     }
 
@@ -70,5 +74,7 @@ class Event {
     }
 
 }
+
+assign( Event.prototype, Emitter.prototype );
 
 export default Event;

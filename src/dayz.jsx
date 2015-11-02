@@ -20,7 +20,8 @@ const Dayz = React.createClass({
         events:            React.PropTypes.instanceOf(EventsCollection),
         dayLabelComponent: React.PropTypes.func,
         onDayClick:        React.PropTypes.func,
-        onEventClick:      React.PropTypes.func
+        onEventClick:      React.PropTypes.func,
+        onEventResize:     React.PropTypes.func
     },
 
     getDefaultProps() {
@@ -72,12 +73,13 @@ const Dayz = React.createClass({
         const days = [];
         this.state.range.by('days', (day) =>
             days.push(<DayComp key={day.format('YYYYMMDD')}
-                           day={day}
-                           layout={this.state.layout}
-                           editComponent={this.props.editComponent}
-                           onClick={this.props.onDayClick}
-                           onEventClick={this.props.onEventClick}
-                           labelComponent={this.props.dayLabelComponent}
+                               day={day}
+                               layout={this.state.layout}
+                               editComponent={this.props.editComponent}
+                               onClick={this.props.onDayClick}
+                               onEventClick={this.props.onEventClick}
+                               onEventResize={this.props.onEventResize}
+                               labelComponent={this.props.dayLabelComponent}
                       />)
         );
         return (

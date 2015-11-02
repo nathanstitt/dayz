@@ -1,6 +1,8 @@
 import React from 'react';
 import EventLayout from './data/event-layout';
 
+const IsResizeClass = new RegExp('(\\s|^)event(\\s|$)');
+
 const Event = React.createClass({
 
     propTypes: {
@@ -15,24 +17,43 @@ const Event = React.createClass({
         ev.stopPropagation();
     },
 
+    onDragStart(ev) {
+        if (!IsResizeClass.test(ev.target.className)){ return; }
+        const bounds = this.refs.element.getBoundingClientRect();
+        let resize;
+        if (ev.clientY - bounds.top < 10){
+            resize = { type: 'start' };
+
+        } else if ( bounds.bottom - ev.clientY < 10 ){
+            resize = { type: 'end' };
+        } else {
+            return;
+        }
+        this.props.onDragStart(resize, this.props.layout);
+            /* debugger
+               const hours = ((ev.clientY - bounds.top) / ev.target.offsetHeight ) */
+    },
+
+    onDragStop(){
+        this.setState({resize: false});
+    },
+
     render() {
-        const classes = ['event', `span-${this.props.layout.span}`];
-        if (this.props.layout.startsBefore) classes.push('is-continuation');
-        if (this.props.layout.endsAfter)    classes.push('is-continued');
-        if (this.props.layout.stack)        classes.push(`stack-${this.props.layout.stack}`);
 
         let edit;
         if (this.props.layout.isEditing()){
-            classes.push('is-editing');
             edit = <this.props.editComponent parent={this} event={this.props.layout.event} />;
         }
         return (
             <div
-                 key={this.props.layout.event.key}
-                 style={this.props.layout.inlineStyles()}
-                 className={classes.join(' ')}
+                ref="element"
+                onMouseDown={this.onDragStart}
+                style={this.props.layout.inlineStyles()}
+                className={this.props.layout.classNames()}
             >
-                <span onClick={this.onClick}>{this.props.layout.event.render()}</span>
+                <div className="evbody" onClick={this.onClick}>
+                    {this.props.layout.event.render()}
+                </div>
                 {edit}
             </div>
         );
