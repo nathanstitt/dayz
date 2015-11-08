@@ -30,6 +30,9 @@ class Layout {
         }, this);
         this.multiDayCount = multiDayCount;
         this.calculateStacking();
+        if (!this.isDisplayingAsMonth() && !this.displayHours){
+            this.displayHours = this.hourRange();
+        }
     }
 
     minutesInDay() {
@@ -43,14 +46,16 @@ class Layout {
         return { className: 'all-day', style };
     }
 
-    hourRangeForWeek(firstDay){
-        const day = firstDay.clone();
+    hourRange(){
+        const day = this.range.start.clone();
         const range = [7, 19];
         for (let d = 0; d < 7; d++){
             const layouts = this.forDay(day);
             for (let i=0; i < layouts.length; i++){
-                range[0] = Math.min( layouts[i].event.start().hour(), range[0] );
-                range[1] = Math.max( layouts[i].event.end().hour(), range[1] );
+                const layout = layouts[i];
+                if (! layout.event.isSingleDay()){ continue; }
+                range[0] = Math.min( layout.event.start().hour(), range[0] );
+                range[1] = Math.max( layout.event.end().hour(), range[1] );
             }
             day.add(1, 'day');
         }

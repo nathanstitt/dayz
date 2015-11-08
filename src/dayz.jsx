@@ -26,8 +26,7 @@ const Dayz = React.createClass({
 
     getDefaultProps() {
         return {
-            displayHours:      [0, 24],
-            display:           'month'
+            display:      'month'
         };
     },
 
@@ -77,6 +76,7 @@ const Dayz = React.createClass({
                            layout={this.state.layout}
                            editComponent={this.props.editComponent}
                            onClick={this.props.onDayClick}
+                           onDoubleClick={this.props.onDayDoubleClick}
                            onEventClick={this.props.onEventClick}
                            onEventResize={this.props.onEventResize}
 
