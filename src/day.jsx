@@ -23,16 +23,16 @@ const Day = React.createClass({
         return {resize: false};
     },
 
-    onClick(ev) {
-        if (!this.props.onClick ||
-            this.state.resize ||
-            !IsDayClass.test(ev.target.className)){
-                return;
-        }
+    _onClickHandler(ev, handler) {
+        if (!handler || !IsDayClass.test(ev.target.className)){ return; }
         const bounds = this.refs.events.getBoundingClientRect();
-        const hours = 24 * ((ev.clientY - bounds.top) / ev.target.offsetHeight );
-        this.props.onClick( ev, this.props.day.clone().startOf('day').add( hours, 'hour' ) );
+        const perc = ((ev.clientY - bounds.top) / ev.target.offsetHeight );
+        const hours = this.props.layout.displayHours[0] +
+                      ((this.props.layout.minutesInDay() * perc) / 60);
+        handler.call( this, ev, this.props.day.clone().startOf('day').add( hours, 'hour' ) );
     },
+    onClick(ev) { this._onClickHandler(ev, this.props.onClick); },
+    onDoubleClick(ev) { this._onClickHandler(ev, this.props.onDoubleClick); },
 
     onDragStart(resize, eventLayout) {
         const bounds = this.refs.events.getBoundingClientRect();
@@ -82,7 +82,11 @@ const Day = React.createClass({
         }
 
         return (
-            <div onClick={this.onClick} className={classes.join(' ')}>
+            <div
+                onClick={this.onClick}
+                className={classes.join(' ')}
+                onDoubleClick={this.onDoubleClick}
+            >
                 <Label day={this.props.day} className="label">{this.props.day.format('D')}</Label>
                 <div {...this.props.layout.propsForAllDayEventContainer()}>{allDayEvents}</div>
                 <div ref="events"
