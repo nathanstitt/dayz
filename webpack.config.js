@@ -13,29 +13,30 @@ var config = {
         libraryTarget: 'umd',
         library: 'Dayz'
     },
-    plugins: [ new ExtractTextPlugin('./dist/dayz.css') ],
+
     module: {
         loaders: [
             { test: /\.jsx?$/, query: {optional: ['runtime'], stage: 0},
               exclude: [/node_modules/], loader: 'babel-loader' },
-            { test: /\.scss$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader") }
+            { test: /\.scss$/, loader: ExtractTextPlugin.extract(
+                "style-loader", "css-loader!sass-loader")}
         ]
     },
+
     plugins: [
         new ExtractTextPlugin("dayz.css")
     ],
+
     resolve: {
         extensions: ['', '.js', '.jsx']
     },
-    externals: {
 
-    },
+    externals: {},
 
     devServer: {
         contentBase: './',
         host: 'localhost',
         inline: true,
-        host: 'localhost',
         outputPath: '/',
         filename: '[name].js',
         quiet: false,
