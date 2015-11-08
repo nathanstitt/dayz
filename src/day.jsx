@@ -1,6 +1,7 @@
 import React  from 'react';
 import Layout from './data/layout';
 import Event  from './event';
+import Label  from './label';
 import assign from 'lodash/object/assign';
 
 const IsDayClass = new RegExp('(\\s|^)(events|day|label)(\\s|$)');
@@ -8,13 +9,14 @@ const IsDayClass = new RegExp('(\\s|^)(events|day|label)(\\s|$)');
 const Day = React.createClass({
 
     propTypes: {
-        editComponent:  React.PropTypes.func,
-        labelComponent: React.PropTypes.func,
         day:            React.PropTypes.object.isRequired,
         layout:         React.PropTypes.instanceOf(Layout).isRequired,
         onClick:        React.PropTypes.func,
+        onDoubleClick:  React.PropTypes.func,
         onEventClick:   React.PropTypes.func,
-        onEventResize:  React.PropTypes.func
+        onEventResize:  React.PropTypes.func,
+        editComponent:  React.PropTypes.func,
+        onEventDoubleClick: React.PropTypes.func
     },
 
     getInitialState(){
@@ -57,7 +59,6 @@ const Day = React.createClass({
     },
 
     render() {
-        const Label = this.props.labelComponent;
         const classes=['day'];
         if (this.props.layout.isDateOutsideRange(this.props.day)){
             classes.push('outside');
@@ -68,12 +69,13 @@ const Day = React.createClass({
         for( const layout of this.props.layout.forDay(this.props.day) ){
             const event = (
                 <Event
-                    onDragStart={this.onDragStart}
-                    key={layout.key()}
-                    editComponent={this.props.editComponent}
-                    onClick={this.props.onEventClick}
-                    day={this.props.day}
                     layout={layout}
+                    key={layout.key()}
+                    day={this.props.day}
+                    onDragStart={this.onDragStart}
+                    onClick={this.props.onEventClick}
+                    editComponent={this.props.editComponent}
+                    onDoubleClick={this.props.onEventDoubleClick}
                 />
             );
             (layout.event.isSingleDay() ? singleDayEvents : allDayEvents).push(event);

@@ -8,12 +8,19 @@ const Event = React.createClass({
     propTypes: {
         layout:        React.PropTypes.instanceOf(EventLayout),
         editComponent: React.PropTypes.func,
-        onClick:       React.PropTypes.func
+        onClick:       React.PropTypes.func,
+        onDoubleClick:  React.PropTypes.func
     },
 
     onClick(ev) {
         if (!this.props.onClick){ return; }
         this.props.onClick(ev, this.props.layout.event);
+        ev.stopPropagation();
+    },
+
+    onDoubleClick(ev) {
+        if (!this.props.onDoubleClick){ return; }
+        this.props.onDoubleClick(ev, this.props.layout.event);
         ev.stopPropagation();
     },
 
@@ -30,8 +37,6 @@ const Event = React.createClass({
             return;
         }
         this.props.onDragStart(resize, this.props.layout);
-            /* debugger
-               const hours = ((ev.clientY - bounds.top) / ev.target.offsetHeight ) */
     },
 
     onDragStop(){

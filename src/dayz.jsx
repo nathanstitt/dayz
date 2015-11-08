@@ -13,14 +13,13 @@ import EventsCollection from './data/events-collection';
 const Dayz = React.createClass({
 
     propTypes: {
+        editComponent:     React.PropTypes.func,
         display:           React.PropTypes.oneOf(['month', 'week', 'day']),
         date:              React.PropTypes.object.isRequired,
         displayHours:      React.PropTypes.array,
-        dayComponent:      React.PropTypes.func,
-        editComponent:     React.PropTypes.func,
         events:            React.PropTypes.instanceOf(EventsCollection),
-        dayLabelComponent: React.PropTypes.func,
         onDayClick:        React.PropTypes.func,
+        onDayDoubleClick:  React.PropTypes.func,
         onEventClick:      React.PropTypes.func,
         onEventResize:     React.PropTypes.func
     },
@@ -28,8 +27,6 @@ const Dayz = React.createClass({
     getDefaultProps() {
         return {
             displayHours:      [0, 24],
-            dayLabelComponent: Label,
-            dayComponent:      Day,
             display:           'month'
         };
     },
@@ -72,18 +69,17 @@ const Dayz = React.createClass({
     },
 
     render() {
-        const DayComp = this.props.dayComponent;
         const classes = ["dayz", this.props.display];
         const days = [];
         this.state.range.by('days', (day) =>
-            days.push(<DayComp key={day.format('YYYYMMDD')}
-                               day={day}
-                               layout={this.state.layout}
-                               editComponent={this.props.editComponent}
-                               onClick={this.props.onDayClick}
-                               onEventClick={this.props.onEventClick}
-                               onEventResize={this.props.onEventResize}
-                               labelComponent={this.props.dayLabelComponent}
+            days.push(<Day key={day.format('YYYYMMDD')}
+                           day={day}
+                           layout={this.state.layout}
+                           editComponent={this.props.editComponent}
+                           onClick={this.props.onDayClick}
+                           onEventClick={this.props.onEventClick}
+                           onEventResize={this.props.onEventResize}
+
                       />)
         );
         return (
