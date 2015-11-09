@@ -60,7 +60,7 @@ class EventLayout {
     }
 
     classNames() {
-        const classes = ['event', `span-${this.span}`];
+        const classes = ['event', `span-${this.span}`, `color-${this.event.colorIndex()}`];
 
         if (this.startsBefore)  classes.push('is-continuation');
         if (this.endsAfter)     classes.push('is-continued');
