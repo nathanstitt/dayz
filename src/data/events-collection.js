@@ -35,6 +35,14 @@ class EventsCollection {
     length() {
         return this.events.length;
     }
+
+    remove(event){
+        const index = this.events.indexOf(event);
+        if (-1 !== index){
+            this.events.splice(index, 1);
+            this.emit('change');
+        }
+    }
 }
 
 assign( EventsCollection.prototype, Emitter.prototype );

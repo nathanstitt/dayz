@@ -79,6 +79,12 @@ class Event {
     colorIndex() {
         return this.attributes.colorIndex;
     }
+
+    remove() {
+        this.collection.remove(this);
+        this.isDeleted = true;
+        this.emit('change');
+    }
 }
 
 assign( Event.prototype, Emitter.prototype );
