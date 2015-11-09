@@ -1,38 +1,37 @@
-html{
-    height: 100%;
-    position: absolute;
-
-}
-body {
-    min-height: 100%;
-    margin: 0;
-    > div {
-        position: fixed;
-        height: 100%;
-        width: 100%;
-    }
-}
-
 @import '../style/dayz';
 
-.test-wrapper {
+
+.dayz-test-wrapper {
     box-sizing: border-box;
     height: 100%;
     padding: 1rem;
-
     display: flex;
     flex-direction: column;
+    min-height: 600px;
 
-}
+    .dayz {
+        flex: 1;
+    }
 
-.dayz {
-    flex: 1;
-}
+    .tools {
+        flex-basis: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
 
+    .event {
+        .edit {
+            position: absolute;
+            width: calc(100% - 20px);
+            left: 5px;
+            top: 0px;
+        }
+        &.span-1 {
+            input.edit {
+                top: 5px;
+            }
+        }
+    }
 
-.tools {
-    flex-basis: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
 }

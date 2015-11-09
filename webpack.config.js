@@ -7,7 +7,7 @@ var config = {
     devtool: isProduction ? undefined : 'source-map',
     entry:   (isProduction ? ['./style/dayz.scss','./src/dayz.jsx'] : ['./test/view.scss','./test/view.jsx']),
     output: {
-        path: isProduction ? 'dist' : 'dist/',
+        path:  'dist',
         publicPath: isProduction ? '' : '/dist/',
         filename: 'dayz.js',
         libraryTarget: 'umd',
