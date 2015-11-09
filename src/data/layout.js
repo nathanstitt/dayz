@@ -32,6 +32,8 @@ class Layout {
         this.calculateStacking();
         if (!this.isDisplayingAsMonth() && !this.displayHours){
             this.displayHours = this.hourRange();
+        } else {
+            this.displayHours = [0, 24];
         }
     }
 
