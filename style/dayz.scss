@@ -139,6 +139,10 @@ $dayz-heading-label-color:  #555 !default;
         .days {
             flex-flow: wrap;
             .day {
+                .label {
+                    display: inline-block;
+                    margin: 5px 0 0 5px;
+                }
                 flex-basis: $day-width;
                 .event {
                     height: $dayz-event-height;
