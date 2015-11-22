@@ -11,6 +11,7 @@ var config = {
         publicPath: isProduction ? '' : '/dist/',
         filename: 'dayz.js',
         libraryTarget: 'umd',
+        umdNamedDefine: true,
         library: 'Dayz'
     },
 
