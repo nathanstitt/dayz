@@ -30,17 +30,12 @@ const Event = React.createClass({
         let resize;
         if (ev.clientY - bounds.top < 10){
             resize = { type: 'start' };
-
         } else if ( bounds.bottom - ev.clientY < 10 ){
             resize = { type: 'end' };
         } else {
             return;
         }
         this.props.onDragStart(resize, this.props.layout);
-    },
-
-    onDragStop(){
-        this.setState({resize: false});
     },
 
     render() {

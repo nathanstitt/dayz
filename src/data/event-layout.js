@@ -58,16 +58,17 @@ class EventLayout {
     key() {
         return this.displayRange.start.format('YYYYMMDD') + this.event.key;
     }
-
+    setIsResizing(val) {
+        this.isResizing = val;
+    }
     classNames() {
         const classes = ['event', `span-${this.span}`, `color-${this.event.colorIndex()}`];
-
+        if (this.isResizing)    classes.push('is-resizing');
         if (this.startsBefore)  classes.push('is-continuation');
         if (this.endsAfter)     classes.push('is-continued');
         if (this.stack)         classes.push(`stack-${this.stack}`);
         if (this.isEditing())   classes.push('is-editing');
         if (this.isResizable()) classes.push('is-resizable');
-
         return classes.join(' ');
     }
 }

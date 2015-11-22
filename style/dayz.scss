@@ -223,7 +223,7 @@ $dayz-heading-label-color:  #555 !default;
             &:after {
                 bottom: -2px;
             }
-            &:hover {
+            &.is-resizing, &:hover {
                 &:before, &:after {
                     visibility: visible;
                 }

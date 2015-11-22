@@ -35,6 +35,7 @@ const Day = React.createClass({
     onDoubleClick(ev) { this._onClickHandler(ev, this.props.onDoubleClick); },
 
     onDragStart(resize, eventLayout) {
+        eventLayout.setIsResizing(true);
         const bounds = this.refs.events.getBoundingClientRect();
         assign(resize, {eventLayout, height: bounds.height, top: bounds.top });
         this.setState({resize});
@@ -52,10 +53,12 @@ const Day = React.createClass({
 
     onMouseUp(ev){
         if (!this.state.resize){ return; }
+        this.state.resize.eventLayout.setIsResizing(false);
         setTimeout(() => this.setState({resize: false}), 1);
         if (this.props.onEventResize){
             this.props.onEventResize(ev, this.state.resize.eventLayout.event);
         }
+
     },
 
     render() {
