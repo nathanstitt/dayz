@@ -9,6 +9,7 @@ config.output = {
     publicPath: '/dist/',
     filename: 'dayz-demo.js',
     libraryTarget: 'umd',
+    umdNamedDefine: true,
     library: 'DayzTestComponent'
 };
 
