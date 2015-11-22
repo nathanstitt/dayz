@@ -101,4 +101,4 @@ const Dayz = React.createClass({
 
 Dayz.EventsCollection = EventsCollection;
 
-export default Dayz;
+module.exports = Dayz;
