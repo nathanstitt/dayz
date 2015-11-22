@@ -1,6 +1,6 @@
-const Dayz   = require('../src/dayz');
-const React  = require('react');
-const moment = require('moment');
+import Dayz   from '../src/dayz';
+import React  from 'react';
+import moment from 'moment';
 require('moment-range');
 let COUNT = 1;
 
@@ -33,14 +33,14 @@ class DayzTestComponent extends React.Component {
                 { content: "Inclusive",
                   range: moment.range( moment('2015-09-07'), moment('2015-09-12') )},
 
-                { content: '9 - 12am (resizable)',
+                { content: '9am - 2pm (resizable)',
                   resizable: {step: 15},
-                  range: moment.range( moment('2015-09-07').hour(9),
-                                       moment('2015-09-07').hour(12))},
+                  range: moment.range( moment('2015-09-11').hour(9),
+                                       moment('2015-09-11').hour(14))},
 
                 { content: '8 - 10pm (non-resizable)',
-                  range: moment.range( date.clone().hour(20),
-                                       date.clone().hour(22) ) }
+                  range: moment.range( moment('2015-09-07').hour(20),
+                                       moment('2015-09-07').hour(22) ) }
             ])
         };
     }
