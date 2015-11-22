@@ -12,7 +12,7 @@ class DayzTestComponent extends React.Component {
         this.onEventClick = this.onEventClick.bind(this);
         this.editComponent = this.editComponent.bind(this);
         this.changeDisplay = this.changeDisplay.bind(this);
-
+        this.onEventResize = this.onEventResize.bind(this);
         const date = moment("2015-09-11");
         this.state = {
             date,
@@ -52,7 +52,11 @@ class DayzTestComponent extends React.Component {
     onEventClick(ev, event) {
         event.set({editing: !event.isEditing()});
     }
-
+    onEventResize(ev, event) {
+        const start = event.start().format('hh:mma');
+        const end   = event.end().format('hh:mma');
+        event.set({content: `${start} - ${end} (resizable)`});
+    }
     addEvent(ev, date) {
         this.state.events.add(
             { content: `Event ${COUNT++}`,
@@ -100,6 +104,7 @@ class DayzTestComponent extends React.Component {
                 </div>
 
                 <Dayz {...this.state}
+                      onEventResize={this.onEventResize}
                       editComponent={this.editComponent}
                       onDayDoubleClick={this.addEvent}
                       onEventClick={this.onEventClick}
@@ -110,4 +115,4 @@ class DayzTestComponent extends React.Component {
     }
 }
 
-export default DayzTestComponent;
+module.exports = DayzTestComponent;
