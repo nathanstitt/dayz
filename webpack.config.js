@@ -16,8 +16,10 @@ var config = {
 
     module: {
         loaders: [
-            { test: /\.jsx?$/, query: {optional: ['runtime'], stage: 0},
-              exclude: [/node_modules/], loader: 'babel-loader' },
+            {
+                test: /\.jsx?$/,
+                exclude: [/node_modules/], loader: 'babel-loader'
+            },
             { test: /\.scss$/, loader: ExtractTextPlugin.extract(
                 "style-loader", "css-loader!sass-loader")}
         ]
