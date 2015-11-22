@@ -33,7 +33,7 @@ class Layout {
         if (!this.isDisplayingAsMonth() && !this.displayHours){
             this.displayHours = this.hourRange();
         } else {
-            this.displayHours = [0, 24];
+            this.displayHours = this.displayHours || [0, 24];
         }
     }
 

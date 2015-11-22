@@ -104,6 +104,7 @@ class DayzTestComponent extends React.Component {
                 </div>
 
                 <Dayz {...this.state}
+                      displayHours={[6, 22]}
                       onEventResize={this.onEventResize}
                       editComponent={this.editComponent}
                       onDayDoubleClick={this.addEvent}
