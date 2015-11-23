@@ -155,7 +155,7 @@ $dayz-heading-label-color:  #555 !default;
     .event {
         @each $current-color in $event-colors {
             $i: index($event-colors, $current-color);
-            &.color-#{$i} {
+            &.color-#{$i} .evbody {
                 background: $current-color;
                 color: nth($event-text-colors, $i);
             }
@@ -212,7 +212,7 @@ $dayz-heading-label-color:  #555 !default;
 
             @each $current-color in $event-colors {
                 $i: index($event-colors, $current-color);
-                &.color-#{$i} {
+                &.color-#{$i} .evbody {
                     &:before, &:after { background-color: darken($current-color, 15%); }
                 }
             }
