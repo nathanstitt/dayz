@@ -3,6 +3,7 @@ import Layout from './data/layout';
 import Event  from './event';
 import Label  from './label';
 import assign from 'lodash/object/assign';
+import ReactDOM from 'react-dom';
 
 const IsDayClass = new RegExp('(\\s|^)(events|day|label)(\\s|$)');
 
@@ -23,9 +24,19 @@ const Day = React.createClass({
         return {resize: false};
     },
 
+    getBounds(){
+        return ReactDOM.findDOMNode(this).getBoundingClientRect();
+    },
+
     _onClickHandler(ev, handler) {
-        if (!handler || !IsDayClass.test(ev.target.className)){ return; }
-        const bounds = this.refs.events.getBoundingClientRect();
+        if (!handler || !IsDayClass.test(ev.target.className) ||
+            ( this.lastMouseUp &&
+                (this.lastMouseUp < (new Date()).getMilliseconds() + 100 )
+            )){
+                return;
+        }
+        this.lastMouseUp = 0;
+        const bounds = this.getBounds();
         const perc = ((ev.clientY - bounds.top) / ev.target.offsetHeight );
         const hours = this.props.layout.displayHours[0] +
                       ((this.props.layout.minutesInDay() * perc) / 60);
@@ -36,7 +47,7 @@ const Day = React.createClass({
 
     onDragStart(resize, eventLayout) {
         eventLayout.setIsResizing(true);
-        const bounds = this.refs.events.getBoundingClientRect();
+        const bounds = this.getBounds();
         assign(resize, {eventLayout, height: bounds.height, top: bounds.top });
         this.setState({resize});
     },
@@ -48,7 +59,6 @@ const Day = React.createClass({
             this.state.resize.type, coord, this.state.resize.height
         );
         this.forceUpdate();
-
     },
 
     onMouseUp(ev){
@@ -58,23 +68,21 @@ const Day = React.createClass({
         if (this.props.onEventResize){
             this.props.onEventResize(ev, this.state.resize.eventLayout.event);
         }
-
+        this.lastMouseUp = (new Date()).getMilliseconds();
     },
 
-    render() {
-        const classes=['day'];
-        if (this.props.layout.isDateOutsideRange(this.props.day)){
-            classes.push('outside');
-        }
+    renderEvents(){
         const singleDayEvents = [];
         const allDayEvents    = [];
-        const onMouseMove = this.props.layout.isDisplayingAsMonth() ? null : this.onMouseMove;
-        for( const layout of this.props.layout.forDay(this.props.day) ){
+        const onMouseMove = this.props.layout.isDisplayingAsMonth() ?
+                            null : this.onMouseMove;
+        for ( const layout of this.props.layout.forDay(this.props.day) ){
             const event = (
                 <Event
                     layout={layout}
                     key={layout.key()}
                     day={this.props.day}
+                    parent={this}
                     onDragStart={this.onDragStart}
                     onClick={this.props.onEventClick}
                     editComponent={this.props.editComponent}
@@ -82,6 +90,30 @@ const Day = React.createClass({
                 />
             );
             (layout.event.isSingleDay() ? singleDayEvents : allDayEvents).push(event);
+        }
+        const events = [];
+        if (allDayEvents.length){
+            events.push(
+                <div key="allday" {...this.props.layout.propsForAllDayEventContainer()}>
+                    {allDayEvents}
+                </div>
+            );
+        }
+        if (singleDayEvents.length){
+            events.push(
+                <div key="events" refs="events" className="events"
+                     onMouseMove={onMouseMove} onMouseUp={this.onMouseUp}>
+                    {singleDayEvents}
+                </div>
+            );
+        }
+        return events;
+    },
+
+    render() {
+        const classes=['day'];
+        if (this.props.layout.isDateOutsideRange(this.props.day)){
+            classes.push('outside');
         }
 
         return (
@@ -91,14 +123,7 @@ const Day = React.createClass({
                 onDoubleClick={this.onDoubleClick}
             >
                 <Label day={this.props.day} className="label">{this.props.day.format('D')}</Label>
-                <div {...this.props.layout.propsForAllDayEventContainer()}>{allDayEvents}</div>
-                <div ref="events"
-                     className="events"
-                     onMouseMove={onMouseMove}
-                     onMouseUp={this.onMouseUp}
-                >
-                    {singleDayEvents}
-                </div>
+                {this.renderEvents()}
             </div>
         );
     }
