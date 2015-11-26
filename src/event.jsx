@@ -39,11 +39,14 @@ const Event = React.createClass({
     },
 
     render() {
-
-        let edit;
-        if (this.props.layout.isEditing()){
-            edit = <this.props.editComponent parent={this} event={this.props.layout.event} />;
-        }
+        const body = (
+            <div className="evbody" onClick={this.onClick}>
+                {this.props.layout.event.render()}
+            </div>
+        );
+        const Edit = this.props.editComponent;
+        const children = this.props.layout.isEditing() ?
+            ( <Edit event={this.props.layout.event} >{body}</Edit> ) : body;
         return (
             <div
                 ref="element"
@@ -51,12 +54,10 @@ const Event = React.createClass({
                 style={this.props.layout.inlineStyles()}
                 className={this.props.layout.classNames()}
             >
-                <div className="evbody" onClick={this.onClick}>
-                    {this.props.layout.event.render()}
-                </div>
-                {edit}
+                {children}
             </div>
         );
+
     }
 
 });
