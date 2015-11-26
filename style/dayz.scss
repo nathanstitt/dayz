@@ -1,10 +1,35 @@
 $dayz-event-arrow-width:    10px !default;
-//$dayz-event-color:          lightcoral !default;
 $dayz-event-height:         20px !default;
 $dayz-y-label-width:        60px !default;
 $dayz-grid-line-color:      lightBlue !default;
 $dayz-border-color:         lightgrey !default;
 $dayz-heading-label-color:  #555 !default;
+$dayz-event-colors: (
+    #4D4D4D, // (gray)
+    #5DA5DA, // (blue)
+    #FAA43A, // (orange)
+    #60BD68, // (green)
+    #F17CB0, // (pink)
+    #B2912F, // (brown)
+    #B276B2, // (purple)
+    #DECF3F, // (yellow)
+    #F15854, // (red)
+    #F5DEB3  // (tan)
+) !default;
+
+$dayz-event-text-colors: (
+    // background colors
+    white, // (gray)
+    black, // (blue)
+    white, // (orange)
+    black, // (green)
+    black, // (pink)
+    white, // (brown)
+    white, // (purple)
+    black, // (yellow)
+    white, // (red)
+    black  // (tan)
+) !default;
 
 .dayz {
 
@@ -19,32 +44,6 @@ $dayz-heading-label-color:  #555 !default;
     flex-direction: column;
     align-items:    stretch;
 
-    $event-colors: (
-        #4D4D4D, // (gray)
-        #5DA5DA, // (blue)
-        #FAA43A, // (orange)
-        #60BD68, // (green)
-        #F17CB0, // (pink)
-        #B2912F, // (brown)
-        #B276B2, // (purple)
-        #DECF3F, // (yellow)
-        #F15854, // (red)
-        #F5DEB3  // (tan)
-    );
-
-    $event-text-colors: (
-               // background colors
-        white, // (gray)
-        black, // (blue)
-        white, // (orange)
-        black, // (green)
-        black, // (pink)
-        white, // (brown)
-        white, // (purple)
-        black, // (yellow)
-        white, // (red)
-        black  // (tan)
-    );
 
     .x-labels {
         display: flex;
@@ -97,6 +96,9 @@ $dayz-heading-label-color:  #555 !default;
     .day {
         border: 1px solid $dayz-border-color;
         box-sizing: border-box;
+        .event > * {
+            height: 100%;
+        }
     }
 
     &.week, &.day {
@@ -146,6 +148,12 @@ $dayz-heading-label-color:  #555 !default;
                 flex-basis: $day-width;
                 .event {
                     height: $dayz-event-height;
+                    &.span-1 .evbody > div {
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        width: 100%;
+                        overflow: hidden;
+                    }
                 }
             }
         }
@@ -153,11 +161,11 @@ $dayz-heading-label-color:  #555 !default;
 
     // styling in common for events in all displays
     .event {
-        @each $current-color in $event-colors {
-            $i: index($event-colors, $current-color);
+        @each $current-color in $dayz-event-colors {
+            $i: index($dayz-event-colors, $current-color);
             &.color-#{$i} .evbody {
                 background: $current-color;
-                color: nth($event-text-colors, $i);
+                color: nth($dayz-event-text-colors, $i);
             }
         }
 
@@ -210,8 +218,8 @@ $dayz-heading-label-color:  #555 !default;
                 cursor: ns-resize;
             }
 
-            @each $current-color in $event-colors {
-                $i: index($event-colors, $current-color);
+            @each $current-color in $dayz-event-colors {
+                $i: index($dayz-event-colors, $current-color);
                 &.color-#{$i} .evbody {
                     &:before, &:after { background-color: darken($current-color, 15%); }
                 }
@@ -233,6 +241,7 @@ $dayz-heading-label-color:  #555 !default;
         .evbody {
             padding-left: 0.4rem;
             height: 100%;
+            overflow: hidden;
         }
 
         @mixin triangle() {
@@ -254,8 +263,8 @@ $dayz-heading-label-color:  #555 !default;
                 @include triangle();
                 left: 100%;
             }
-            @each $current-color in $event-colors {
-                $i: index($event-colors, $current-color);
+            @each $current-color in $dayz-event-colors {
+                $i: index($dayz-event-colors, $current-color);
                 &.color-#{$i} {
                     &:after {
                         border-left: $dayz-event-arrow-width solid $current-color;
@@ -270,8 +279,8 @@ $dayz-heading-label-color:  #555 !default;
                 @include triangle();
                 right: 100%;
             }
-            @each $current-color in $event-colors {
-                $i: index($event-colors, $current-color);
+            @each $current-color in $dayz-event-colors {
+                $i: index($dayz-event-colors, $current-color);
                 &.color-#{$i} {
                     &:before {
                         border-right: $dayz-event-arrow-width solid $current-color;
