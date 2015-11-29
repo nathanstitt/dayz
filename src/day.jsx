@@ -12,6 +12,7 @@ const Day = React.createClass({
     propTypes: {
         day:            React.PropTypes.object.isRequired,
         layout:         React.PropTypes.instanceOf(Layout).isRequired,
+        position:       React.PropTypes.number.isRequired,
         onClick:        React.PropTypes.func,
         onDoubleClick:  React.PropTypes.func,
         onEventClick:   React.PropTypes.func,
@@ -119,6 +120,7 @@ const Day = React.createClass({
         return (
             <div
                 onClick={this.onClick}
+                style={{order: this.props.position}}
                 className={classes.join(' ')}
                 onDoubleClick={this.onDoubleClick}
             >

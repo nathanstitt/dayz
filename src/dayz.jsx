@@ -72,6 +72,7 @@ const Dayz = React.createClass({
         this.state.range.by('days', (day) =>
             days.push(<Day key={day.format('YYYYMMDD')}
                            day={day}
+                           position={days.length}
                            layout={this.state.layout}
                            editComponent={this.props.editComponent}
                            onClick={this.props.onDayClick}
@@ -90,7 +91,10 @@ const Dayz = React.createClass({
                         display={this.props.display}
                         date={this.props.date}
                     />
-                    <div className="days">{days}</div>
+                    <div className="days">
+                        {days}
+                        {this.props.children}
+                    </div>
                 </div>
             </div>
         );
