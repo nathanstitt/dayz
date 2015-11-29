@@ -2,8 +2,8 @@
 
 jest.autoMockOff();
 
-const EventsCollection = require('../src/data/events-collection');
-const Event = require('../src/data/event');
+import EventsCollection from '../src/data/events-collection';
+import Event from '../src/data/event';
 const moment = require('moment');
 
 describe( 'Events Collection', function() {

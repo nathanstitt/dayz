@@ -8,9 +8,10 @@ require('moment-range');
 const React = require('react');
 const ReactDOM = require('react-dom');
 const TestUtils = require('react-addons-test-utils');
-const EventComp = require('../src/event');
-const Event = require('../src/data/event');
-const EventLayout = require('../src/data/event-layout');
+
+import EventComp   from '../src/event';
+import Event       from '../src/data/event';
+import EventLayout from '../src/data/event-layout';
 
 const date = moment('2015-09-12');
 

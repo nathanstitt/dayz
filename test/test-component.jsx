@@ -16,7 +16,7 @@ class DayzTestComponent extends React.Component {
         const date = moment("2015-09-11");
         this.state = {
             date,
-            display: 'week',
+            display: 'month',
             events: new Dayz.EventsCollection([
                 { content: 'Continuing event Past',
                   range: moment.range( moment('2015-09-08'), moment('2015-09-14') ) },
@@ -109,8 +109,8 @@ class DayzTestComponent extends React.Component {
                       editComponent={this.editComponent}
                       onDayDoubleClick={this.addEvent}
                       onEventClick={this.onEventClick}
-                />
-
+                >
+                </Dayz>
             </div>
         );
     }

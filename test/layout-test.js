@@ -5,9 +5,10 @@
 jest.autoMockOff();
 
 const moment = require('moment');
-const Layout = require('../src/data/layout');
-const Event  = require('../src/data/event');
-const EventsCollection = require('../src/data/events-collection');
+require('moment-range');
+import Layout           from '../src//data/layout';
+import Event            from '../src/data/event';
+import EventsCollection from '../src/data/events-collection';
 
 const testEventRange = function(startAt, endAt){
     startAt = moment(startAt); endAt = moment(endAt).endOf('day');
