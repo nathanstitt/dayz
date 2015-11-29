@@ -108,7 +108,7 @@ class Layout {
     }
 
     isDateOutsideRange(date){
-        return (this.isDisplayingAsMonth() && !this.range.contains(date));
+        return (this.isDisplayingAsMonth() && this.date.month() !== date.month());
     }
 
     forDay(day){

@@ -124,7 +124,9 @@ const Day = React.createClass({
                 className={classes.join(' ')}
                 onDoubleClick={this.onDoubleClick}
             >
-                <Label day={this.props.day} className="label">{this.props.day.format('D')}</Label>
+                <Label day={this.props.day} className="label">
+                    {this.props.day.format('D')}
+                </Label>
                 {this.renderEvents()}
             </div>
         );

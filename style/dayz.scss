@@ -155,6 +155,9 @@ $dayz-event-text-colors: (
                         overflow: hidden;
                     }
                 }
+                &.outside {
+                    background-color: #F2F2F2;
+                }
             }
         }
     }
