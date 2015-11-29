@@ -90,11 +90,13 @@ $dayz-event-text-colors: (
             flex-direction: row;
             position: relative;
             box-sizing: border-box;
+            border-top: 1px solid $dayz-border-color;
+            border-left: 1px solid $dayz-border-color;
         }
     }
-
     .day {
-        border: 1px solid $dayz-border-color;
+        border-right:  1px solid $dayz-border-color;
+        border-bottom: 1px solid $dayz-border-color;
         box-sizing: border-box;
         .event > * {
             height: 100%;
