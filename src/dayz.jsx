@@ -2,7 +2,6 @@ import React     from 'react';
 import moment    from 'moment';
 import Layout    from './data/layout';
 import Day       from './day';
-import Label     from './label';
 import XLabels   from './x-labels';
 import YLabels   from './y-labels';
 
