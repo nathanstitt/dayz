@@ -26,8 +26,8 @@
   },
   "peerDependencies": {
     "lodash": "^3.10.1",
-    "moment": "^2.10.6",
-    "moment-range": "^2.0.3",
+    "moment": "^2.11.1",
+    "moment-range": "^2.1.0",
     "react": "*",
     "react-dom": "^0.14.0"
   },
@@ -49,8 +49,9 @@
     "gulp-run": "^1.6.11",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
-    "jest-cli": "^0.8.0",
+    "jest-cli": "^0.8.2",
     "node-sass": "^3.4.2",
+    "npm-release": "^1.0.0",
     "react-addons-test-utils": "^0.14.3",
     "sass-loader": "^3.1.1",
     "scss": "^0.2.4",
