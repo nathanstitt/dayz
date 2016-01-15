@@ -133,10 +133,10 @@ describe( 'Event Layout calculations', function() {
                   range: moment.range( date.clone().subtract(2,'days'),
                                        moment(date).add(1,'hour') ) }
             ]);
-            this.layout = new Layout(this.events,
-                                     moment.range( moment(date).startOf('week'),
-                                                   moment(date).endOf('week') ),
-                                     {display: 'week'});
+            this.layout = new Layout({ events: this.events, display: 'week',
+                                       range: moment.range( moment(date).startOf('week'),
+                                                   moment(date).endOf('week') )
+                                     });
             this.date = date;
         });
 
@@ -150,7 +150,7 @@ describe( 'Event Layout calculations', function() {
             expect(events[1].event.attributes.content).toEqual('Two Hours ~ 8-10');
 
             expect(events[0].stack).toBe(2);
-            expect(events[1].stack).toBe(1);
+            expect(events[1].stack).toBe(0);
         });
 
     });
@@ -161,7 +161,7 @@ describe( 'Event Layout calculations', function() {
             const {layout, event} = testEventDay(
                 '2015-10-15', '2015-10-15 06:15:00', '2015-10-20 21:12:11'
             );
-            const range = layout.hourRangeForWeek(moment('2015-10-11'));
+            const range = layout.hourRange();
             expect(range[0]).toEqual(event.start().hour());
             expect(range[1]).toEqual(event.end().hour());
         });
@@ -170,7 +170,7 @@ describe( 'Event Layout calculations', function() {
             const {layout} = testEventDay(
                 '2015-10-15', '2015-10-15 12:15:00', '2015-10-20 13:12:11'
             );
-            const range = layout.hourRangeForWeek(moment('2015-10-11'));
+            const range = layout.hourRange();
             expect(range[0]).toEqual(7);
             expect(range[1]).toEqual(19);
         });

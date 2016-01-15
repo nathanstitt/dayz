@@ -24,12 +24,17 @@ describe('Dayz', function() {
             content: 'test',
             range: moment.range( date.clone().add(8, 'hours'), date.clone().add(10, 'hours'))
         });
-        const layout = new EventLayout(fakeLayout,
-                                       eventModel, moment.range(date, date.clone().add(1, 'day') ));
-        const event  = TestUtils.renderIntoDocument( <EventComp layout={layout} /> );
+        const events = new EventsCollection([eventModel]);
+        const layout = new Layout({ events, display: 'day', day: date,
+                                    range: moment.range( moment(date), moment(date).endOf('day') )
+                                  });
+        const eventLayout = new EventLayout(layout,
+                                            eventModel,
+                                            moment.range(date, date.clone().add(1, 'day') ));
+        const event  = TestUtils.renderIntoDocument( <EventComp layout={eventLayout} /> );
         const div    = ReactDOM.findDOMNode(event);
-        expect( div.style.top ).toEqual('33.33%' );
-        expect( div.style.bottom ).toEqual('58.33%' );
+        expect( div.style.top ).toEqual('7.69%' );
+        expect( div.style.bottom ).toEqual('76.92%' );
         expect( div.classList.contains('event') ).toBe(true);
         expect( div.classList.contains('span-1') ).toBe(true);
     });
@@ -39,9 +44,14 @@ describe('Dayz', function() {
             content: 'test',
             range: moment.range( date.clone(), date.clone().add(3, 'days'))
         });
-        const layout = new EventLayout(fakeLayout, eventModel,
-                                       moment.range(date, date.clone().add(1, 'day')));
-        const event  = TestUtils.renderIntoDocument( <EventComp layout={layout} /> );
+        const events = new EventsCollection([eventModel]);
+        const layout = new Layout({ events, display: 'day', day: date,
+                                    range: moment.range( moment(date), moment(date).endOf('day') )
+                                  });
+        const eventLayout = new EventLayout(layout,
+                                            eventModel,
+                                            moment.range(date, date.clone().add(1, 'day') ));
+        const event  = TestUtils.renderIntoDocument( <EventComp layout={eventLayout} /> );
         const div    = ReactDOM.findDOMNode(event);
         expect( eventModel.isSingleDay() ).toBe(false);
         expect( div.style.length ).toBe(0);
