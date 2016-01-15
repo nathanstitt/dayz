@@ -1,5 +1,7 @@
 const moment = require('moment');
 
+// an event layout describes how an event is displayed.
+// A event may be split into one or more layouts in order to be split across week boundaries
 class EventLayout {
 
     constructor(layout, event, displayRange) {

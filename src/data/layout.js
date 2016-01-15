@@ -8,6 +8,7 @@ function cacheKey(day){
     return day.format('YYYYMMDD');
 }
 
+// a layout describes how the calendar is displayed.
 class Layout {
 
     constructor(options) {
