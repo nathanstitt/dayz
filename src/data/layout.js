@@ -20,7 +20,8 @@ class Layout {
         );
         if (! this.events){ return; }
         const range = this.range;
-        this.events.each( function(event){
+
+        this.events.each( (event) => {
             // we only care about events that are in the range we were provided
             if (range.overlaps(event.range())){
                 this[cacheMethod](event);
@@ -28,7 +29,7 @@ class Layout {
                     multiDayCount += 1;
                 }
             }
-        }, this);
+        });
         this.multiDayCount = multiDayCount;
         this.calculateStacking();
         if (!this.isDisplayingAsMonth() && !this.displayHours){
@@ -50,18 +51,13 @@ class Layout {
     }
 
     hourRange(){
-        const day = this.range.start.clone();
         const range = [7, 19];
-        for (let d = 0; d < 7; d++){
-            const layouts = this.forDay(day);
-            for (let i=0; i < layouts.length; i++){
-                const layout = layouts[i];
-                if (! layout.event.isSingleDay()){ continue; }
+        this.range.by('days', (day) => {
+            each(this.forDay(day), (layout) => {
                 range[0] = Math.min( layout.event.start().hour(), range[0] );
                 range[1] = Math.max( layout.event.end().hour(), range[1] );
-            }
-            day.add(1, 'day');
-        }
+            });
+        });
         return range;
     }
 
@@ -72,10 +68,11 @@ class Layout {
             const layouts = this.forDay(day);
             if (layouts.length){
                 this.cache[ cacheKey(day) ] = layouts;
-                for (const layout of layouts){
-                    if (layout.event.isSingleDay()){ continue; }
-                    weeklyEvents.push(layout);
-                }
+                each( layouts, (layout) => {
+                    if (! layout.event.isSingleDay()){
+                        weeklyEvents.push(layout);
+                    }
+                } );
             }
             day.add(1, 'day');
         }
@@ -139,16 +136,12 @@ class Layout {
     addToCache(date, eventLayout){
         date = date.clone();
         let found = false;
-        outer_block: {
-            for (let key in this.cache ){
-                for (let layout of this.cache[key]){
-                    if (layout.event === eventLayout.event){
-                        found = true;
-                        break outer_block;
-                    }
-                }
+        each(this.cache, (key, layout) => {
+            if (layout.event === eventLayout.event){
+                found = true;
+                return false;
             }
-        }
+        });
         if (!found){
             eventLayout.first = true;
         }
