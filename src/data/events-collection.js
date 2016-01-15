@@ -1,8 +1,8 @@
-import Event   from './event';
-import Emitter from 'tiny-emitter';
-import each    from 'lodash/collection/each';
-import assign  from 'lodash/object/assign';
-import sortBy  from 'lodash/collection/sortBy';
+const Event   = require('./event');
+const Emitter = require('tiny-emitter');
+const each    = require('lodash/collection/each');
+const assign  = require('lodash/object/assign');
+const sortBy  = require('lodash/collection/sortBy');
 
 function lengthCompare(event){
     return event.attributes.range.start.diff(event.attributes.range.end);
@@ -47,4 +47,4 @@ class EventsCollection {
 
 assign( EventsCollection.prototype, Emitter.prototype );
 
-export default EventsCollection;
+module.exports = EventsCollection;

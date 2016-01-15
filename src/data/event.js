@@ -1,6 +1,6 @@
-import React   from 'react';
-import assign  from 'lodash/object/assign';
-import Emitter from 'tiny-emitter';
+const React   = require('react');
+const assign  = require('lodash/object/assign');
+const Emitter = require('tiny-emitter');
 
 let EVENT_COUNTER = 1;
 
@@ -89,4 +89,4 @@ class Event {
 
 assign( Event.prototype, Emitter.prototype );
 
-export default Event;
+module.exports = Event;

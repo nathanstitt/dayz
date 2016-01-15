@@ -1,9 +1,10 @@
-import React  from 'react';
-import Layout from './data/layout';
-import Event  from './event';
-import Label  from './label';
-import assign from 'lodash/object/assign';
-import ReactDOM from 'react-dom';
+const React  = require('react');
+const Layout = require('./data/layout');
+const Event  = require('./event');
+const Label  = require('./label');
+const assign = require('lodash/object/assign');
+const each   = require('lodash/collection/each');
+const ReactDOM = require('react-dom');
 
 const IsDayClass = new RegExp('(\\s|^)(events|day|label)(\\s|$)');
 
@@ -134,4 +135,4 @@ const Day = React.createClass({
 
 });
 
-export default Day;
+module.exports = Day;

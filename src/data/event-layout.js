@@ -1,4 +1,4 @@
-import moment from 'moment';
+const moment = require('moment');
 
 class EventLayout {
 
@@ -74,4 +74,4 @@ class EventLayout {
 }
 
 
-export default EventLayout;
+module.exports = EventLayout;

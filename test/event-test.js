@@ -5,19 +5,17 @@ jest.autoMockOff();
 const moment = require('moment');
 require('moment-range');
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-const TestUtils = require('react-addons-test-utils');
+const React       = require('react');
+const ReactDOM    = require('react-dom');
+const TestUtils   = require('react-addons-test-utils');
 
-import EventComp   from '../src/event';
-import Event       from '../src/data/event';
-import EventLayout from '../src/data/event-layout';
+const Event       = require('data/event');
+const Layout      = require('data/layout');
+const EventComp   = require('event');
+const EventLayout = require('data/event-layout');
+const EventsCollection = require('data/events-collection');
 
 const date = moment('2015-09-12');
-
-const fakeLayout = {
-    displayingAs(){ return 'week'; }
-};
 
 describe('Dayz', function() {
 

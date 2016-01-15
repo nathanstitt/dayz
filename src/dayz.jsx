@@ -1,13 +1,13 @@
-import React     from 'react';
-import moment    from 'moment';
-import Layout    from './data/layout';
-import Day       from './day';
-import XLabels   from './x-labels';
-import YLabels   from './y-labels';
+const React     = require('react');
+const moment    = require('moment');
+const Layout    = require('./data/layout');
+const Day       = require('./day');
+const XLabels   = require('./x-labels');
+const YLabels   = require('./y-labels');
 
 require('moment-range'); // needed in order to for range to install itself
 
-import EventsCollection from './data/events-collection';
+const EventsCollection = require('./data/events-collection');
 
 const Dayz = React.createClass({
 

@@ -1,9 +1,7 @@
-/*eslint no-console: 0*/
+const ReactDOM = require('react-dom');
+const React    = require('react');
 
-import ReactDOM from 'react-dom';
-import React    from 'react';
-
-import DayzTest from './test-component';
+const DayzTest = require('./test-component');
 
 const div = document.createElement('div');
 document.body.appendChild(div);

@@ -2,12 +2,11 @@
 
 jest.autoMockOff();
 
-const moment = require('moment');
-
-const React = require('react');
-const ReactDOM = require('react-dom');
+const moment    = require('moment');
+const React     = require('react');
+const ReactDOM  = require('react-dom');
 const TestUtils = require('react-addons-test-utils');
-const Dayz = require('../src/dayz');
+const Dayz      = require('../src/dayz');
 
 const date = moment('2015-09-12');
 

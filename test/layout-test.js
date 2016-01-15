@@ -6,28 +6,30 @@ jest.autoMockOff();
 
 const moment = require('moment');
 require('moment-range');
-import Layout           from '../src//data/layout';
-import Event            from '../src/data/event';
-import EventsCollection from '../src/data/events-collection';
+
+const Layout = require('data/layout');
+const Event  = require('data/event');
+const EventsCollection = require('data/events-collection');
 
 const testEventRange = function(startAt, endAt){
     startAt = moment(startAt); endAt = moment(endAt).endOf('day');
     const event  = new Event({ range: moment.range( moment(startAt), moment(endAt) ) });
     const events = new EventsCollection([event]);
-    const layout = new Layout( events,
-                               moment.range(event.range().start.startOf('month'),
+    const layout = new Layout({ events,
+                                range: moment.range(event.range().start.startOf('month'),
                                             event.range().end.endOf('month') ),
-                               {display: 'month', day: startAt});
+                                display: 'month', day: startAt
+                              });
     return {events, layout, event};
 };
 
 const testEventDay = function(date, startAt, endAt){
     const events = new EventsCollection();
     const event  = events.add({ range: moment.range( moment(startAt), moment(endAt) ) });
-    const layout = new Layout( events,
-                               moment.range( moment(date), moment(date).endOf('day') ),
-                               {display: 'day', day: startAt}
-                             );
+    const layout = new Layout({ events,
+                                range: moment.range( moment(date), moment(date).endOf('day') ),
+                                display: 'day', day: startAt
+                               });
 
     return {events, layout, event};
 };

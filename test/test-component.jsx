@@ -1,7 +1,8 @@
-import Dayz   from '../src/dayz';
-import React  from 'react';
-import moment from 'moment';
+const Dayz   = require('../src/dayz');
+const React  = require('react');
+const moment = require('moment');
 require('moment-range');
+
 let COUNT = 1;
 
 class DayzTestComponent extends React.Component {

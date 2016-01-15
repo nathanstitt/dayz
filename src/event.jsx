@@ -1,5 +1,5 @@
-import React from 'react';
-import EventLayout from './data/event-layout';
+const React = require('react');
+const EventLayout = require('./data/event-layout');
 
 const IsResizeClass = new RegExp('(\\s|^)event(\\s|$)');
 
@@ -62,4 +62,4 @@ const Event = React.createClass({
 
 });
 
-export default Event;
+module.exports = Event;

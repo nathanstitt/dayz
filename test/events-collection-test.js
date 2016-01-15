@@ -2,9 +2,10 @@
 
 jest.autoMockOff();
 
-import EventsCollection from '../src/data/events-collection';
-import Event from '../src/data/event';
+const EventsCollection = require('data/events-collection');
+const Event = require('data/event');
 const moment = require('moment');
+require('moment-range'); // needed in order to for range to install itself
 
 describe( 'Events Collection', function() {
 

@@ -1,4 +1,4 @@
-import React from 'react';
+const React = require('react');
 
 const Label = React.createClass({
 
@@ -14,4 +14,4 @@ const Label = React.createClass({
 
 });
 
-export default Label;
+module.exports = Label;

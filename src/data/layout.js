@@ -1,7 +1,8 @@
-import moment from 'moment';
-import assign from 'lodash/object/assign';
-import EventLayout from './event-layout';
-import C from './constants';
+const assign = require('lodash/object/assign');
+const each   = require('lodash/collection/each');
+const moment = require('moment');
+const EventLayout = require('./event-layout');
+const C = require('./constants');
 
 function cacheKey(day){
     return day.format('YYYYMMDD');
@@ -166,4 +167,4 @@ class Layout {
 }
 
 
-export default Layout;
+module.exports = Layout;

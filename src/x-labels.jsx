@@ -1,5 +1,5 @@
-import React  from 'react';
-import map    from 'lodash/collection/map';
+const React  = require('react');
+const map    = require('lodash/collection/map');
 
 const XLabels = React.createClass({
 
@@ -35,4 +35,4 @@ const XLabels = React.createClass({
 
 });
 
-export default XLabels;
+module.exports = XLabels;

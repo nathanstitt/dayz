@@ -1,6 +1,8 @@
-import React  from 'react';
-import moment from 'moment';
-import Layout from './data/layout';
+const React  = require('react');
+const moment = require('moment');
+const Layout = require('./data/layout');
+const each   = require('lodash/collection/each');
+const range  = require('lodash/utility/range');
 
 const YLabels = React.createClass({
 
@@ -36,4 +38,4 @@ const YLabels = React.createClass({
 
 });
 
-export default YLabels;
+module.exports = YLabels;
