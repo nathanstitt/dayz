@@ -76,12 +76,9 @@
       "json",
       "jsx"
     ],
-    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "scriptPreprocessor": "<rootDir>/test/preprocessor.js",
     "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/fbjs",
-      "<rootDir>/node_modules/react-dom",
-      "<rootDir>/node_modules/react-addons-test-utils"
+      "<rootDir>/node_modules"
     ]
   },
   "browserify": {
