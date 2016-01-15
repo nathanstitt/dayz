@@ -1,4 +1,5 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var path = require('path');
 
 var isProduction = process.env['NODE_ENV'] === 'production';
 
@@ -31,6 +32,7 @@ var config = {
     ],
 
     resolve: {
+        root: path.resolve(__dirname, 'src'),
         extensions: ['', '.js', '.jsx']
     },
 
