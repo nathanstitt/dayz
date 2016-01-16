@@ -103,6 +103,16 @@ $dayz-event-text-colors: (
         }
     }
 
+    &.month, &.week .all-day, &.day .all-day {
+        .event {
+            $stack: 1;
+            @while $stack < 10 {
+                &.stack-#{$stack} { margin-top: ($stack) * 20px; }
+                $stack: $stack + 1;
+            }
+        }
+    }
+
     &.week, &.day {
         .x-labels{ padding-left: $dayz-y-label-width; }
         .days {
@@ -178,12 +188,6 @@ $dayz-event-text-colors: (
         position: relative;
         border: 1px solid $dayz-grid-line-color;
         border-radius: 4px;
-
-        $stack: 1;
-        @while $stack < 10 {
-            &.stack-#{$stack} { margin-top: ($stack) * 20px; }
-            $stack: $stack + 1;
-        }
 
         $span: 0;
         @while $span < 7 {
