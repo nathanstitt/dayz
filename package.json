@@ -50,6 +50,7 @@
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
     "jest-cli": "^0.8.2",
+    "jest-webpack-alias": "^2.2.0",
     "node-sass": "^3.4.2",
     "npm-release": "^1.0.0",
     "react-addons-test-utils": "^0.14.3",
