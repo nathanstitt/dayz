@@ -1,5 +1,7 @@
 ## A day/week/monthly calendar component for React
 
+[![Build Status](https://travis-ci.org/nathanstitt/dayz.svg?branch=master)](https://travis-ci.org/nathanstitt/dayz)
+
 ## Features
 * Only includes the minimal amount of features needed.
     * For instance there's no paging controls provided, since they can easily be implemented outside the component.  This allows Dayz to be used both as a traditional next/previous month calendar or as part of a scrolling infinite view.
