@@ -74,10 +74,10 @@ const Day = React.createClass({
     },
 
     renderEvents(){
+        const asMonth = this.props.layout.isDisplayingAsMonth();
         const singleDayEvents = [];
         const allDayEvents    = [];
-        const onMouseMove = this.props.layout.isDisplayingAsMonth() ?
-                            null : this.onMouseMove;
+        const onMouseMove = asMonth ? null : this.onMouseMove;
         each(this.props.layout.forDay(this.props.day), (layout) => {
             const event = (
                 <Event
@@ -94,7 +94,7 @@ const Day = React.createClass({
             (layout.event.isSingleDay() ? singleDayEvents : allDayEvents).push(event);
         });
         const events = [];
-        if (allDayEvents.length){
+        if (allDayEvents.length || !asMonth){
             events.push(
                 <div key="allday" {...this.props.layout.propsForAllDayEventContainer()}>
                     {allDayEvents}
