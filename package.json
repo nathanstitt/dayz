@@ -1,6 +1,6 @@
 {
   "name": "dayz",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "A Day/Week/Month display React component",
   "main": "lib/dayz.js",
   "directories": {
