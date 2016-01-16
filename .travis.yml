@@ -4,5 +4,4 @@ node_js:
   - "4.1"
 after_failure:
   - npm list
-scripts:
-  test: npm run travis
+script: npm run travis
