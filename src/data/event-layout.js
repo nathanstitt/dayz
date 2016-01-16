@@ -50,7 +50,7 @@ class EventLayout {
             let {start, end} = this.event.daysMinuteRange();
             const startOffset = this.layout.displayHours[0] * 60;
             start -= startOffset;
-            end   -= startOffset;
+            end -= startOffset;
             const inday = this.layout.minutesInDay();
             const top = ( ( start / inday ) * 100).toFixed(2) + '%';
             const bottom = ( 100 - ( ( end / inday ) * 100 ) ).toFixed(2) + '%';

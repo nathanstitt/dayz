@@ -9,7 +9,7 @@ function lengthCompare(event){
 }
 
 class EventsCollection {
-    static Event = Event
+    static Event = Event;
 
     constructor(events = []) {
         this.events = [];
