@@ -33,8 +33,8 @@ describe('Dayz', function() {
                                             moment.range(date, date.clone().add(1, 'day') ));
         const event  = TestUtils.renderIntoDocument( <EventComp layout={eventLayout} /> );
         const div    = ReactDOM.findDOMNode(event);
-        expect( div.style.top ).toEqual('7.69%' );
-        expect( div.style.bottom ).toEqual('76.92%' );
+        expect( div.style.top ).toEqual('8.33%' );
+        expect( div.style.bottom ).toEqual('75.00%' );
         expect( div.classList.contains('event') ).toBe(true);
         expect( div.classList.contains('span-1') ).toBe(true);
     });
