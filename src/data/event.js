@@ -55,7 +55,7 @@ class Event {
     }
 
     isSingleDay() {
-        return this.attributes.range.end.diff(this.attributes.range.start, 'hours') < 24;
+        return this.attributes.range.end.diff(this.attributes.range.start, 'hours') <= 24;
     }
 
     daysMinuteRange() {

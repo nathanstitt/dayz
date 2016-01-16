@@ -41,7 +41,7 @@ class Layout {
     }
 
     minutesInDay() {
-        return 60 * (this.displayHours[1] - this.displayHours[0] + 1);
+        return (this.displayHours[1] - this.displayHours[0]) * 60;
     }
 
     propsForAllDayEventContainer() {
@@ -62,42 +62,43 @@ class Layout {
         return range;
     }
 
-    getEventsForWeek(day){
-        day = day.clone();
+    getEventsForWeek(start){
+        const day = start.clone();
         const weeklyEvents = [];
         for (let i=0; i<7; i++){
             const layouts = this.forDay(day);
-            if (layouts.length){
-                this.cache[ cacheKey(day) ] = layouts;
-                each( layouts, (layout) => {
-                    if (! layout.event.isSingleDay()){
-                        weeklyEvents.push(layout);
-                    }
-                } );
-            }
+            each( layouts, (layout) => {
+                weeklyEvents.push(layout);
+            } );
             day.add(1, 'day');
         }
-        return weeklyEvents;
+        const minLong = (range) => {
+            return moment.max(start, range.start).diff( moment.min(day, range.end), 'minutes' );
+        };
+        return weeklyEvents.sort( (a,b) =>{
+            a = minLong(a.event.range()); b = minLong(b.event.range());
+            return a === b ? 0 : a > b ? 1 : -1;
+        });
     }
 
     calculateStacking(){
         const firstOfWeek = this.range.start.clone().startOf('week');
         do {
             const weeklyEvents = this.getEventsForWeek(firstOfWeek);
-            for (let i=0; i < weeklyEvents.length; i++){
-                const layout = weeklyEvents[i];
-
-                // loop through eacy layouts are before this one
-                for (let pi=i-1; pi>=0; pi--){
+            for (let layoutIndex=0; layoutIndex < weeklyEvents.length; layoutIndex++){
+                const layout = weeklyEvents[layoutIndex];
+                // loop through each layout that is before this one
+                let ceilingIndex = 0;
+                for (let pi=layoutIndex-1; pi>=0; pi--){
                     const prevLayout = weeklyEvents[pi];
-                    // if the previous layout starts on the same cell then we don't need
-                    // to stack it to clear previous layouts
-                    if ( (prevLayout.startsBefore && layout.startsBefore ) ||
-                         (prevLayout.event.start().isSame(layout.event.start(),'d')) ||
-                         (layout.startsBefore && prevLayout.startsOnWeek()) ||
-                         (prevLayout.startsBefore && layout.startsOnWeek()) ) {
+                    if (prevLayout.range.start.isSame(layout.range.start,'d')){
+                        ceilingIndex = pi+1;
                         break;
-                    } else {
+                    }
+                }
+                for (let pi=ceilingIndex; pi < layoutIndex; pi++){
+                    const prevLayout = weeklyEvents[pi];
+                    if (layout.range.overlaps(prevLayout.range) ){
                         layout.stack++;
                     }
                 }

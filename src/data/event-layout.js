@@ -11,6 +11,10 @@ class EventLayout {
         this.displayRange = displayRange;
         this.startsBefore = event.start().isBefore( displayRange.start );
         this.endsAfter = event.end().isAfter( displayRange.end );
+        this.range = moment.range(
+            moment.max(displayRange.start, event.start()),
+            moment.min(displayRange.end, event.end())
+        );
         const latest = moment.min( displayRange.end, event.end() );
         this.span = Math.max(
             1, Math.round(latest.diff(displayRange.start, 'day', true))
@@ -44,8 +48,9 @@ class EventLayout {
             return {};
         } else {
             let {start, end} = this.event.daysMinuteRange();
-            start -= this.layout.displayHours[0] * 60;
-            end -= this.layout.displayHours[0] * 60;
+            const startOffset = this.layout.displayHours[0] * 60;
+            start -= startOffset;
+            end   -= startOffset;
             const inday = this.layout.minutesInDay();
             const top = ( ( start / inday ) * 100).toFixed(2) + '%';
             const bottom = ( 100 - ( ( end / inday ) * 100 ) ).toFixed(2) + '%';
