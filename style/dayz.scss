@@ -40,7 +40,7 @@ $dayz-event-text-colors: (
     height:     100%;
     box-sizing: border-box;
     display:    flex;
-    flex-wrap:  wrap;
+    flex-wrap:  nowrap;
     flex-direction: column;
     align-items:    stretch;
 
