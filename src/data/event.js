@@ -1,5 +1,6 @@
 const React   = require('react');
 const assign  = require('lodash/object/assign');
+const each    = require('lodash/collection/each');
 const Emitter = require('tiny-emitter');
 
 let EVENT_COUNTER = 1;
@@ -37,12 +38,22 @@ class Event {
     }
 
     set(attributes, options) {
-        assign(this.attributes, attributes);
-        if (this.collection){
-            this.collection.emit('change');
+        let changed = false;
+        each(attributes, (value, key) =>{
+            if (this.attributes[key] !== value){
+                changed = true;
+                return false;
+            }
+        });
+        if (!changed){
+            return;
         }
-        if (!options || !options.silent){
-            this.emit('change');
+        assign(this.attributes, attributes);
+        if (this.collection) {
+            this.collection.emit('change', this, attributes);
+        }
+        if (!options || !options.silent) {
+            this.emit('change', this, attributes);
         }
     }
 
