@@ -44,6 +44,14 @@ class Layout {
         return (this.displayHours[1] - this.displayHours[0]) * 60;
     }
 
+    propsForDayContainer(props){
+        const classes = ['day'];
+        if (this.isDateOutsideRange(props.day)){
+            classes.push('outside');
+        }
+        return {className: classes.join(' '), style: {order: props.position}};
+    }
+
     propsForAllDayEventContainer() {
         const style = (
             this.multiDayCount ? {flexBasis: this.multiDayCount*C.eventHeight} : {display: 'none'}

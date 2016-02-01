@@ -113,16 +113,12 @@ const Day = React.createClass({
     },
 
     render() {
-        const classes=['day'];
-        if (this.props.layout.isDateOutsideRange(this.props.day)){
-            classes.push('outside');
-        }
+        const props = this.props.layout.propsForDayContainer(this.props);
 
         return (
             <div
+                {...props}
                 onClick={this.onClick}
-                style={{order: this.props.position}}
-                className={classes.join(' ')}
                 onDoubleClick={this.onDoubleClick}
             >
                 <Label day={this.props.day} className="label">
