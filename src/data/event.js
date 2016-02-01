@@ -49,16 +49,27 @@ class Event {
             return;
         }
         assign(this.attributes, attributes);
-        if (this.collection) {
-            this.collection.emit('change', this, attributes);
-        }
-        if (!options || !options.silent) {
-            this.emit('change', this, attributes);
-        }
+        this._emitChangeEvent(options);
     }
 
     isEditing() {
         return !!this.attributes.editing;
+    }
+
+    setEditing(isEditing, options = {}) {
+        if (isEditing !== this.isEditing()){
+            this.attributes.editing = isEditing;
+        }
+        this._emitChangeEvent(options);
+    }
+
+    _emitChangeEvent(options = {}){
+        if (this.collection) {
+            this.collection.emit('change', this);
+        }
+        if (!options || !options.silent) {
+            this.emit('change', this);
+        }
     }
 
     range() {
