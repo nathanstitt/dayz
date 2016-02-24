@@ -163,7 +163,7 @@ describe( 'Event Layout calculations', function() {
             );
             const range = layout.hourRange();
             expect(range[0]).toEqual(event.start().hour());
-            expect(range[1]).toEqual(event.end().hour());
+            expect(range[1]).toEqual(event.end().hour()+1);
         });
 
         it('sets a default min/max', function(){
@@ -172,7 +172,7 @@ describe( 'Event Layout calculations', function() {
             );
             const range = layout.hourRange();
             expect(range[0]).toEqual(7);
-            expect(range[1]).toEqual(19);
+            expect(range[1]).toEqual(20);
         });
 
     });
