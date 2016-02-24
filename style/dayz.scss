@@ -46,7 +46,7 @@ $dayz-event-text-colors: (
 
 
     .x-labels {
-        height: $dayz-event-height * 1.5;
+        height: $dayz-event-height;
         display: flex;
         flex-direction: row;
         .day-label {
