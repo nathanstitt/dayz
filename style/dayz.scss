@@ -4,6 +4,10 @@ $dayz-y-label-width:        60px !default;
 $dayz-grid-line-color:      lightBlue !default;
 $dayz-border-color:         lightgrey !default;
 $dayz-heading-label-color:  #555 !default;
+
+$dayz-event-default-color: #6F8376;
+$dayz-event-text-default-color: #F5F5F5;
+
 $dayz-event-colors: (
     #4D4D4D, // (gray)
     #5DA5DA, // (blue)
@@ -177,6 +181,8 @@ $dayz-event-text-colors: (
 
     // styling in common for events in all displays
     .event {
+        background: $dayz-event-default-color;
+        color: $dayz-event-text-default-color;
         @each $current-color in $dayz-event-colors {
             $i: index($dayz-event-colors, $current-color);
             &.color-#{$i} .evbody {
