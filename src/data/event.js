@@ -14,9 +14,6 @@ class Event {
         if (!this.attributes.range){
             throw new Error("Must provide range");
         }
-        if (!this.attributes.colorIndex){
-            this.attributes.colorIndex = (EVENT_COUNTER % 10) + 1;
-        }
     }
 
     render(date, layout){
