@@ -29,7 +29,7 @@
     "moment": "^2.11.1",
     "moment-range": "^2.1.0",
     "react": "*",
-    "react-dom": "^0.14.0"
+    "react-dom": ">=0.14.0"
   },
   "devDependencies": {
     "babel-core": "^6.2.1",
