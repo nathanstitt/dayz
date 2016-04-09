@@ -1,5 +1,5 @@
-const assign = require('lodash/object/assign');
-const each   = require('lodash/collection/each');
+const assign = require('lodash/assign');
+const each   = require('lodash/each');
 const moment = require('moment');
 const EventLayout = require('./event-layout');
 const C = require('./constants');

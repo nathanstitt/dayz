@@ -1,5 +1,5 @@
 const React  = require('react');
-const map    = require('lodash/collection/map');
+const map    = require('lodash/map');
 
 const XLabels = React.createClass({
 

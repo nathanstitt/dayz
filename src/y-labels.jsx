@@ -1,8 +1,8 @@
 const React  = require('react');
 const moment = require('moment');
 const Layout = require('./data/layout');
-const each   = require('lodash/collection/each');
-const range  = require('lodash/utility/range');
+const each   = require('lodash/each');
+const range  = require('lodash/range');
 
 const YLabels = React.createClass({
 

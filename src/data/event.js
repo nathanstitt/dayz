@@ -1,6 +1,6 @@
 const React   = require('react');
-const assign  = require('lodash/object/assign');
-const each    = require('lodash/collection/each');
+const assign  = require('lodash/assign');
+const each    = require('lodash/each');
 const Emitter = require('tiny-emitter');
 
 let EVENT_COUNTER = 1;

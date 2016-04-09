@@ -1,8 +1,8 @@
 const Event   = require('./event');
 const Emitter = require('tiny-emitter');
-const each    = require('lodash/collection/each');
-const assign  = require('lodash/object/assign');
-const sortBy  = require('lodash/collection/sortBy');
+const each    = require('lodash/each');
+const assign  = require('lodash/assign');
+const sortBy  = require('lodash/sortBy');
 
 function lengthCompare(event){
     return event.attributes.range.start.diff(event.attributes.range.end);

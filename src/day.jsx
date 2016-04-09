@@ -2,8 +2,8 @@ const React  = require('react');
 const Layout = require('./data/layout');
 const Event  = require('./event');
 const Label  = require('./label');
-const assign = require('lodash/object/assign');
-const each   = require('lodash/collection/each');
+const assign = require('lodash/assign');
+const each   = require('lodash/each');
 const ReactDOM = require('react-dom');
 
 const IsDayClass = new RegExp('(\\s|^)(events|day|label)(\\s|$)');
