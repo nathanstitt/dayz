@@ -25,9 +25,9 @@
     "tiny-emitter": "^1.0.1"
   },
   "peerDependencies": {
-    "lodash": "^4.9.0",
-    "moment": "^2.11.1",
-    "moment-range": "^2.1.0",
+    "lodash": "^4.9",
+    "moment": "^2.11",
+    "moment-range": "^2.1",
     "react": "*",
     "react-dom": ">=0.14.0"
   },
