@@ -29,7 +29,8 @@ class EventsCollection {
     }
 
     each(fn, scope) {
-        each(sortBy(this.events, lengthCompare), fn, scope);
+        var sorted = sortBy(this.events, lengthCompare);
+        each(sorted, fn, scope);
     }
 
     length() {
