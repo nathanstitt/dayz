@@ -103,7 +103,7 @@ const Day = React.createClass({
         }
         if (singleDayEvents.length){
             events.push(
-                <div key="events" refs="events" className="events"
+                <div key="events" ref="events" className="events"
                      onMouseMove={onMouseMove} onMouseUp={this.onMouseUp}>
                     {singleDayEvents}
                 </div>
