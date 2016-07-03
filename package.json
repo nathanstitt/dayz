@@ -69,7 +69,7 @@
   "scripts": {
     "start": "webpack-dev-server --hot --progress --colors --display-chunks --display-modules --display-origins",
     "build": "NODE_ENV=production webpack --optimize-minimize --progress --colors; gulp",
-    "build-demo": "NODE_ENV=production webpack --config demo.webpack.config.js --optimize-minimize --progress --colors; gulp",
+    "build-demo": "NODE_ENV=production webpack --config demo.webpack.config.js --progress --colors; gulp",
     "lint": "eslint src/* test/*.{js,jsx}",
     "test": "BABEL_JEST_STAGE=0 jest --watch",
     "travis": "eslint src/* test/*.js{x} && BABEL_JEST_STAGE=0 jest"
