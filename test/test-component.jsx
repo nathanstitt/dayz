@@ -73,7 +73,7 @@ class DayzTestComponent extends React.Component {
         const onDelete = function() { props.event.remove(); };
         return (
             <div className="edit">
-                <input type="text" autofocus
+                <input type="text" autoFocus
                        value={props.event.content()}
                        onChange={onChange}
                        onBlur={onBlur}
