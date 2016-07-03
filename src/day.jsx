@@ -27,7 +27,9 @@ const Day = React.createClass({
     },
 
     getBounds(){
-        return ReactDOM.findDOMNode(this.refs.events).getBoundingClientRect();
+        return ReactDOM.findDOMNode(
+            this.refs.events || this.refs.root
+        ).getBoundingClientRect();
     },
 
     _onClickHandler(ev, handler) {
@@ -116,7 +118,7 @@ const Day = React.createClass({
         const props = this.props.layout.propsForDayContainer(this.props);
 
         return (
-            <div
+            <div ref="root"
                 {...props}
                 onClick={this.onClick}
                 onDoubleClick={this.onDoubleClick}
