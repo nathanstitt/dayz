@@ -1,6 +1,6 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const EventLayout = require('./data/event-layout');
-
 const IsResizeClass = new RegExp('(\\s|^)event(\\s|$)');
 
 const Event = React.createClass({
@@ -26,7 +26,7 @@ const Event = React.createClass({
 
     onDragStart(ev) {
         if (!IsResizeClass.test(ev.target.className)){ return; }
-        const bounds = this.refs.element.getBoundingClientRect();
+        const bounds = ReactDOM.findDOMNode(this.refs.element).getBoundingClientRect();
         let resize;
         if (ev.clientY - bounds.top < 10){
             resize = { type: 'start' };

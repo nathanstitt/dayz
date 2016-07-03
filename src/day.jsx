@@ -27,7 +27,7 @@ const Day = React.createClass({
     },
 
     getBounds(){
-        return ReactDOM.findDOMNode(this).getBoundingClientRect();
+        return ReactDOM.findDOMNode(this.refs.events).getBoundingClientRect();
     },
 
     _onClickHandler(ev, handler) {
