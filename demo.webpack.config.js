@@ -13,6 +13,11 @@ config.output = {
     library: 'DayzTestComponent'
 };
 
+config.exernals = {
+    'react': 'React',
+    'react-dom': 'ReactDOM'
+};
+
 config.plugins = [
     new ExtractTextPlugin("dayz-demo.css")
 ];
