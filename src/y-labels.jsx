@@ -7,22 +7,24 @@ const range  = require('lodash/range');
 const YLabels = React.createClass({
 
     propTypes: {
-        display: React.PropTypes.oneOf(['month', 'week', 'day']),
-        date:    React.PropTypes.object.isRequired,
-        layout:  React.PropTypes.instanceOf(Layout).isRequired
+        display:    React.PropTypes.oneOf(['month', 'week', 'day']),
+        date:       React.PropTypes.object.isRequired,
+        layout:     React.PropTypes.instanceOf(Layout).isRequired,
+        timeFormat: React.PropTypes.string
     },
 
     render() {
         if (this.props.display === 'month'){
             return null;
         }
+        const { timeFormat = 'ha' } = this.props;
 
         const day = moment();
         const labels = [];
         const hours = range(this.props.layout.displayHours[0], this.props.layout.displayHours[1]);
         each(hours, (hour) => {
             day.hour(hour);
-            labels.push(<div key={hour} className="hour">{day.format('ha')}</div>);
+            labels.push(<div key={hour} className="hour">{day.format(timeFormat)}</div>);
         });
 
         const multiDay = <div {...this.props.layout.propsForAllDayEventContainer()}>All Day</div>;
