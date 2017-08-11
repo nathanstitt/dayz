@@ -20,7 +20,8 @@ const Dayz = React.createClass({
         onDayClick:        React.PropTypes.func,
         onDayDoubleClick:  React.PropTypes.func,
         onEventClick:      React.PropTypes.func,
-        onEventResize:     React.PropTypes.func
+        onEventResize:     React.PropTypes.func,
+        timeFormat:        React.PropTypes.string
     },
 
     getDefaultProps() {
@@ -90,6 +91,7 @@ const Dayz = React.createClass({
                         layout={this.state.layout}
                         display={this.props.display}
                         date={this.props.date}
+                        timeFormat={this.props.timeFormat}
                     />
                     <div className="days">
                         {days}

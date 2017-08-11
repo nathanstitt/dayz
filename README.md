@@ -70,6 +70,7 @@ The Dayz component accepts these properties:
  * **onDayClick**, **onDayDoubleClick** (optional): A function that will be called whenever a day is clicked, it's passed two variables, the event and a `momentjs` date.  Hours/Minutes are added to the date to reflect how far down the Y axis was clicked
  * **onEventClick**, **onEventDoubleClick** (optional): A function that will be called whenever an event is clicked, it's passed two variables, the event and the layout information for the event.  The layout has an `event` subkey that includes the event itself.
  * **displayHours** (optional): defaults to 7am to 7pm or the earliest/latest event's hour.
+ * **timeFormat** (optional): defaults to `ha` configures y labels time format
 
 
 ### Development
