@@ -1,51 +1,50 @@
-const Event   = require('./event');
-const Emitter = require('tiny-emitter');
-const each    = require('lodash/each');
-const assign  = require('lodash/assign');
-const sortBy  = require('lodash/sortBy');
+import * as Emitter from 'tiny-emitter';
+import Event from './event';
 
-function lengthCompare(event){
-    return event.attributes.range.start.diff(event.attributes.range.end);
-}
+const lc = event =>
+    event.attributes.range.start.diff(event.attributes.range.end);
 
-class EventsCollection {
+const sortEvents = (eventA, eventB) => {
+    const a = lc(eventA);
+    const b = lc(eventB);
+    return a < b ? -1 : a > b ? 1 : 0; // eslint-disable-line no-nested-ternary
+};
+
+export default class EventsCollection {
     static Event = Event;
 
     constructor(events = []) {
         this.events = [];
-        for (let i = 0, length = events.length; i<length; i++) {
-            this.add(events[i]);
+        for (let i = 0, length = events.length; i < length; i += 1) {
+            this.add(events[i], { silent: true });
         }
     }
 
-    add(event) {
-        if (!event.isEvent){
-            event = new Event(event);
-        }
+    add(eventAttrs, options = {}) {
+        const event = (eventAttrs instanceof Event) ? eventAttrs : new Event(eventAttrs);
         event.collection = this;
         this.events.push(event);
-        this.emit('change');
+        if (!options.silent) {
+            this.emit('change');
+        }
         return event;
     }
 
-    each(fn, scope) {
-        var sorted = sortBy(this.events, lengthCompare);
-        each(sorted, fn, scope);
+    forEach(fn) {
+        this.events.sort(sortEvents).forEach(fn);
     }
 
     length() {
         return this.events.length;
     }
 
-    remove(event){
+    remove(event) {
         const index = this.events.indexOf(event);
-        if (-1 !== index){
+        if (-1 !== index) {
             this.events.splice(index, 1);
             this.emit('change');
         }
     }
 }
 
-assign( EventsCollection.prototype, Emitter.prototype );
-
-module.exports = EventsCollection;
+Object.assign(EventsCollection.prototype, Emitter.default.prototype);

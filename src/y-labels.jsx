@@ -1,44 +1,43 @@
-const React  = require('react');
-const moment = require('moment');
-const Layout = require('./data/layout');
-const each   = require('lodash/each');
-const range  = require('lodash/range');
+import React     from 'react';
+import PropTypes from 'prop-types';
+import moment    from './moment-range';
+import Layout    from './data/layout';
 
-const YLabels = React.createClass({
+export default class YLabels extends React.PureComponent {
+    static propTypes = {
+        display:    PropTypes.oneOf(['month', 'week', 'day']).isRequired,
+        date:       PropTypes.object.isRequired,
+        layout:     PropTypes.instanceOf(Layout).isRequired,
+        timeFormat: PropTypes.string,
+    }
 
-    propTypes: {
-        display:    React.PropTypes.oneOf(['month', 'week', 'day']),
-        date:       React.PropTypes.object.isRequired,
-        layout:     React.PropTypes.instanceOf(Layout).isRequired,
-        timeFormat: React.PropTypes.string
-    },
+    static defaultProps = {
+        timeFormat: 'ha',
+    }
+
+    get hours() {
+        const [start, end] = this.props.layout.displayHours;
+        return Array(end - start).fill().map((_, i) => i + start);
+    }
+
+    renderLabels() {
+        const day = moment();
+        return this.hours.map(hour =>
+            <div key={hour} className="hour">{day.hour(hour).format(this.props.timeFormat)}</div>,
+        );
+    }
 
     render() {
-        if (this.props.display === 'month'){
+        if ('month' === this.props.display) {
             return null;
         }
-        const { timeFormat = 'ha' } = this.props;
-
-        const day = moment();
-        const labels = [];
-        const hours = range(this.props.layout.displayHours[0], this.props.layout.displayHours[1]);
-        each(hours, (hour) => {
-            day.hour(hour);
-            labels.push(<div key={hour} className="hour">{day.format(timeFormat)}</div>);
-        });
-
-        const multiDay = <div {...this.props.layout.propsForAllDayEventContainer()}>All Day</div>;
-
         return (
             <div>
                 <div className="y-labels">
-                    {multiDay}
-                    {labels}
+                    <div {...this.props.layout.propsForAllDayEventContainer()}>All Day</div>
+                    {this.renderLabels()}
                 </div>
             </div>
         );
     }
-
-});
-
-module.exports = YLabels;
+}

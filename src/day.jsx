@@ -1,86 +1,84 @@
-const React  = require('react');
-const Layout = require('./data/layout');
-const Event  = require('./event');
-const Label  = require('./label');
-const assign = require('lodash/assign');
-const each   = require('lodash/each');
-const ReactDOM = require('react-dom');
+import React     from 'react';
+import ReactDOM  from 'react-dom';
+import PropTypes from 'prop-types';
+import Event     from './event';
+import Layout    from './data/layout';
+import Label     from './label';
 
 const IsDayClass = new RegExp('(\\s|^)(events|day|label)(\\s|$)');
 
-const Day = React.createClass({
+export default class Day extends React.PureComponent {
+    static propTypes = {
+        day:            PropTypes.object.isRequired,
+        layout:         PropTypes.instanceOf(Layout).isRequired,
+        position:       PropTypes.number.isRequired,
+        onClick:        PropTypes.func,
+        onDoubleClick:  PropTypes.func,
+        onEventClick:   PropTypes.func,
+        onEventResize:  PropTypes.func,
+        editComponent:  PropTypes.func,
+        onEventDoubleClick: PropTypes.func,
+    }
 
-    propTypes: {
-        day:            React.PropTypes.object.isRequired,
-        layout:         React.PropTypes.instanceOf(Layout).isRequired,
-        position:       React.PropTypes.number.isRequired,
-        onClick:        React.PropTypes.func,
-        onDoubleClick:  React.PropTypes.func,
-        onEventClick:   React.PropTypes.func,
-        onEventResize:  React.PropTypes.func,
-        editComponent:  React.PropTypes.func,
-        onEventDoubleClick: React.PropTypes.func
-    },
+    constructor() {
+        super();
+        this.state = { resize: false };
+    }
 
-    getInitialState(){
-        return {resize: false};
-    },
+    get boundingBox() {
+        return ReactDOM.findDOMNode(this.refs.events || this.refs.root).getBoundingClientRect();
+    }
 
-    getBounds(){
-        return ReactDOM.findDOMNode(
-            this.refs.events || this.refs.root
-        ).getBoundingClientRect();
-    },
-
-    _onClickHandler(ev, handler) {
+    onClickHandler(ev, handler) {
         if (!handler || !IsDayClass.test(ev.target.className) ||
-            ( this.lastMouseUp &&
-                (this.lastMouseUp < (new Date()).getMilliseconds() + 100 )
-            )){
-                return;
+            (this.lastMouseUp &&
+              (this.lastMouseUp < (new Date()).getMilliseconds() + 100)
+            )) {
+            return;
         }
         this.lastMouseUp = 0;
-        const bounds = this.getBounds();
-        const perc = ((ev.clientY - bounds.top) / ev.target.offsetHeight );
+        const bounds = this.boundingBox;
+        const perc = ((ev.clientY - bounds.top) / ev.target.offsetHeight);
         const hours = this.props.layout.displayHours[0] +
-                      ((this.props.layout.minutesInDay() * perc) / 60);
-        handler.call( this, ev, this.props.day.clone().startOf('day').add( hours, 'hour' ) );
-    },
-    onClick(ev) { this._onClickHandler(ev, this.props.onClick); },
-    onDoubleClick(ev) { this._onClickHandler(ev, this.props.onDoubleClick); },
+                       ((this.props.layout.minutesInDay() * perc) / 60);
+        handler.call(this, ev, this.props.day.clone().startOf('day').add(hours, 'hour'));
+    }
+
+    onClick(ev) { this.onClickHandler(ev, this.props.onClick); }
+    onDoubleClick(ev) { this.onClickHandler(ev, this.props.onDoubleClick); }
 
     onDragStart(resize, eventLayout) {
         eventLayout.setIsResizing(true);
         const bounds = this.getBounds();
-        assign(resize, {eventLayout, height: bounds.height, top: bounds.top });
-        this.setState({resize});
-    },
+        Object.assign(resize, { eventLayout, height: bounds.height, top: bounds.top });
+        this.setState({ resize });
+    }
 
     onMouseMove(ev) {
-        if (!this.state.resize){ return; }
+        if (!this.state.resize) { return; }
         const coord = ev.clientY - this.state.resize.top;
         this.state.resize.eventLayout.adjustEventTime(
-            this.state.resize.type, coord, this.state.resize.height
+            this.state.resize.type, coord, this.state.resize.height,
         );
         this.forceUpdate();
-    },
+    }
 
-    onMouseUp(ev){
-        if (!this.state.resize){ return; }
+    onMouseUp(ev) {
+        if (!this.state.resize) { return; }
         this.state.resize.eventLayout.setIsResizing(false);
-        setTimeout(() => this.setState({resize: false}), 1);
-        if (this.props.onEventResize){
+        setTimeout(() => this.setState({ resize: false }), 1);
+        if (this.props.onEventResize) {
             this.props.onEventResize(ev, this.state.resize.eventLayout.event);
         }
         this.lastMouseUp = (new Date()).getMilliseconds();
-    },
+    }
 
-    renderEvents(){
+    renderEvents() {
         const asMonth = this.props.layout.isDisplayingAsMonth();
         const singleDayEvents = [];
         const allDayEvents    = [];
         const onMouseMove = asMonth ? null : this.onMouseMove;
-        each(this.props.layout.forDay(this.props.day), (layout) => {
+        this.props.layout.forDay(this.props.day).forEach((layout) => {
             const event = (
                 <Event
                     layout={layout}
@@ -96,29 +94,32 @@ const Day = React.createClass({
             (layout.event.isSingleDay() ? singleDayEvents : allDayEvents).push(event);
         });
         const events = [];
-        if (allDayEvents.length || !asMonth){
+        if (allDayEvents.length || !asMonth) {
             events.push(
                 <div key="allday" {...this.props.layout.propsForAllDayEventContainer()}>
                     {allDayEvents}
-                </div>
+                </div>,
             );
         }
-        if (singleDayEvents.length){
+        if (singleDayEvents.length) {
             events.push(
-                <div key="events" ref="events" className="events"
-                     onMouseMove={onMouseMove} onMouseUp={this.onMouseUp}>
+                <div
+                    key="events" ref="events" className="events"
+                    onMouseMove={onMouseMove} onMouseUp={this.onMouseUp}
+                >
                     {singleDayEvents}
-                </div>
+                </div>,
             );
         }
         return events;
-    },
+    }
 
     render() {
         const props = this.props.layout.propsForDayContainer(this.props);
 
         return (
-            <div ref="root"
+            <div
+                ref="root"
                 {...props}
                 onClick={this.onClick}
                 onDoubleClick={this.onDoubleClick}
@@ -130,7 +131,4 @@ const Day = React.createClass({
             </div>
         );
     }
-
-});
-
-module.exports = Day;
+}

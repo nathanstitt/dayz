@@ -1,5 +1,5 @@
-module.exports = {
+export default {
 
-    eventHeight: 20 // px
+    eventHeight: 20, // px
 
 };

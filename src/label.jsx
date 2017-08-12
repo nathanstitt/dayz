@@ -1,17 +1,13 @@
-const React = require('react');
+import React from 'react'; // eslint-disable-line no-unused-vars
+import PropTypes from 'prop-types';
 
-const Label = React.createClass({
+const Label = ({ day }) => (
+    <div className="label">{day.format('D')}</div>
+);
 
-    propTypes: {
-        day: React.PropTypes.object.isRequired
-    },
+Label.propTypes = {
+    day: PropTypes.object.isRequired,
+};
 
-    render() {
-        return (
-            <div className="label">{this.props.day.format('D')}</div>
-        );
-    }
 
-});
-
-module.exports = Label;
+export default Label;

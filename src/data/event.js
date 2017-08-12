@@ -1,32 +1,31 @@
-const React   = require('react');
-const assign  = require('lodash/assign');
-const each    = require('lodash/each');
-const Emitter = require('tiny-emitter');
+import React from 'react';
+import * as Emitter from 'tiny-emitter';
 
 let EVENT_COUNTER = 1;
 
-class Event {
-
-    constructor( attributes ) {
+export default class Event {
+    constructor(attributes) {
         this.attributes = attributes;
         this.isEvent = true;
-        this.key = EVENT_COUNTER++;
-        if (!this.attributes.range){
-            throw new Error("Must provide range");
+        EVENT_COUNTER += 1;
+        this.key = EVENT_COUNTER;
+        if (!this.attributes.range) {
+            throw new Error('Must provide range');
         }
     }
 
-    render(date, layout){
-        if (this.attributes.render){
+    render(date, layout) {
+        if (this.attributes.render) {
             return this.attributes.render(date, layout);
-        } else {
-            return this.defaultRenderImplementation(date, layout);
         }
+        return this.defaultRenderImplementation(date, layout);
     }
 
     defaultRenderImplementation() {
-        return React.createElement('div', {},
-            this.attributes.content || this.attributes.range.start.format('MMM DD YYYY')
+        return React.createElement(
+            'div',
+            {},
+            this.attributes.content || this.attributes.range.start.format('MMM DD YYYY'),
         );
     }
 
@@ -36,17 +35,16 @@ class Event {
 
     set(attributes, options) {
         let changed = false;
-        each(attributes, (value, key) =>{
-            if (this.attributes[key] !== value){
+        for (const key in attributes) { // eslint-disable-line no-restricted-syntax
+            if (this.attributes[key] !== attributes[key]) {
                 changed = true;
-                return false;
+                break;
             }
-        });
-        if (!changed){
-            return;
         }
-        assign(this.attributes, attributes);
-        this._emitChangeEvent(options);
+        if (!changed) { return; }
+
+        Object.assign(this.attributes, attributes);
+        this.emitChangeEvent(options);
     }
 
     isEditing() {
@@ -54,13 +52,13 @@ class Event {
     }
 
     setEditing(isEditing, options = {}) {
-        if (isEditing !== this.isEditing()){
+        if (isEditing !== this.isEditing()) {
             this.attributes.editing = isEditing;
         }
-        this._emitChangeEvent(options);
+        this.emitChangeEvent(options);
     }
 
-    _emitChangeEvent(options = {}){
+    emitChangeEvent(options = {}) {
         if (this.collection) {
             this.collection.emit('change', this);
         }
@@ -74,13 +72,15 @@ class Event {
     }
 
     isSingleDay() {
-        return this.attributes.range.end.diff(this.attributes.range.start, 'hours') <= 24;
+        return 24 > this.attributes.range.end.diff(this.attributes.range.start, 'hours');
     }
 
     daysMinuteRange() {
         const startOfDay = this.attributes.range.start.clone().startOf('day');
-        return {start: this.attributes.range.start.diff(startOfDay, 'minute'),
-                end: this.attributes.range.end.diff(startOfDay, 'minute') };
+        return {
+            start: this.attributes.range.start.diff(startOfDay, 'minute'),
+            end: this.attributes.range.end.diff(startOfDay, 'minute'),
+        };
     }
 
     content() {
@@ -106,6 +106,4 @@ class Event {
     }
 }
 
-assign( Event.prototype, Emitter.prototype );
-
-module.exports = Event;
+Object.assign(Event.prototype, Emitter.default.prototype);

@@ -1,38 +1,34 @@
-const React  = require('react');
-const map    = require('lodash/map');
+import React  from 'react';
+import PropTypes from 'prop-types';
 
-const XLabels = React.createClass({
+export default class XLabels extends React.PureComponent {
+    static propTypes = {
+        display: PropTypes.oneOf(['month', 'week', 'day']),
+        date:    PropTypes.object.isRequired,
+    }
 
-    propTypes: {
-        display: React.PropTypes.oneOf(['month', 'week', 'day']),
-        date:    React.PropTypes.object.isRequired
-    },
-
-    render() {
-        let days = [];
-        if (this.props.display === 'day'){
-            days.push( this.props.date );
+    get days() {
+        const days = [];
+        if ('day' === this.props.display) {
+            days.push(this.props.date);
         } else {
             const day = this.props.date.clone().startOf('week');
-            for (let i=0; i<7; i++){
+            for (let i = 0; i < 7; i += 1) {
                 days.push(day.clone().add(i, 'day'));
             }
         }
-        const format = (this.props.display === 'month' ? 'dddd' : 'ddd, MMM Do');
-        const labels = map( days, function(day){
-            return (
-                <div key={day.format('YYYYMMDD')} className="day-label">
-                    {day.format(format)}
-                </div>
-            );
-        });
-
-        return (
-            <div className="x-labels">{labels}</div>
-        );
-
+        return days;
     }
 
-});
+    render() {
+        const format = 'month' === this.props.display ? 'dddd' : 'ddd, MMM Do';
 
-module.exports = XLabels;
+        return (
+            <div className="x-labels">{this.days.map(day =>
+                <div key={day.format('YYYYMMDD')} className="day-label">
+                    {day.format(format)}
+                </div>,
+            )}</div>
+        );
+    }
+}

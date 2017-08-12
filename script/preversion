@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+if [ -n "$(git status --porcelain)" ]; then
+  echo "tree is dirty, please commit changes before building"
+  exit 1
+fi
+
+script/lint
+
+script/test
+
+webpack
+
+if [ -n "$(git status --porcelain)" ]; then
+   echo "Adding docs"
+   git add docs/*
+   git commit -m 'Update demo files for ghpages'
+fi
+
+echo "Done"

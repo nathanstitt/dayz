@@ -1,42 +1,43 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const EventLayout = require('./data/event-layout');
+import React       from 'react';
+import ReactDOM    from 'react-dom';
+import PropTypes   from 'prop-types';
+import EventLayout from './data/event-layout';
+
 const IsResizeClass = new RegExp('(\\s|^)event(\\s|$)');
 
-const Event = React.createClass({
-
-    propTypes: {
-        layout:        React.PropTypes.instanceOf(EventLayout),
-        editComponent: React.PropTypes.func,
-        onClick:       React.PropTypes.func,
-        onDoubleClick:  React.PropTypes.func
-    },
+export default class Event extends React.PureComponent {
+    static propTypes = {
+        layout:        PropTypes.instanceOf(EventLayout),
+        editComponent: PropTypes.func,
+        onClick:       PropTypes.func,
+        onDoubleClick: PropTypes.func,
+    }
 
     onClick(ev) {
-        if (!this.props.onClick){ return; }
+        if (!this.props.onClick) { return; }
         this.props.onClick(ev, this.props.layout.event);
         ev.stopPropagation();
-    },
+    }
 
     onDoubleClick(ev) {
-        if (!this.props.onDoubleClick){ return; }
+        if (!this.props.onDoubleClick) { return; }
         this.props.onDoubleClick(ev, this.props.layout.event);
         ev.stopPropagation();
-    },
+    }
 
     onDragStart(ev) {
-        if (!IsResizeClass.test(ev.target.className)){ return; }
+        if (!IsResizeClass.test(ev.target.className)) { return; }
         const bounds = ReactDOM.findDOMNode(this.refs.element).getBoundingClientRect();
         let resize;
-        if (ev.clientY - bounds.top < 10){
+        if (ev.clientY - bounds.top < 10) {
             resize = { type: 'start' };
-        } else if ( bounds.bottom - ev.clientY < 10 ){
+        } else if (bounds.bottom - ev.clientY < 10) {
             resize = { type: 'end' };
         } else {
             return;
         }
         this.props.onDragStart(resize, this.props.layout);
-    },
+    }
 
     render() {
         const body = (
@@ -46,7 +47,7 @@ const Event = React.createClass({
         );
         const Edit = this.props.editComponent;
         const children = this.props.layout.isEditing() ?
-            ( <Edit event={this.props.layout.event} >{body}</Edit> ) : body;
+            (<Edit event={this.props.layout.event} >{body}</Edit>) : body;
         return (
             <div
                 ref="element"
@@ -57,9 +58,5 @@ const Event = React.createClass({
                 {children}
             </div>
         );
-
     }
-
-});
-
-module.exports = Event;
+}

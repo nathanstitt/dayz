@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-  - "4.1"
+  - "7"
 after_failure:
   - npm list
 script: npm run travis
