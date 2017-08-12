@@ -2,7 +2,7 @@ import React     from 'react';
 import ReactDOM  from 'react-dom';
 import PropTypes from 'prop-types';
 import Event     from './event';
-import Layout    from './data/layout';
+import Layout    from './api/layout';
 import Label     from './label';
 
 const IsDayClass = new RegExp('(\\s|^)(events|day|label)(\\s|$)');

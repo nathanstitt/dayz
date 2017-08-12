@@ -1,11 +1,11 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import moment from '../src/moment-range';
 import { mount } from 'enzyme';
-import Event from '../src/data/event';
-import Layout from '../src/data/layout';
+import Event from '../src/api/event';
+import Layout from '../src/api/layout';
 import EventComp from '../src/event';
-import EventLayout from '../src/data/event-layout';
-import EventsCollection from '../src/data/events-collection';
+import EventLayout from '../src/api/event-layout';
+import EventsCollection from '../src/api/events-collection';
 
 describe('Dayz', () => {
     let date;

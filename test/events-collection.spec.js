@@ -1,5 +1,5 @@
-import EventsCollection from '../src/data/events-collection';
-import Event from '../src/data/event';
+import EventsCollection from '../src/api/events-collection';
+import Event from '../src/api/event';
 import moment from '../src/moment-range';
 
 describe('Events Collection', () => {

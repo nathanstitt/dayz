@@ -1,7 +1,7 @@
 import React       from 'react';
 import ReactDOM    from 'react-dom';
 import PropTypes   from 'prop-types';
-import EventLayout from './data/event-layout';
+import EventLayout from './api/event-layout';
 
 const IsResizeClass = new RegExp('(\\s|^)event(\\s|$)');
 

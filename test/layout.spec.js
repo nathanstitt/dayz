@@ -1,8 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import moment from '../src/moment-range';
-import Layout from '../src/data/layout';
-import Event from '../src/data/event';
-import EventsCollection from '../src/data/events-collection';
+import Layout from '../src/api/layout';
+import Event from '../src/api/event';
+import EventsCollection from '../src/api/events-collection';
 
 const testEventRange = function(startAtDate, endAtDate) {
     const startAt = moment(startAtDate);

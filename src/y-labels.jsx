@@ -1,7 +1,7 @@
 import React     from 'react';
 import PropTypes from 'prop-types';
 import moment    from './moment-range';
-import Layout    from './data/layout';
+import Layout    from './api/layout';
 
 export default class YLabels extends React.PureComponent {
     static propTypes = {

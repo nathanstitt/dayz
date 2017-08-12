@@ -1,11 +1,11 @@
 import React     from 'react';
 import PropTypes from 'prop-types';
 import moment    from './moment-range';
-import Layout    from './data/layout';
+import Layout    from './api/layout';
 import Day       from './day';
 import XLabels   from './x-labels';
 import YLabels   from './y-labels';
-import EventsCollection from './data/events-collection';
+import EventsCollection from './api/events-collection';
 
 export default class Dayz extends React.PureComponent {
     static EventsCollection = EventsCollection;
