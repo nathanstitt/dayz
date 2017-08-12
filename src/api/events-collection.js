@@ -1,4 +1,5 @@
 import Event from './event';
+
 const Emitter = require('tiny-emitter');
 
 const lc = event =>

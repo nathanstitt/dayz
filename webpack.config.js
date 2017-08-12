@@ -8,7 +8,7 @@ const config = {
     },
     output: {
         path: __dirname + '/docs',
-        publicPath: '/docs',
+        publicPath: '/dayz',
         filename: 'demo.js',
     },
     resolve: {
@@ -34,7 +34,7 @@ const config = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify('production')
+                NODE_ENV: JSON.stringify('production'),
             },
         }),
         new HtmlWebpackPlugin({

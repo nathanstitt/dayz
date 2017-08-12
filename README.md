@@ -14,11 +14,11 @@
 
 Pre version `1.0.0` breaking changes will happen on the `minor` version while feature and patches accompany a patch bump.
 
-![alt tag](http://nathan.stitt.org/images/dayz-weekly-screenshot.png)
+![Dayz Monthly Screenshot](http://nathanstitt.github.io/dayz/dayz-weekly-screenshot.png)
 
 ## Demo
 
-An interactive demo can be viewed at: http://nathan.stitt.org/dayz/
+An interactive demo can be viewed at: http://nathanstitt.github.io/dayz/
 
 
 ## Usage
@@ -28,36 +28,36 @@ npm install dayz --save
 ```
 
 ```js
-const React = require("react");
-const Dayz = require("react-day-picker");
-const moment = require('moment');
-require('moment-range');
+import React from 'react';
+import Dayz from 'react-day-picker';
+// could also import the sass if you have a loader at dayz/dayz.scss
+import 'dayz/dist/styles.css';
+import moment from 'moment';
 
-var MyComponent = React.createComponent({
+// would come from a network request in a "real" app
+const EVENTS = new Dayz.EventsCollection([
+    { content: 'A short event',
+      range: moment.range( date.clone(),
+                           date.clone().add(1, 'day') ) },
+    { content: 'Two Hours ~ 8-10',
+      range: moment.range( date.clone().hour(8),
+                           date.clone().hour(10) ) },
+    { content: "A Longer Event",
+      range: moment.range( date.clone().subtract(2,'days'),
+                           date.clone().add(8,'days') ) }
+]);
 
-    componentWillMount() {
-        const date = moment('2011-10-21');
-        const events = new Dayz.EventsCollection([
-            { content: 'A short event',
-              range: moment.range( date.clone(),
-                                   date.clone().add(1, 'day') ) },
-            { content: 'Two Hours ~ 8-10',
-              range: moment.range( date.clone().hour(8),
-                                   date.clone().hour(10) ) },
-            { content: "A Longer Event",
-              range: moment.range( date.clone().subtract(2,'days'),
-                                   date.clone().add(8,'days') ) }
-        ]);
-        this.state({events, date});
-    }
+class MyComponent extends React.PureComponent {
+
     render() {
         return <Dayz
                    display='week'
-                   date={this.state.date}
-                   events={this.state.events} />
+                   date={this.props.date}
+                   events={EVENTS}
+               />
     }
 
-});
+}
 ```
 
 ## API

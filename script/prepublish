@@ -1,5 +1,5 @@
 #!/bin/sh
 
 set -e
-$(npm bin)/node-sass style/dayz.scss > dist/dayz.css
+$(npm bin)/node-sass ./dayz.scss > dist/dayz.css
 $(npm bin)/rollup -c
