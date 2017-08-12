@@ -4,4 +4,4 @@ node_js:
   - "7"
 after_failure:
   - npm list
-script: npm run travis
+script: ./script/cibuild
