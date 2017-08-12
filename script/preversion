@@ -11,7 +11,9 @@ script/lint
 
 script/test
 
-webpack
+NODE_ENV=production $(npm bin)/webpack
+
+$(npm bin)/node-sass style/dayz.scss > dist/dayz.css
 
 if [ -n "$(git status --porcelain)" ]; then
    echo "Adding docs"

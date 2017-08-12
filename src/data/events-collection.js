@@ -1,5 +1,5 @@
-import * as Emitter from 'tiny-emitter';
 import Event from './event';
+const Emitter = require('tiny-emitter');
 
 const lc = event =>
     event.attributes.range.start.diff(event.attributes.range.end);
@@ -47,4 +47,4 @@ export default class EventsCollection {
     }
 }
 
-Object.assign(EventsCollection.prototype, Emitter.default.prototype);
+Object.assign(EventsCollection.prototype, Emitter.prototype);

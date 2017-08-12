@@ -16,9 +16,9 @@ export default {
     ],
     external: [...peer],
     globals: {
-        'react': 'React',
+        react: 'React',
+        moment: 'moment',
         'prop-types': 'PropTypes',
-        'moment': 'moment',
         'moment-range': 'momentRange',
         'react-dom': 'reactDOM',
     },

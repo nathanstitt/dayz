@@ -23,6 +23,11 @@ export default class Day extends React.PureComponent {
     constructor() {
         super();
         this.state = { resize: false };
+        [
+            'onClick', 'onDoubleClick', 'onMouseMove', 'onMouseUp', 'onDragStart',
+        ].forEach((ev) => {
+            this[ev] = this[ev].bind(this);
+        });
     }
 
     get boundingBox() {
@@ -49,7 +54,7 @@ export default class Day extends React.PureComponent {
 
     onDragStart(resize, eventLayout) {
         eventLayout.setIsResizing(true);
-        const bounds = this.getBounds();
+        const bounds = this.boundingBox;
         Object.assign(resize, { eventLayout, height: bounds.height, top: bounds.top });
         this.setState({ resize });
     }

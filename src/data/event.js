@@ -1,5 +1,6 @@
 import React from 'react';
-import * as Emitter from 'tiny-emitter';
+
+const Emitter = require('tiny-emitter');
 
 let EVENT_COUNTER = 1;
 
@@ -106,4 +107,4 @@ export default class Event {
     }
 }
 
-Object.assign(Event.prototype, Emitter.default.prototype);
+Object.assign(Event.prototype, Emitter.prototype);
