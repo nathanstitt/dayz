@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/nathanstitt/dayz#readme",
   "dependencies": {
-    "node-sass": "^4.5.3",
     "tiny-emitter": "^2.0.1"
   },
   "peerDependencies": {
@@ -64,6 +63,7 @@
     "jest-webpack-alias": "^3.3.3",
     "moment": "^2.18.1",
     "moment-range": "^3.0.3",
+    "node-sass": "^4.5.3",
     "npm-release": "^1.0.0",
     "react": "^15.6.1",
     "react-addons-test-utils": "^15.6.0",
