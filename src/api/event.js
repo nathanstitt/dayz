@@ -5,6 +5,7 @@ const Emitter = require('tiny-emitter');
 let EVENT_COUNTER = 1;
 
 export default class Event {
+
     constructor(attributes) {
         this.attributes = attributes;
         this.isEvent = true;
@@ -105,6 +106,7 @@ export default class Event {
         this.isDeleted = true;
         this.emit('change');
     }
+
 }
 
 Object.assign(Event.prototype, Emitter.prototype);

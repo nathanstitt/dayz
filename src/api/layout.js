@@ -9,6 +9,7 @@ function cacheKey(day) {
 
 // a layout describes how the calendar is displayed.
 export default class Layout {
+
     constructor(options) {
         Object.assign(this, options);
         this.cache = Object.create(null);
@@ -162,4 +163,5 @@ export default class Layout {
     isDisplayingAsMonth() {
         return 'month' === this.display;
     }
+
 }

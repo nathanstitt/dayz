@@ -12,6 +12,7 @@ const sortEvents = (eventA, eventB) => {
 };
 
 export default class EventsCollection {
+
     static Event = Event;
 
     constructor(events = []) {
@@ -46,6 +47,7 @@ export default class EventsCollection {
             this.emit('change');
         }
     }
+
 }
 
 Object.assign(EventsCollection.prototype, Emitter.prototype);

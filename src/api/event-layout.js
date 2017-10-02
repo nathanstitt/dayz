@@ -3,6 +3,7 @@ const moment = require('moment');
 // an event layout describes how an event is displayed.
 // A event may be split into one or more layouts in order to be split across week boundaries
 export default class EventLayout {
+
     constructor(layout, event, displayRange) {
         this.layout = layout;
         this.event = event;
@@ -76,4 +77,5 @@ export default class EventLayout {
         if (this.isResizable()) classes.push('is-resizable');
         return classes.join(' ');
     }
+
 }
