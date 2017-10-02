@@ -1,6 +1,6 @@
 {
   "name": "dayz",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "A Day/Week/Month display React component",
   "main": "dist/dayz.js",
   "module": "dist/dayz.es.js",
@@ -70,7 +70,7 @@
     "react-dom": "^15.6.2",
     "react-test-renderer": "^15.6.2",
     "rollup": "^0.47.6",
-    "rollup-plugin-babel": "^3.0.1",
+    "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-sass": "^0.5.3",
     "sass-loader": "^6.0.6",
