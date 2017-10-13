@@ -27,7 +27,7 @@
   },
   "peerDependencies": {
     "moment": "^2.11",
-    "moment-range": "^3.1",
+    "moment-range": "^3.0",
     "prop-types": "*",
     "react": "*",
     "react-dom": ">=0.14.0"
