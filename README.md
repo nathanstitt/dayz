@@ -25,11 +25,13 @@ An interactive demo can be viewed at: http://nathanstitt.github.io/dayz/
 
 ```bash
 npm install dayz --save
+-- or -- 
+yarn add dayz
 ```
 
 ```js
 import React from 'react';
-import Dayz from 'react-day-picker';
+import Dayz from 'dayz';
 // could also import the sass if you have a loader at dayz/dayz.scss
 import 'dayz/dist/styles.css';
 import moment from 'moment';
