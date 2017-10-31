@@ -19,7 +19,7 @@ export default class Layout {
             ('day' === this.display) ? 'addtoDaysCache' : 'calculateSpanningLayout'
         );
         if (!this.events) { this.events = new EventsCollection(); }
-        const range = this.range;
+        const { range } = this;
 
         this.events.forEach((event) => {
             // we only care about events that are in the range we were provided
@@ -75,7 +75,7 @@ export default class Layout {
         const weeklyEvents = [];
         for (let i = 0; i < 7; i++) {
             const layouts = this.forDay(day);
-            for (let li = 0, length = layouts.length; li < length; li += 1) {
+            for (let li = 0, { length } = layouts; li < length; li += 1) {
                 weeklyEvents.push(layouts[li]);
             }
             day.add(1, 'day');

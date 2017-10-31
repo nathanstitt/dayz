@@ -17,7 +17,7 @@ export default class EventsCollection {
 
     constructor(events = []) {
         this.events = [];
-        for (let i = 0, length = events.length; i < length; i += 1) {
+        for (let i = 0, { length } = events; i < length; i += 1) {
             this.add(events[i], { silent: true });
         }
     }

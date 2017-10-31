@@ -35,7 +35,7 @@ export default class EventLayout {
             .startOf('day')
             .add(this.layout.displayHours[0], 'hours')
             .add(this.layout.minutesInDay() * (position / height), 'minutes');
-        const step = this.event.get('resizable').step;
+        const { step } = this.event.get('resizable');
         if (step) {
             const rounded = Math.round(time.minute() / step) * step;
             time.minute(rounded).second(0);
