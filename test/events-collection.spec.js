@@ -9,7 +9,7 @@ describe('Events Collection', () => {
         ]);
         expect(collection.events.length).toEqual(1);
         const event = collection.events[0];
-        expect(event).toEqual(jasmine.any(Event));
+        expect(event).toEqual(expect.any(Event));
         expect(event.range().isSame(moment.range('2011-10-01', '2011-10-02'))).toBe(true);
     });
 });

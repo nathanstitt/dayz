@@ -33,7 +33,7 @@ const testEventDay = function(date, startAt, endAt) {
 describe('Event Layout calculations', () => {
     describe('day layout', () => {
         it('lays out a single day', () => {
-            const { layout, event } = testEventDay('2015-10-10', '2015-10-10', '2015-10-10');
+            const { layout, event } = testEventDay('2015-10-10', '2015-10-10T08:00:00.000Z', '2015-10-10T12:00:00.000Z');
             expect(layout.forDay(event.range().start)).toEqual([expect.objectContaining({
                 first: true, startsBefore: false, endsAfter: false, span: 1, event, stack: 0,
             })]);
