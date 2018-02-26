@@ -50,7 +50,8 @@ $dayz-event-text-colors: (
 
 
     .x-labels {
-        height: $dayz-event-height;
+        height: 30px;
+        align-items: center;
         display: flex;
         flex-direction: row;
         .day-label {
@@ -112,7 +113,7 @@ $dayz-event-text-colors: (
         .event {
             $stack: 1;
             @while $stack < 10 {
-                &.stack-#{$stack} { margin-top: ($stack) * 20px; }
+                &.stack-#{$stack} { margin-top: ($stack * $dayz-event-height); }
                 $stack: $stack + 1;
             }
         }
