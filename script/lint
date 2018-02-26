@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # script/lint: Check JS files for code that doesn't follow the rulez
 

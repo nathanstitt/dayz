@@ -98,7 +98,7 @@ export default class Event {
     }
 
     colorIndex() {
-        return this.attributes.colorIndex;
+        return this.attributes.colorIndex || 0;
     }
 
     remove() {
