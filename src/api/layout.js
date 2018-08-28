@@ -13,7 +13,9 @@ export default class Layout {
     constructor(options) {
         Object.assign(this, options);
         this.cache = Object.create(null);
-
+        if (options.highlightDays) {
+            this.highlightDays = options.highlightDays.map(d => moment(d));
+        }
         let multiDayCount = 0;
         const cacheMethod = (
             ('day' === this.display) ? 'addtoDaysCache' : 'calculateSpanningLayout'
@@ -47,6 +49,9 @@ export default class Layout {
         const classes = ['day'];
         if (this.isDateOutsideRange(props.day)) {
             classes.push('outside');
+        }
+        if (this.isDayHighlighted(props.day)) {
+            classes.push('highlight');
         }
         return { className: classes.join(' '), style: { order: props.position } };
     }
@@ -112,6 +117,12 @@ export default class Layout {
             }
             firstOfWeek.add(7, 'day');
         } while (!firstOfWeek.isAfter(this.range.end));
+    }
+
+    isDayHighlighted(date) {
+        return Boolean(
+            this.highlightDays && this.highlightDays.find(d => d.isSame(date, 'day')),
+        );
     }
 
     isDateOutsideRange(date) {

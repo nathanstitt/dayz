@@ -4,7 +4,7 @@ $dayz-y-label-width:        60px !default;
 $dayz-grid-line-color:      lightBlue !default;
 $dayz-border-color:         lightgrey !default;
 $dayz-heading-label-color:  #555 !default;
-
+$dayz-highlight-color:      #ececec !default;
 $dayz-event-default-color: #6F8376;
 $dayz-event-text-default-color: #F5F5F5;
 
@@ -106,6 +106,9 @@ $dayz-event-text-colors: (
         box-sizing: border-box;
         .event > * {
             height: 100%;
+        }
+        &.highlight {
+            background-color: $dayz-highlight-color;
         }
     }
 

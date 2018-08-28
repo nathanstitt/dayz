@@ -14,6 +14,7 @@ export default class Dayz extends React.Component {
         editComponent:     PropTypes.func,
         date:              PropTypes.object.isRequired,
         displayHours:      PropTypes.array,
+        highlightDays:     PropTypes.array,
         display:           PropTypes.oneOf(['month', 'week', 'day']),
         events:            PropTypes.instanceOf(EventsCollection),
         onDayClick:        PropTypes.func,

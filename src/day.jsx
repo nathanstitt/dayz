@@ -12,6 +12,7 @@ export default class Day extends React.Component {
         day:            PropTypes.object.isRequired,
         layout:         PropTypes.instanceOf(Layout).isRequired,
         position:       PropTypes.number.isRequired,
+        highlight:      PropTypes.func,
         onClick:        PropTypes.func,
         onDoubleClick:  PropTypes.func,
         onEventClick:   PropTypes.func,

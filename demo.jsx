@@ -57,6 +57,7 @@ class DayzTestComponent extends React.Component {
         const end   = event.end().format('hh:mma');
         event.set({ content: `${start} - ${end} (resizable)` });
     }
+
     addEvent(ev, date) {
         this.state.events.add(
             { content: `Event ${COUNT++}`,
@@ -104,6 +105,7 @@ class DayzTestComponent extends React.Component {
 
                 <Dayz {...this.state}
                       displayHours={[6, 22]}
+                      highlightDays={[this.state.date]}
                       onEventResize={this.onEventResize}
                       editComponent={this.editComponent}
                       onDayDoubleClick={this.addEvent}
