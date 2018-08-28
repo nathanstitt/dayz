@@ -7,7 +7,7 @@ import XLabels   from './x-labels';
 import YLabels   from './y-labels';
 import EventsCollection from './api/events-collection';
 
-export default class Dayz extends React.PureComponent {
+export default class Dayz extends React.Component {
     static EventsCollection = EventsCollection;
 
     static propTypes = {
@@ -74,8 +74,7 @@ export default class Dayz extends React.PureComponent {
                 onDoubleClick={this.props.onDayDoubleClick}
                 onEventClick={this.props.onEventClick}
                 onEventResize={this.props.onEventResize}
-            />,
-        );
+            />);
     }
 
     render() {

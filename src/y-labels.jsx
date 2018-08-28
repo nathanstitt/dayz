@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment    from './moment-range';
 import Layout    from './api/layout';
 
-export default class YLabels extends React.PureComponent {
+export default class YLabels extends React.Component {
     static propTypes = {
         display:    PropTypes.oneOf(['month', 'week', 'day']).isRequired,
         date:       PropTypes.object.isRequired,
