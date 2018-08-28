@@ -1,0 +1,1661 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dayz matches snapshot for day 1`] = `
+<div
+  className="dayz day"
+>
+  <div
+    className="x-labels"
+  >
+    <div
+      className="day-label"
+    >
+      Sat, Sep 12th
+    </div>
+  </div>
+  <div
+    className="body"
+  >
+    <div>
+      <div
+        className="y-labels"
+      >
+        <div
+          className="all-day"
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        >
+          All Day
+        </div>
+        <div
+          className="hour"
+        >
+          7am
+        </div>
+        <div
+          className="hour"
+        >
+          8am
+        </div>
+        <div
+          className="hour"
+        >
+          9am
+        </div>
+        <div
+          className="hour"
+        >
+          10am
+        </div>
+        <div
+          className="hour"
+        >
+          11am
+        </div>
+        <div
+          className="hour"
+        >
+          12pm
+        </div>
+        <div
+          className="hour"
+        >
+          1pm
+        </div>
+        <div
+          className="hour"
+        >
+          2pm
+        </div>
+        <div
+          className="hour"
+        >
+          3pm
+        </div>
+        <div
+          className="hour"
+        >
+          4pm
+        </div>
+        <div
+          className="hour"
+        >
+          5pm
+        </div>
+        <div
+          className="hour"
+        >
+          6pm
+        </div>
+        <div
+          className="hour"
+        >
+          7pm
+        </div>
+      </div>
+    </div>
+    <div
+      className="days"
+    >
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 0,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          12
+        </div>
+        <div
+          className="all-day"
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Dayz matches snapshot for month 1`] = `
+<div
+  className="dayz month"
+>
+  <div
+    className="x-labels"
+  >
+    <div
+      className="day-label"
+    >
+      Sunday
+    </div>
+    <div
+      className="day-label"
+    >
+      Monday
+    </div>
+    <div
+      className="day-label"
+    >
+      Tuesday
+    </div>
+    <div
+      className="day-label"
+    >
+      Wednesday
+    </div>
+    <div
+      className="day-label"
+    >
+      Thursday
+    </div>
+    <div
+      className="day-label"
+    >
+      Friday
+    </div>
+    <div
+      className="day-label"
+    >
+      Saturday
+    </div>
+  </div>
+  <div
+    className="body"
+  >
+    <div
+      className="days"
+    >
+      <div
+        className="day outside"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 0,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          30
+        </div>
+      </div>
+      <div
+        className="day outside"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 1,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          31
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 2,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          1
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 3,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          2
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 4,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          3
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 5,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          4
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 6,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          5
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 7,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          6
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 8,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          7
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 9,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          8
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 10,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          9
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 11,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          10
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 12,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          11
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 13,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          12
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 14,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          13
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 15,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          14
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 16,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          15
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 17,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          16
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 18,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          17
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 19,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          18
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 20,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          19
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 21,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          20
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 22,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          21
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 23,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          22
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 24,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          23
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 25,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          24
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 26,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          25
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 27,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          26
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 28,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          27
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 29,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          28
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 30,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          29
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 31,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          30
+        </div>
+      </div>
+      <div
+        className="day outside"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 32,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          1
+        </div>
+      </div>
+      <div
+        className="day outside"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 33,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          2
+        </div>
+      </div>
+      <div
+        className="day outside"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 34,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          3
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Dayz matches snapshot for week 1`] = `
+<div
+  className="dayz week"
+>
+  <div
+    className="x-labels"
+  >
+    <div
+      className="day-label"
+    >
+      Sun, Sep 6th
+    </div>
+    <div
+      className="day-label"
+    >
+      Mon, Sep 7th
+    </div>
+    <div
+      className="day-label"
+    >
+      Tue, Sep 8th
+    </div>
+    <div
+      className="day-label"
+    >
+      Wed, Sep 9th
+    </div>
+    <div
+      className="day-label"
+    >
+      Thu, Sep 10th
+    </div>
+    <div
+      className="day-label"
+    >
+      Fri, Sep 11th
+    </div>
+    <div
+      className="day-label"
+    >
+      Sat, Sep 12th
+    </div>
+  </div>
+  <div
+    className="body"
+  >
+    <div>
+      <div
+        className="y-labels"
+      >
+        <div
+          className="all-day"
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        >
+          All Day
+        </div>
+        <div
+          className="hour"
+        >
+          7am
+        </div>
+        <div
+          className="hour"
+        >
+          8am
+        </div>
+        <div
+          className="hour"
+        >
+          9am
+        </div>
+        <div
+          className="hour"
+        >
+          10am
+        </div>
+        <div
+          className="hour"
+        >
+          11am
+        </div>
+        <div
+          className="hour"
+        >
+          12pm
+        </div>
+        <div
+          className="hour"
+        >
+          1pm
+        </div>
+        <div
+          className="hour"
+        >
+          2pm
+        </div>
+        <div
+          className="hour"
+        >
+          3pm
+        </div>
+        <div
+          className="hour"
+        >
+          4pm
+        </div>
+        <div
+          className="hour"
+        >
+          5pm
+        </div>
+        <div
+          className="hour"
+        >
+          6pm
+        </div>
+        <div
+          className="hour"
+        >
+          7pm
+        </div>
+      </div>
+    </div>
+    <div
+      className="days"
+    >
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 0,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          6
+        </div>
+        <div
+          className="all-day"
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        />
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 1,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          7
+        </div>
+        <div
+          className="all-day"
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        />
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 2,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          8
+        </div>
+        <div
+          className="all-day"
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        />
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 3,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          9
+        </div>
+        <div
+          className="all-day"
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        />
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 4,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          10
+        </div>
+        <div
+          className="all-day"
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        />
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 5,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          11
+        </div>
+        <div
+          className="all-day"
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        />
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 6,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          12
+        </div>
+        <div
+          className="all-day"
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Dayz renders highlights 1`] = `
+<div
+  className="dayz month"
+>
+  <div
+    className="x-labels"
+  >
+    <div
+      className="day-label"
+    >
+      Sunday
+    </div>
+    <div
+      className="day-label"
+    >
+      Monday
+    </div>
+    <div
+      className="day-label"
+    >
+      Tuesday
+    </div>
+    <div
+      className="day-label"
+    >
+      Wednesday
+    </div>
+    <div
+      className="day-label"
+    >
+      Thursday
+    </div>
+    <div
+      className="day-label"
+    >
+      Friday
+    </div>
+    <div
+      className="day-label"
+    >
+      Saturday
+    </div>
+  </div>
+  <div
+    className="body"
+  >
+    <div
+      className="days"
+    >
+      <div
+        className="day outside"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 0,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          30
+        </div>
+      </div>
+      <div
+        className="day outside"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 1,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          31
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 2,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          1
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 3,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          2
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 4,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          3
+        </div>
+      </div>
+      <div
+        className="day highlight"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 5,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          4
+        </div>
+      </div>
+      <div
+        className="day highlight"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 6,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          5
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 7,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          6
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 8,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          7
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 9,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          8
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 10,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          9
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 11,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          10
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 12,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          11
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 13,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          12
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 14,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          13
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 15,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          14
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 16,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          15
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 17,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          16
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 18,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          17
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 19,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          18
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 20,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          19
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 21,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          20
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 22,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          21
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 23,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          22
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 24,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          23
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 25,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          24
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 26,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          25
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 27,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          26
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 28,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          27
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 29,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          28
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 30,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          29
+        </div>
+      </div>
+      <div
+        className="day"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 31,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          30
+        </div>
+      </div>
+      <div
+        className="day outside"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 32,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          1
+        </div>
+      </div>
+      <div
+        className="day outside"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 33,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          2
+        </div>
+      </div>
+      <div
+        className="day outside"
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "order": 34,
+          }
+        }
+      >
+        <div
+          className="label"
+        >
+          3
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

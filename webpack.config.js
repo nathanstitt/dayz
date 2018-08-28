@@ -2,7 +2,10 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const production = process.env.NODE_ENV === 'production';
+
 const config = {
+    mode: production ? 'production' : 'development',
     entry: {
         demo: __dirname + '/demo.jsx',
     },
@@ -21,13 +24,7 @@ const config = {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
             },
-            {
-                test: /\.scss$/, use: [
-                    { loader: "style-loader" },
-                    { loader: "css-loader"   },
-                    { loader: "sass-loader"  },
-                ]
-            },
+            { test: /\.scss$/, use: [ 'style-loader', 'css-loader', 'sass-loader'] },
         ],
     },
     devtool: 'source-map',

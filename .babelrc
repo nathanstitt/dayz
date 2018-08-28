@@ -1,12 +1,9 @@
 {
     "presets": [
-        ["es2015", {"modules": false}],
-        "react",
-        "stage-0"
+        "@babel/preset-env",
+        "@babel/preset-react",
     ],
-    "env": {
-        "test": {
-            "presets": ["react", "es2015", "stage-0"]
-        }
-    }
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ],
 }
