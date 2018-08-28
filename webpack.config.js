@@ -66,14 +66,6 @@ const config = {
     },
 };
 
-if (process.env.NODE_ENV === 'production') {
-    const uglify = new webpack.optimize.UglifyJsPlugin({
-        compress: { warnings: false },
-    });
-    config.plugins.push(uglify);
-}
-
-
 // console.log(config)
 
 module.exports = config;
