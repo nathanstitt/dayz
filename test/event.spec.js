@@ -1,6 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import moment from '../src/moment-range';
 import { mount } from 'enzyme';
+import moment from '../src/moment-range';
 import Event from '../src/api/event';
 import Layout from '../src/api/layout';
 import EventComp from '../src/event';
@@ -20,7 +20,8 @@ describe('Dayz', () => {
             range: moment.range(date.clone().add(8, 'hours'), date.clone().add(10, 'hours')),
         });
         const events = new EventsCollection([eventModel]);
-        const layout = new Layout({ events,
+        const layout = new Layout({
+            events,
             display: 'day',
             day: date,
             range: moment.range(moment(date), moment(date).endOf('day')),
@@ -43,7 +44,8 @@ describe('Dayz', () => {
             range: moment.range(date.clone(), date.clone().add(3, 'days')),
         });
         const events = new EventsCollection([eventModel]);
-        const layout = new Layout({ events,
+        const layout = new Layout({
+            events,
             display: 'day',
             day: date,
             range: moment.range(moment(date), moment(date).endOf('day')),

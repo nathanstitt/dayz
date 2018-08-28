@@ -8,6 +8,7 @@ import YLabels   from './y-labels';
 import EventsCollection from './api/events-collection';
 
 export default class Dayz extends React.Component {
+
     static EventsCollection = EventsCollection;
 
     static propTypes = {
@@ -98,4 +99,5 @@ export default class Dayz extends React.Component {
             </div>
         );
     }
+
 }

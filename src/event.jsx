@@ -6,6 +6,7 @@ import EventLayout from './api/event-layout';
 const IsResizeClass = new RegExp('(\\s|^)event(\\s|$)');
 
 export default class Event extends React.Component {
+
     static propTypes = {
         layout:        PropTypes.instanceOf(EventLayout),
         editComponent: PropTypes.func,
@@ -16,7 +17,7 @@ export default class Event extends React.Component {
     constructor(props) {
         super(props);
         [
-            'onClick', 'onDoubleClick', 'onDoubleClick', 'onDragStart'
+            'onClick', 'onDoubleClick', 'onDoubleClick', 'onDragStart',
         ].forEach((ev) => {
             this[ev] = this[ev].bind(this);
         });
@@ -68,4 +69,5 @@ export default class Event extends React.Component {
             </div>
         );
     }
+
 }

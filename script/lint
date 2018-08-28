@@ -4,4 +4,4 @@
 
 set -e
 
-$(npm bin)/eslint src/ specs/
+$(npm bin)/eslint src/ test/

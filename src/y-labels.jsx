@@ -4,6 +4,7 @@ import moment    from './moment-range';
 import Layout    from './api/layout';
 
 export default class YLabels extends React.Component {
+
     static propTypes = {
         display:    PropTypes.oneOf(['month', 'week', 'day']).isRequired,
         date:       PropTypes.object.isRequired,
@@ -23,8 +24,7 @@ export default class YLabels extends React.Component {
     renderLabels() {
         const day = moment();
         return this.hours.map(hour =>
-            <div key={hour} className="hour">{day.hour(hour).format(this.props.timeFormat)}</div>,
-        );
+            <div key={hour} className="hour">{day.hour(hour).format(this.props.timeFormat)}</div>);
     }
 
     render() {
@@ -40,4 +40,5 @@ export default class YLabels extends React.Component {
             </div>
         );
     }
+
 }

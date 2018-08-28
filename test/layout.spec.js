@@ -9,7 +9,8 @@ const testEventRange = function(startAtDate, endAtDate) {
     const endAt = moment(endAtDate).endOf('day');
     const event  = new Event({ range: moment.range(moment(startAt), moment(endAt)) });
     const events = new EventsCollection([event]);
-    const layout = new Layout({ events,
+    const layout = new Layout({
+        events,
         range: moment.range(event.range().start.startOf('month'),
             event.range().end.endOf('month')),
         display: 'month',
@@ -21,7 +22,8 @@ const testEventRange = function(startAtDate, endAtDate) {
 const testEventDay = function(date, startAt, endAt) {
     const events = new EventsCollection();
     const event  = events.add({ range: moment.range(moment(startAt), moment(endAt)) });
-    const layout = new Layout({ events,
+    const layout = new Layout({
+        events,
         range: moment.range(moment(date), moment(date).endOf('day')),
         display: 'day',
         day: startAt,

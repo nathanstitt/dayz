@@ -8,6 +8,7 @@ import Label     from './label';
 const IsDayClass = new RegExp('(\\s|^)(events|day|label)(\\s|$)');
 
 export default class Day extends React.Component {
+
     static propTypes = {
         day:            PropTypes.object.isRequired,
         layout:         PropTypes.instanceOf(Layout).isRequired,
@@ -137,4 +138,5 @@ export default class Day extends React.Component {
             </div>
         );
     }
+
 }
