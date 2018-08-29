@@ -9,7 +9,7 @@
     * Uses flexbox layout (no tables)
         *  Currently is IE 11+ only.  IE 10 could be supported if someone wants to lookup the `-ms` flexbox vendor prefixes.  (PR's welcome).
     * All heights/widths are specified as percentages so the component will size to fit whatever container it's rendered into.
-    * Styles are written in `scss` with variables that can be modified for customized builds.
+    * Styles are written in [scss](dayz.scss) with variables that can be modified for customized builds.
 * Care is taken to retain elements when switching view types, this allows minimal DOM reflow and allows nice animation effects where events warp into position.
 
 Pre version `1.0.0` breaking changes will happen on the `minor` version while feature and patches accompany a patch bump.
