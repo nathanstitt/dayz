@@ -25,7 +25,7 @@ An interactive demo can be viewed at: http://nathanstitt.github.io/dayz/
 
 ```bash
 npm install dayz --save
--- or -- 
+-- or --
 yarn add dayz
 ```
 
@@ -68,12 +68,12 @@ The Dayz component accepts these properties:
 
  * **date** (required):     An `momentjs` instance that controls what range is displayed. The calendar will automatically calculate the month or week that contains this date and display the appropriate range.
  * **events** (optional):  An `Dayz.EventsCollection` instance that contains events that should be displayed on the calendar.
+ * **highlightDays**:  an array of days that should be highlighted.  Each day can be a string date that momentjs accepts, a JS Date object, or a momentjs date.
  * **display** (optional, defaults to 'month'):  One of month, week, or day.
  * **onDayClick**, **onDayDoubleClick** (optional): A function that will be called whenever a day is clicked, it's passed two variables, the event and a `momentjs` date.  Hours/Minutes are added to the date to reflect how far down the Y axis was clicked
  * **onEventClick**, **onEventDoubleClick** (optional): A function that will be called whenever an event is clicked, it's passed two variables, the event and the layout information for the event.  The layout has an `event` subkey that includes the event itself.
  * **displayHours** (optional): defaults to 7am to 7pm or the earliest/latest event's hour.
  * **timeFormat** (optional): defaults to `ha` configures y labels time format
-
 
 ### Development
 
