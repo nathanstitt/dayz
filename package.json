@@ -94,6 +94,8 @@
     "test": "./script/test",
     "ci": "./script/cibuild",
     "prepublishOnly": "./script/prepublish",
+    "start": "./script/demo",
+    "build": "$(npm bin)/rollup -c",
     "preversion": "./script/preversion"
   }
 }
