@@ -2,6 +2,7 @@ import React  from 'react';
 import PropTypes from 'prop-types';
 
 export default class XLabels extends React.Component {
+
     static propTypes = {
         display: PropTypes.oneOf(['month', 'week', 'day']),
         date:    PropTypes.object.isRequired,
@@ -27,8 +28,9 @@ export default class XLabels extends React.Component {
             <div className="x-labels">{this.days.map(day =>
                 <div key={day.format('YYYYMMDD')} className="day-label">
                     {day.format(format)}
-                </div>,
-            )}</div>
+                </div>)}
+            </div>
         );
     }
+
 }

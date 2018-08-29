@@ -5,4 +5,4 @@ set -e
 export NODE_ENV=production
 
 $(npm bin)/node-sass ./dayz.scss > dist/dayz.css
-$(npm bin)/rollup -c
+$(npm bin)/webpack

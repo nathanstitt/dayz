@@ -2,24 +2,21 @@ import babel from 'rollup-plugin-babel';
 
 const pkg = require('./package.json');
 
-const external = ['react', 'prop-types'];
+const external = ['react', 'prop-types', 'moment', 'moment-range', 'react-dom'];
 
 const plugins = [
-    babel({
-        babelrc: true,
-        exclude: 'node_modules/**',
-        presets: [['es2015', { modules: false }], 'react', 'es2015-rollup'],
-        plugins: [],
-    }),
+    babel({ exclude: 'node_modules/**' }),
 ];
 
 const globals = {
     react: 'React',
-    invariant: 'invariant',
+    moment: 'moment',
+    'react-dom': 'ReactDOM',
+    'moment-range': 'moment-range',
     'prop-types': 'PropTypes',
 };
 
-const input = 'src/dayz.jsx';
+const input = 'src/dayz.js';
 
 export default [
     {
@@ -29,8 +26,8 @@ export default [
         output: {
             format: 'umd',
             name: 'dayz',
-            sourceMap: true,
             file: pkg.browser,
+            sourceMap: true,
             globals,
         },
     }, {
