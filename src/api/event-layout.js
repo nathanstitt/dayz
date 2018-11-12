@@ -40,7 +40,7 @@ export default class EventLayout {
 
     adjustEventTime(startOrEnd, position, height) {
         if (position < 0 || position > height) { return; }
-        const time = this.event[startOrEnd]()
+        const time = this.event[startOrEnd]
             .startOf('day')
             .add(this.layout.displayHours[0], 'hours')
             .add(this.layout.minutesInDay() * (position / height), 'minutes');

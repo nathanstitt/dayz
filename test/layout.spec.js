@@ -32,7 +32,7 @@ const testEventDay = function(date, startAt, endAt) {
     return { events, layout, event };
 };
 
-describe('Event Layout calculations', () => {
+describe('Layout calculations', () => {
     describe('day layout', () => {
         it('lays out a single day', () => {
             const { layout, event } = testEventDay('2015-10-10', '2015-10-10T08:00:00.000Z', '2015-10-10T12:00:00.000Z');

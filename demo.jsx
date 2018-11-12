@@ -53,8 +53,8 @@ class DayzTestComponent extends React.Component {
         event.set({ editing: !event.isEditing() });
     }
     onEventResize(ev, event) {
-        const start = event.start().format('hh:mma');
-        const end   = event.end().format('hh:mma');
+        const start = event.start.format('hh:mma');
+        const end   = event.end.format('hh:mma');
         event.set({ content: `${start} - ${end} (resizable)` });
     }
 
@@ -74,7 +74,7 @@ class DayzTestComponent extends React.Component {
         return (
             <div className="edit">
                 <input type="text" autoFocus
-                       value={props.event.content()}
+                       value={props.event.content}
                        onChange={onChange}
                        onBlur={onBlur}
                 />
