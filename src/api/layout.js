@@ -25,6 +25,7 @@ export default class Layout {
 
         this.events.forEach((event) => {
             // we only care about events that are in the range we were provided
+
             if (range.overlaps(event.range())) {
                 this[cacheMethod](event);
                 if (!event.isSingleDay()) {
@@ -34,7 +35,7 @@ export default class Layout {
         });
         this.multiDayCount = multiDayCount;
         this.calculateStacking();
-        if (!this.isDisplayingAsMonth() && !this.displayHours) {
+        if (!this.isDisplayingAsMonth && !this.displayHours) {
             this.displayHours = this.hourRange();
         } else {
             this.displayHours = this.displayHours || [0, 24];
@@ -67,8 +68,8 @@ export default class Layout {
         const range = [7, 19];
         Array.from(this.range.by('days')).forEach((day) => {
             this.forDay(day).forEach((layout) => {
-                range[0] = Math.min(layout.event.start().hour(), range[0]);
-                range[1] = Math.max(layout.event.end().hour(), range[1]);
+                range[0] = Math.min(layout.event.start.hour(), range[0]);
+                range[1] = Math.max(layout.event.end.hour(), range[1]);
             });
         });
         range[1] += 1;
@@ -126,7 +127,7 @@ export default class Layout {
     }
 
     isDateOutsideRange(date) {
-        return (this.isDisplayingAsMonth() && this.date.month() !== date.month());
+        return (this.isDisplayingAsMonth && this.date.month() !== date.month());
     }
 
     forDay(day) {
@@ -171,7 +172,7 @@ export default class Layout {
         return this.display;
     }
 
-    isDisplayingAsMonth() {
+    get isDisplayingAsMonth() {
         return 'month' === this.display;
     }
 

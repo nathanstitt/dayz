@@ -81,7 +81,7 @@ export default class Day extends React.Component {
     }
 
     renderEvents() {
-        const asMonth = this.props.layout.isDisplayingAsMonth();
+        const asMonth = this.props.layout.isDisplayingAsMonth;
         const singleDayEvents = [];
         const allDayEvents    = [];
         const onMouseMove = asMonth ? null : this.onMouseMove;

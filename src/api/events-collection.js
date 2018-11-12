@@ -36,8 +36,12 @@ export default class EventsCollection {
         this.events.sort(sortEvents).forEach(fn);
     }
 
-    length() {
+    get length() {
         return this.events.length;
+    }
+
+    at(i) {
+        return this.events[i];
     }
 
     remove(event) {

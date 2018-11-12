@@ -156,7 +156,7 @@ describe('Event Layout calculations', () => {
         });
 
         it('calculates stacking', () => {
-            expect(events.length()).toEqual(4);
+            expect(events).toHaveLength(4);
             expect(layout.forDay(moment('2015-09-09'))).toHaveLength(2);
             events = layout.forDay(date);
             expect(events).toHaveLength(2);
@@ -164,6 +164,47 @@ describe('Event Layout calculations', () => {
             expect(events[1].event.attributes.content).toEqual('Two Hours ~ 8-10');
             expect(events[0].stack).toBe(2);
             expect(events[1].stack).toBe(0);
+        });
+
+        it('calculates stacking for a multi-day plus singles', () => {
+            layout = new Layout({
+                display: 'month',
+                range: moment.range(
+                    '2018-10-28T13:00:00.000Z',
+                    '2018-12-01T13:00:00.000Z',
+                ),
+                events: new EventsCollection([
+                    {
+                        content: '3-day',
+                        range: moment.range(
+                            '2018-11-14T13:00:00.000Z',
+                            '2018-11-16T13:00:00.000Z',
+                        ),
+                    }, {
+                        content: '1-day',
+                        range: moment.range(
+                            '2018-11-16T13:00:00.000Z',
+                            '2018-11-16T13:00:00.000Z',
+                        ),
+                    }, {
+                        content: '1-day',
+                        range: moment.range(
+                            '2018-11-16T13:00:00.000Z',
+                            '2018-11-16T13:00:00.000Z',
+                        ),
+                    },
+                ]),
+            });
+
+            const forWeek = layout.getEventsForWeek(
+                moment('2018-11-11T13:00:00.000Z'),
+            );
+            expect(forWeek).toHaveLength(3);
+            expect(forWeek[0].event.content).toEqual('3-day');
+            expect(forWeek[0].stack).toEqual(0);
+            expect(forWeek[1].event.content).toEqual('1-day');
+            expect(forWeek[1].stack).toEqual(1);
+            expect(forWeek[2].stack).toEqual(0);
         });
     });
 
@@ -173,8 +214,8 @@ describe('Event Layout calculations', () => {
                 '2015-10-15', '2015-10-15 06:15:00', '2015-10-20 21:12:11',
             );
             const range = layout.hourRange();
-            expect(range[0]).toEqual(event.start().hour());
-            expect(range[1]).toEqual(event.end().hour() + 1);
+            expect(range[0]).toEqual(event.start.hour());
+            expect(range[1]).toEqual(event.end.hour() + 1);
         });
 
         it('sets a default min/max', () => {
@@ -182,6 +223,7 @@ describe('Event Layout calculations', () => {
                 '2015-10-15', '2015-10-15 12:15:00', '2015-10-20 13:12:11',
             );
             const range = layout.hourRange();
+            expect(layout.events).toHaveLength(1);
             expect(range[0]).toEqual(7);
             expect(range[1]).toEqual(20);
         });

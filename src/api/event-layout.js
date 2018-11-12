@@ -9,15 +9,24 @@ export default class EventLayout {
         this.event = event;
         this.stack = 0;
         this.displayRange = displayRange;
-        this.startsBefore = event.start().isBefore(displayRange.start);
-        this.endsAfter = event.end().isAfter(displayRange.end);
-        this.range = moment.range(
-            moment.max(displayRange.start, event.start()),
-            moment.min(displayRange.end, event.end()),
-        );
-        const latest = moment.min(displayRange.end, event.end());
+        this.startsBefore = event.start.isBefore(displayRange.start);
+        this.endsAfter = event.end.isAfter(displayRange.end);
+        if (this.layout.isDisplayingAsMonth) {
+            this.range = moment.range(
+                moment.max(displayRange.start,
+                    event.start.startOf('day')),
+                moment.min(displayRange.end,
+                    event.end.endOf('day')),
+            );
+        } else {
+            this.range = moment.range(
+                moment.max(displayRange.start, event.start),
+                moment.min(displayRange.end, event.end),
+            );
+        }
         this.span = Math.max(
-            1, Math.round(latest.diff(displayRange.start, 'day', true)),
+            1,
+            Math.ceil(this.range.end.diff(this.range.start, 'day', true)),
         );
     }
 
@@ -26,7 +35,7 @@ export default class EventLayout {
     }
 
     startsOnWeek() {
-        return 0 === this.event.start().day();
+        return 0 === this.event.start.day();
     }
 
     adjustEventTime(startOrEnd, position, height) {
@@ -68,7 +77,10 @@ export default class EventLayout {
         this.isResizing = val;
     }
     classNames() {
-        const classes = ['event', `span-${this.span}`, `color-${this.event.colorIndex()}`];
+        const classes = ['event', `span-${this.span}`];
+        if (this.event.colorIndex) {
+            classes.push(`color-${this.event.colorIndex}`);
+        }
         if (this.isResizing) classes.push('is-resizing');
         if (this.startsBefore) classes.push('is-continuation');
         if (this.endsAfter) classes.push('is-continued');

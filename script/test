@@ -10,7 +10,5 @@ cd "$(dirname "$0")/.."
 
 [ -z "$DEBUG" ] || set -x
 
-echo "Tests started at…"
-date "+%H:%M:%S"
 
-$(npm bin)/jest
+$(npm bin)/jest "$@"

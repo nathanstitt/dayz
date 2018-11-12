@@ -1,12 +1,14 @@
-$dayz-event-arrow-width:    10px !default;
-$dayz-event-height:         20px !default;
-$dayz-y-label-width:        60px !default;
-$dayz-grid-line-color:      lightBlue !default;
-$dayz-border-color:         lightgrey !default;
-$dayz-heading-label-color:  #555 !default;
-$dayz-highlight-color:      #ececec !default;
-$dayz-event-default-color: #6F8376;
-$dayz-event-text-default-color: #F5F5F5;
+$dayz-event-arrow-width        :    10px !default;
+$dayz-event-height             :         20px !default;
+$dayz-y-label-width            :        60px !default;
+$dayz-border-color             :         #b6b6b6 !default;
+$dayz-heading-label-color      :  #555 !default;
+$dayz-highlight-color          :      #ececec !default;
+$dayz-event-border-color       :   #b6b6b6 !default;
+$dayz-event-default-color      :  #dddddd  !default;
+$dayz-event-text-default-color : #2b2b2b  !default;
+$dayz-outside-background-color : #F2F2F2;
+$dayz-event-border-radius      : 4px !default;
 
 $dayz-event-colors: (
     #4D4D4D, // (gray)
@@ -37,6 +39,32 @@ $dayz-event-text-colors: (
 
 .dayz {
 
+    @mixin triangle($direction){
+        $sizeH: $dayz-event-arrow-width;
+        $sizeV: $dayz-event-height / 2;
+        $color: $dayz-event-default-color;
+
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        position: absolute;
+        -moz-transform: scale(.9999);
+        @if $direction == left{
+            border-width: $sizeV $sizeH $sizeV 0;
+            border-color: transparent $color transparent transparent;
+            left: -1 * $dayz-event-arrow-width;
+            bottom: -1px;
+        }
+        @if $direction == right{
+            border-width: $sizeV 0 $sizeV $sizeH;
+            border-color: transparent transparent transparent $color;
+            right: -1 * $dayz-event-arrow-width;
+            top: -1px;
+        }
+    }
+
     // these are internal
     $hour-percent: 100% / 24;
     $day-width:    100% / 7;
@@ -48,14 +76,15 @@ $dayz-event-text-colors: (
     flex-direction: column;
     align-items:    stretch;
 
-
     .x-labels {
         height: 30px;
         align-items: center;
         display: flex;
         flex-direction: row;
         .day-label {
+            display: flex;
             flex-grow: 1;
+            flex-basis: 1px;
             padding-left: 8px;
         }
     }
@@ -65,7 +94,6 @@ $dayz-event-text-colors: (
         display: flex;
         flex-direction: row;
         position: relative;
-
 
         .y-labels {
             position: absolute;
@@ -104,6 +132,7 @@ $dayz-event-text-colors: (
         border-right:  1px solid $dayz-border-color;
         border-bottom: 1px solid $dayz-border-color;
         box-sizing: border-box;
+
         .event > * {
             height: 100%;
         }
@@ -163,8 +192,8 @@ $dayz-event-text-colors: (
             flex-flow: wrap;
             .day {
                 .label {
-                    display: inline-block;
-                    margin: 5px 0 0 5px;
+                    text-align: right;
+                    padding: 5px;
                 }
                 width: $day-width;
                 .event {
@@ -177,7 +206,7 @@ $dayz-event-text-colors: (
                     }
                 }
                 &.outside {
-                    background-color: #F2F2F2;
+                    background-color: $dayz-outside-background-color;
                 }
             }
         }
@@ -197,14 +226,14 @@ $dayz-event-text-colors: (
 
         box-sizing: border-box;
         position: relative;
-        border: 1px solid $dayz-grid-line-color;
-        border-radius: 4px;
+        border: 1px solid $dayz-event-border-color;
+        border-radius: $dayz-event-border-radius;
 
         $span: 0;
         @while $span < 7 {
             $span: $span + 1;
             &.span-#{$span} {
-                width: calc(#{$span * 100%} + #{$span * 1px - 2px});
+                width: calc(#{$span * 100%} + #{$span * 1px} - 1px);
                 &.is-continued {
                     width: calc(#{$span * 100%} + #{($span * 1px - 2px)-$dayz-event-arrow-width});
                     border-top-right-radius: 0;
@@ -224,8 +253,8 @@ $dayz-event-text-colors: (
 
         &.is-resizable {
 
-            &:before,
-            &:after {
+            &::before,
+            &::after {
                 content: " ";
                 height: 3px;
                 border: 1px solid black;
@@ -264,30 +293,18 @@ $dayz-event-text-colors: (
             overflow: hidden;
         }
 
-        @mixin triangle() {
-            content: '';
-            display: block;
-            position: absolute;
-            top: 50%;
-            width: 0;
-            height: 0;
-            margin-top:    -$dayz-event-arrow-width;
-            border-top:    $dayz-event-arrow-width solid transparent;
-            border-right:  $dayz-event-arrow-width solid transparent;
-            border-bottom: $dayz-event-arrow-width solid transparent;
-            border-left:   $dayz-event-arrow-width solid transparent;
-        }
-
         &.is-continued {
-            &:after {
-                @include triangle();
-                left: 100%;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+
+            &::after {
+                @include triangle(right);
             }
             @each $current-color in $dayz-event-colors {
                 $i: index($dayz-event-colors, $current-color);
                 &.color-#{$i} {
-                    &:after {
-                        border-left: $dayz-event-arrow-width solid $current-color;
+                    &::after {
+                        border-color: transparent transparent transparent $current-color;
                     }
                 }
             }
@@ -295,15 +312,16 @@ $dayz-event-text-colors: (
 
         &.is-continuation {
             margin-left: $dayz-event-arrow-width;
-            &:before {
-                @include triangle();
-                right: 100%;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            &::before {
+                @include triangle(left);
             }
             @each $current-color in $dayz-event-colors {
                 $i: index($dayz-event-colors, $current-color);
                 &.color-#{$i} {
-                    &:before {
-                        border-right: $dayz-event-arrow-width solid $current-color;
+                    &::before {
+                        border-color: transparent $current-color transparent transparent;
                     }
                 }
             }

@@ -16,11 +16,11 @@ export default class Event {
         }
     }
 
-    render(date, layout) {
+    render() {
         if (this.attributes.render) {
-            return this.attributes.render(date, layout);
+            return this.attributes.render({ event: this });
         }
-        return this.defaultRenderImplementation(date, layout);
+        return this.defaultRenderImplementation();
     }
 
     defaultRenderImplementation() {
@@ -85,19 +85,19 @@ export default class Event {
         };
     }
 
-    content() {
+    get content() {
         return this.attributes.content;
     }
 
-    start() {
+    get start() {
         return this.attributes.range.start;
     }
 
-    end() {
+    get end() {
         return this.attributes.range.end;
     }
 
-    colorIndex() {
+    get colorIndex() {
         return this.attributes.colorIndex || 0;
     }
 
