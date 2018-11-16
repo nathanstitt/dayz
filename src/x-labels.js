@@ -1,4 +1,5 @@
 import React  from 'react';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 
 export default class XLabels extends React.Component {
@@ -11,9 +12,9 @@ export default class XLabels extends React.Component {
     get days() {
         const days = [];
         if ('day' === this.props.display) {
-            days.push(this.props.date);
+            days.push(moment(this.props.date));
         } else {
-            const day = this.props.date.clone().startOf('week');
+            const day = moment(this.props.date).startOf('week');
             for (let i = 0; i < 7; i += 1) {
                 days.push(day.clone().add(i, 'day'));
             }

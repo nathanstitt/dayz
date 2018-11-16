@@ -7,14 +7,23 @@ function cacheKey(day) {
     return day.format('YYYYMMDD');
 }
 
+function highlightedDaysFinder(days) {
+    const highlighted = Object.create(null);
+    days.forEach((d) => { highlighted[cacheKey(moment(d))] = true; });
+    return day => Boolean(highlighted[cacheKey(day)]);
+}
+
 // a layout describes how the calendar is displayed.
 export default class Layout {
 
     constructor(options) {
+        options.date = moment(options.date);
         Object.assign(this, options);
         this.cache = Object.create(null);
         if (options.highlightDays) {
-            this.highlightDays = options.highlightDays.map(d => moment(d));
+            this.isDayHighlighted =
+                ('function' === typeof options.highlightDays) ?
+                    options.highlightDays : highlightedDaysFinder(options.highlightDays);
         }
         let multiDayCount = 0;
         const cacheMethod = (
@@ -46,15 +55,15 @@ export default class Layout {
         return (this.displayHours[1] - this.displayHours[0]) * 60;
     }
 
-    propsForDayContainer(props) {
+    propsForDayContainer({ day, position }) {
         const classes = ['day'];
-        if (this.isDateOutsideRange(props.day)) {
+        if (this.isDateOutsideRange(day)) {
             classes.push('outside');
         }
-        if (this.isDayHighlighted(props.day)) {
+        if (this.isDayHighlighted(day, this)) {
             classes.push('highlight');
         }
-        return { className: classes.join(' '), style: { order: props.position } };
+        return { className: classes.join(' '), style: { order: position } };
     }
 
     propsForAllDayEventContainer() {
@@ -120,14 +129,12 @@ export default class Layout {
         } while (!firstOfWeek.isAfter(this.range.end));
     }
 
-    isDayHighlighted(date) {
-        return Boolean(
-            this.highlightDays && this.highlightDays.find(d => d.isSame(date, 'day')),
-        );
-    }
+    // This is the default implementation.
+    // It will be overwritten if highlightDays option is provided
+    isDayHighlighted() { return false; }
 
     isDateOutsideRange(date) {
-        return (this.isDisplayingAsMonth && this.date.month() !== date.month());
+        return (this.isDisplayingAsMonth && !this.date.isSame(date, 'month'));
     }
 
     forDay(day) {

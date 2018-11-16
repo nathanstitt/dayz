@@ -1,36 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import moment from '../src/moment-range';
-import Layout from '../src/api/layout';
-import Event from '../src/api/event';
-import EventsCollection from '../src/api/events-collection';
-
-const testEventRange = function(startAtDate, endAtDate) {
-    const startAt = moment(startAtDate);
-    const endAt = moment(endAtDate).endOf('day');
-    const event  = new Event({ range: moment.range(moment(startAt), moment(endAt)) });
-    const events = new EventsCollection([event]);
-    const layout = new Layout({
-        events,
-        range: moment.range(event.range().start.startOf('month'),
-            event.range().end.endOf('month')),
-        display: 'month',
-        day: startAt,
-    });
-    return { events, layout, event };
-};
-
-const testEventDay = function(date, startAt, endAt) {
-    const events = new EventsCollection();
-    const event  = events.add({ range: moment.range(moment(startAt), moment(endAt)) });
-    const layout = new Layout({
-        events,
-        range: moment.range(moment(date), moment(date).endOf('day')),
-        display: 'day',
-        day: startAt,
-    });
-
-    return { events, layout, event };
-};
+import { testEventMonth, testEventRange, testEventDay } from './testing-layouts';
 
 describe('Layout calculations', () => {
     describe('day layout', () => {
@@ -129,73 +99,12 @@ describe('Layout calculations', () => {
     });
 
     describe('event stacking', () => {
-        let events;
-        let date;
         let layout;
-
         beforeEach(() => {
-            date   = moment('2015-09-11');
-            events = new EventsCollection([
-                { content: 'A short event',
-                    range: moment.range(date.clone(), moment(date).add(1, 'day')) },
-                { content: 'Two Hours ~ 8-10',
-                    range: moment.range(date.clone().hour(8), date.clone().hour(10)) },
-                { content: 'A Longer Event',
-                    range: moment.range(date.clone().subtract(2, 'days'),
-                        moment(date).add(8, 'days')) },
-                { content: 'Another Event',
-                    range: moment.range(date.clone().subtract(2, 'days'),
-                        moment(date).add(1, 'hour')) },
-            ]);
-            layout = new Layout({
-                events,
-                display: 'week',
-                range: moment.range(moment(date).startOf('week'),
-                    moment(date).endOf('week')),
-            });
-        });
-
-        it('calculates stacking', () => {
-            expect(events).toHaveLength(4);
-            expect(layout.forDay(moment('2015-09-09'))).toHaveLength(2);
-            events = layout.forDay(date);
-            expect(events).toHaveLength(2);
-            expect(events[0].event.attributes.content).toEqual('A short event');
-            expect(events[1].event.attributes.content).toEqual('Two Hours ~ 8-10');
-            expect(events[0].stack).toBe(2);
-            expect(events[1].stack).toBe(0);
+            layout = testEventMonth();
         });
 
         it('calculates stacking for a multi-day plus singles', () => {
-            layout = new Layout({
-                display: 'month',
-                range: moment.range(
-                    '2018-10-28T13:00:00.000Z',
-                    '2018-12-01T13:00:00.000Z',
-                ),
-                events: new EventsCollection([
-                    {
-                        content: '3-day',
-                        range: moment.range(
-                            '2018-11-14T13:00:00.000Z',
-                            '2018-11-16T13:00:00.000Z',
-                        ),
-                    }, {
-                        content: '1-day',
-                        range: moment.range(
-                            '2018-11-16T13:00:00.000Z',
-                            '2018-11-16T13:00:00.000Z',
-                        ),
-                    }, {
-                        content: '1-day',
-                        range: moment.range(
-                            '2018-11-16T13:00:00.000Z',
-                            '2018-11-16T13:00:00.000Z',
-                        ),
-                    },
-                ]),
-            });
-
             const forWeek = layout.getEventsForWeek(
                 moment('2018-11-11T13:00:00.000Z'),
             );
@@ -226,6 +135,33 @@ describe('Layout calculations', () => {
             expect(layout.events).toHaveLength(1);
             expect(range[0]).toEqual(7);
             expect(range[1]).toEqual(20);
+        });
+    });
+
+    describe('highlighting days', () => {
+        it('can use a list of days', () => {
+            const layout = testEventMonth({
+                date: '2018-11-01',
+                highlightDays: ['2018-11-11', '2018-11-20'],
+            });
+            expect(layout.propsForDayContainer({
+                day: moment('2018-10-10'),
+            })).toMatchObject({ className: 'day outside' });
+            expect(layout.propsForDayContainer({
+                day: moment('2018-11-11'),
+            })).toMatchObject({ className: 'day highlight' });
+        });
+        it('can use a function', () => {
+            const layout = testEventMonth({
+                date: '2018-11-01',
+                highlightDays: d => 10 === moment(d).month(),
+            });
+            expect(layout.propsForDayContainer({
+                day: moment('2018-10-10'),
+            })).toMatchObject({ className: 'day outside' });
+            expect(layout.propsForDayContainer({
+                day: moment('2018-11-12'),
+            })).toMatchObject({ className: 'day highlight' });
         });
     });
 });

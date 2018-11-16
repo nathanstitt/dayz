@@ -15,7 +15,6 @@ export default class Dayz extends React.Component {
         editComponent:     PropTypes.func,
         date:              PropTypes.object.isRequired,
         displayHours:      PropTypes.array,
-        highlightDays:     PropTypes.array,
         display:           PropTypes.oneOf(['month', 'week', 'day']),
         events:            PropTypes.instanceOf(EventsCollection),
         onDayClick:        PropTypes.func,
@@ -23,6 +22,9 @@ export default class Dayz extends React.Component {
         onEventClick:      PropTypes.func,
         onEventResize:     PropTypes.func,
         timeFormat:        PropTypes.string,
+        highlightDays:     PropTypes.oneOfType(
+            [PropTypes.array, PropTypes.func],
+        ),
     }
 
     static defaultProps = {
@@ -50,8 +52,8 @@ export default class Dayz extends React.Component {
     }
 
     calculateLayout(props) {
-        const range = moment.range(props.date.clone().startOf(props.display),
-            props.date.clone().endOf(props.display));
+        const range = moment.range(moment(props.date).startOf(props.display),
+            moment(props.date).endOf(props.display));
         if (props.events) {
             this.detachEventBindings();
             props.events.on('change', this.onEventsChange, this);

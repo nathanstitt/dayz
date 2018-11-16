@@ -59,12 +59,11 @@ class DayzTestComponent extends React.Component {
     }
 
     addEvent(ev, date) {
-        this.state.events.add(
-            { content: `Event ${COUNT++}`,
-              resizable: true,
-              range: moment.range(date.clone(),
-                                  date.clone().add(1, 'hour').add(45, 'minutes')) },
-        );
+        this.state.events.add({
+            content: `Event ${COUNT++}`,
+            resizable: true,
+            range: moment.range(date.clone(), date.clone().add(1, 'hour').add(45, 'minutes')),
+        });
     }
 
     editComponent(props) {
@@ -73,10 +72,11 @@ class DayzTestComponent extends React.Component {
         const onDelete = function() { props.event.remove(); };
         return (
             <div className="edit">
-                <input type="text" autoFocus
-                       value={props.event.content}
-                       onChange={onChange}
-                       onBlur={onBlur}
+                <input
+                    type="text" autoFocus
+                    value={props.event.content}
+                    onChange={onChange}
+                    onBlur={onBlur}
                 />
                 <button onClick={onDelete}>X</button>
             </div>
