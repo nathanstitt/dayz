@@ -73,9 +73,11 @@ export default class EventLayout {
     key() {
         return this.displayRange.start.format('YYYYMMDD') + this.event.key;
     }
+
     setIsResizing(val) {
         this.isResizing = val;
     }
+
     classNames() {
         const classes = ['event', `span-${this.span}`];
         if (this.event.colorIndex) {

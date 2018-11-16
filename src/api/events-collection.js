@@ -2,8 +2,7 @@ import Event from './event';
 
 const Emitter = require('tiny-emitter');
 
-const lc = event =>
-    event.attributes.range.start.diff(event.attributes.range.end);
+const lc = event => event.attributes.range.start.diff(event.attributes.range.end);
 
 const sortEvents = (eventA, eventB) => {
     const a = lc(eventA);

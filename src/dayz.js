@@ -67,18 +67,17 @@ export default class Dayz extends React.Component {
     }
 
     renderDays() {
-        return Array.from(this.state.range.by('days')).map((day, index) =>
-            <Day
-                key={day.format('YYYYMMDD')}
-                day={day}
-                position={index}
-                layout={this.state.layout}
-                editComponent={this.props.editComponent}
-                onClick={this.props.onDayClick}
-                onDoubleClick={this.props.onDayDoubleClick}
-                onEventClick={this.props.onEventClick}
-                onEventResize={this.props.onEventResize}
-            />);
+        return Array.from(this.state.range.by('days')).map((day, index) => <Day
+            key={day.format('YYYYMMDD')}
+            day={day}
+            position={index}
+            layout={this.state.layout}
+            editComponent={this.props.editComponent}
+            onClick={this.props.onDayClick}
+            onDoubleClick={this.props.onDayDoubleClick}
+            onEventClick={this.props.onEventClick}
+            onEventResize={this.props.onEventResize}
+        />);
     }
 
     render() {

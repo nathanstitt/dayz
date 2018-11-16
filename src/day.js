@@ -37,21 +37,22 @@ export default class Day extends React.Component {
     }
 
     onClickHandler(ev, handler) {
-        if (!handler || !IsDayClass.test(ev.target.className) ||
-            (this.lastMouseUp &&
-              (this.lastMouseUp < (new Date()).getMilliseconds() + 100)
+        if (!handler || !IsDayClass.test(ev.target.className)
+            || (this.lastMouseUp
+              && (this.lastMouseUp < (new Date()).getMilliseconds() + 100)
             )) {
             return;
         }
         this.lastMouseUp = 0;
         const bounds = this.boundingBox;
         const perc = ((ev.clientY - bounds.top) / ev.target.offsetHeight);
-        const hours = this.props.layout.displayHours[0] +
-                       ((this.props.layout.minutesInDay() * perc) / 60);
+        const hours = this.props.layout.displayHours[0]
+                       + ((this.props.layout.minutesInDay() * perc) / 60);
         handler.call(this, ev, this.props.day.clone().startOf('day').add(hours, 'hour'));
     }
 
     onClick(ev) { this.onClickHandler(ev, this.props.onClick); }
+
     onDoubleClick(ev) { this.onClickHandler(ev, this.props.onDoubleClick); }
 
     onDragStart(resize, eventLayout) {

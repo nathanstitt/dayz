@@ -26,10 +26,9 @@ export default class XLabels extends React.Component {
         const format = 'month' === this.props.display ? 'dddd' : 'ddd, MMM Do';
 
         return (
-            <div className="x-labels">{this.days.map(day =>
-                <div key={day.format('YYYYMMDD')} className="day-label">
-                    {day.format(format)}
-                </div>)}
+            <div className="x-labels">{this.days.map(day => <div key={day.format('YYYYMMDD')} className="day-label">
+                {day.format(format)}
+            </div>)}
             </div>
         );
     }

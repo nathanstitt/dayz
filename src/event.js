@@ -56,8 +56,8 @@ export default class Event extends React.Component {
             </div>
         );
         const Edit = this.props.editComponent;
-        const children = this.props.layout.isEditing() ?
-            (<Edit event={this.props.layout.event} >{body}</Edit>) : body;
+        const children = this.props.layout.isEditing()
+            ? (<Edit event={this.props.layout.event} >{body}</Edit>) : body;
         return (
             <div
                 ref="element"

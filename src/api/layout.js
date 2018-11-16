@@ -21,9 +21,8 @@ export default class Layout {
         Object.assign(this, options);
         this.cache = Object.create(null);
         if (options.highlightDays) {
-            this.isDayHighlighted =
-                ('function' === typeof options.highlightDays) ?
-                    options.highlightDays : highlightedDaysFinder(options.highlightDays);
+            this.isDayHighlighted = ('function' === typeof options.highlightDays)
+                ? options.highlightDays : highlightedDaysFinder(options.highlightDays);
         }
         let multiDayCount = 0;
         const cacheMethod = (
