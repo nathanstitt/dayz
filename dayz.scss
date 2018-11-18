@@ -1,11 +1,11 @@
-$dayz-event-arrow-width        :    10px !default;
-$dayz-event-height             :         20px !default;
-$dayz-y-label-width            :        60px !default;
-$dayz-border-color             :         #b6b6b6 !default;
-$dayz-heading-label-color      :  #555 !default;
-$dayz-highlight-color          :      #ececec !default;
-$dayz-event-border-color       :   #b6b6b6 !default;
-$dayz-event-default-color      :  #dddddd  !default;
+$dayz-event-arrow-width        : 10px !default;
+$dayz-event-height             : 20px !default;
+$dayz-y-label-width            : 60px !default;
+$dayz-border-color             : #b6b6b6 !default;
+$dayz-heading-label-color      : #555 !default;
+$dayz-highlight-color          : #ececec !default;
+$dayz-event-border-color       : #b6b6b6 !default;
+$dayz-event-default-color      : #dddddd  !default;
 $dayz-event-text-default-color : #2b2b2b  !default;
 $dayz-outside-background-color : #F2F2F2;
 $dayz-event-border-radius      : 4px !default;
@@ -233,6 +233,7 @@ $dayz-event-text-colors: (
         @while $span < 7 {
             $span: $span + 1;
             &.span-#{$span} {
+                z-index: 1;
                 width: calc(#{$span * 100%} + #{$span * 1px} - 1px);
                 &.is-continued {
                     width: calc(#{$span * 100%} + #{($span * 1px - 2px)-$dayz-event-arrow-width});
