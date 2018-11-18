@@ -37,8 +37,8 @@ describe('Event Layout calculations', () => {
 
         it('can adjust time', () => {
             const hour = layout.event.start.hour();
-            layout.adjustEventTime('start', 10, 100);
-            expect(layout.event.start.hour()).toEqual(hour + 1);
+            layout.adjustEventTime('start', hour + 1, 100);
+            expect(layout.event.start.hour()).toBeGreaterThan(hour);
         });
     });
 });
