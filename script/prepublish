@@ -6,3 +6,4 @@ export NODE_ENV=production
 
 $(npm bin)/node-sass ./dayz.scss > dist/dayz.css
 $(npm bin)/webpack
+$(npm bin)/rollup -c
