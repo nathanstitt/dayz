@@ -12,14 +12,17 @@ export default class Day extends React.Component {
     static propTypes = {
         day:            PropTypes.object.isRequired,
         layout:         PropTypes.instanceOf(Layout).isRequired,
+        handlers:       PropTypes.object,
         position:       PropTypes.number.isRequired,
         highlight:      PropTypes.func,
-        onClick:        PropTypes.func,
-        onDoubleClick:  PropTypes.func,
         onEventClick:   PropTypes.func,
         onEventResize:  PropTypes.func,
         editComponent:  PropTypes.func,
         onEventDoubleClick: PropTypes.func,
+    }
+
+    static defaultProps = {
+        handlers: {},
     }
 
     constructor() {
@@ -47,13 +50,17 @@ export default class Day extends React.Component {
         const bounds = this.boundingBox;
         const perc = ((ev.clientY - bounds.top) / ev.target.offsetHeight);
         const hours = this.props.layout.displayHours[0]
-                       + ((this.props.layout.minutesInDay() * perc) / 60);
+            + ((this.props.layout.minutesInDay() * perc) / 60);
         handler.call(this, ev, this.props.day.clone().startOf('day').add(hours, 'hour'));
     }
 
-    onClick(ev) { this.onClickHandler(ev, this.props.onClick); }
+    onClick(ev) {
+        this.onClickHandler(ev, this.props.handlers.onClick);
+    }
 
-    onDoubleClick(ev) { this.onClickHandler(ev, this.props.onDoubleClick); }
+    onDoubleClick(ev) {
+        this.onClickHandler(ev, this.props.handlers.onDoubleClick);
+    }
 
     onDragStart(resize, eventLayout) {
         eventLayout.setIsResizing(true);

@@ -10,15 +10,15 @@ describe('Dayz', () => {
     });
 
     it('matches snapshot for month', () => {
-        expect(
-            renderer.create(<Dayz display='month' date={date} />).toJSON(),
-        ).toMatchSnapshot();
+        const dayz = renderer.create(<Dayz display='month' date={date} />);
+        expect(dayz.toJSON()).toMatchSnapshot();
+        dayz.unmount();
     });
 
     it('matches snapshot for week', () => {
-        expect(
-            renderer.create(<Dayz display='week' date={date} />).toJSON(),
-        ).toMatchSnapshot();
+        const dayz = renderer.create(<Dayz display='week' date={date} />);
+        expect(dayz.toJSON()).toMatchSnapshot();
+        dayz.unmount();
     });
 
     it('matches snapshot for day', () => {
@@ -28,14 +28,25 @@ describe('Dayz', () => {
     });
 
     it('renders highlights', () => {
-        expect(
-            renderer.create(
-                <Dayz
-                    display='month'
-                    date={date}
-                    highlightDays={ ['2015-09-04', '2015-09-05'] }
-                />,
-            ).toJSON(),
-        ).toMatchSnapshot();
+        const dayz = renderer.create(
+            <Dayz
+                display='month' date={date}
+                highlightDays={ ['2015-09-04', '2015-09-05'] }
+            />,
+        );
+        expect(dayz.toJSON()).toMatchSnapshot();
+        dayz.unmount();
+    });
+
+    it('sets events on day elements', () => {
+        const handlers = { onClick: jest.fn(), onMouseOver: jest.fn() };
+        const dayz = mount(
+            <Dayz display='month' date={date} dayEventHandlers={handlers} />,
+        );
+        dayz.find('.day').at(0).simulate('click');
+        expect(handlers.onClick).toHaveBeenCalled();
+        dayz.find('.day').last().simulate('mouseOver');
+        expect(handlers.onMouseOver).toHaveBeenCalled();
+        dayz.unmount();
     });
 });

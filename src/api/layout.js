@@ -10,7 +10,7 @@ function cacheKey(day) {
 function highlightedDaysFinder(days) {
     const highlighted = Object.create(null);
     days.forEach((d) => { highlighted[cacheKey(moment(d))] = true; });
-    return day => Boolean(highlighted[cacheKey(day)]);
+    return day => (highlighted[cacheKey(day)] ? 'highlight' : false);
 }
 
 // a layout describes how the calendar is displayed.
@@ -33,7 +33,6 @@ export default class Layout {
 
         this.events.forEach((event) => {
             // we only care about events that are in the range we were provided
-
             if (range.overlaps(event.range())) {
                 this[cacheMethod](event);
                 if (!event.isSingleDay()) {
@@ -59,10 +58,15 @@ export default class Layout {
         if (this.isDateOutsideRange(day)) {
             classes.push('outside');
         }
-        if (this.isDayHighlighted(day, this)) {
-            classes.push('highlight');
+        const higlight = this.isDayHighlighted(day, this);
+        if (higlight) {
+            classes.push(higlight);
         }
-        return { className: classes.join(' '), style: { order: position } };
+        return {
+            className: classes.join(' '),
+            style: { order: position },
+            ...this.dayEventHandlers,
+        };
     }
 
     propsForAllDayEventContainer() {

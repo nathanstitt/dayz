@@ -17,11 +17,12 @@ export default class Dayz extends React.Component {
         displayHours:      PropTypes.array,
         display:           PropTypes.oneOf(['month', 'week', 'day']),
         events:            PropTypes.instanceOf(EventsCollection),
-        onDayClick:        PropTypes.func,
-        onDayDoubleClick:  PropTypes.func,
+        // onDayClick:        PropTypes.func,
+        // onDayDoubleClick:  PropTypes.func,
         onEventClick:      PropTypes.func,
         onEventResize:     PropTypes.func,
         timeFormat:        PropTypes.string,
+        dayEvents:         PropTypes.object,
         highlightDays:     PropTypes.oneOfType(
             [PropTypes.array, PropTypes.func],
         ),
@@ -31,8 +32,9 @@ export default class Dayz extends React.Component {
         display: 'month',
     }
 
-    componentWillMount() {
-        this.calculateLayout(this.props);
+    constructor(props) {
+        super();
+        this.state = this.calculateLayout(props);
     }
 
     componentWillUnmount() {
@@ -44,11 +46,11 @@ export default class Dayz extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.calculateLayout(nextProps);
+        this.setState(this.calculateLayout(nextProps));
     }
 
     onEventsChange() {
-        this.calculateLayout(this.props);
+        this.setState(this.calculateLayout(this.props));
     }
 
     calculateLayout(props) {
@@ -62,22 +64,32 @@ export default class Dayz extends React.Component {
             range.start.subtract(range.start.weekday(), 'days');
             range.end.add(6 - range.end.weekday(), 'days');
         }
-        const layout = new Layout({ ...props, range });
-        this.setState({ range, layout });
+        const newState = {
+            range,
+            layout: new Layout({ ...props, range }),
+        };
+
+        return newState;
+    }
+
+    get days() {
+        return Array.from(this.state.range.by('days'));
     }
 
     renderDays() {
-        return Array.from(this.state.range.by('days')).map((day, index) => <Day
-            key={day.format('YYYYMMDD')}
-            day={day}
-            position={index}
-            layout={this.state.layout}
-            editComponent={this.props.editComponent}
-            onClick={this.props.onDayClick}
-            onDoubleClick={this.props.onDayDoubleClick}
-            onEventClick={this.props.onEventClick}
-            onEventResize={this.props.onEventResize}
-        />);
+        return this.days.map((day, index) => (
+            <Day
+                key={day.format('YYYYMMDD')}
+                day={day}
+                position={index}
+                layout={this.state.layout}
+                editComponent={this.props.editComponent}
+                handlers={this.props.dayEventHandlers}
+                eventHandlers={this.props.eventHandlers}
+                onEventClick={this.props.onEventClick}
+                onEventResize={this.props.onEventResize}
+            />
+        ));
     }
 
     render() {
