@@ -154,7 +154,9 @@ describe('Layout calculations', () => {
         it('can use a function', () => {
             const layout = testEventMonth({
                 date: '2018-11-01',
-                highlightDays: d => 10 === moment(d).month() ? 'tenth' : false,
+                highlightDays: d => (
+                    10 === moment(d).month() ? 'tenth' : false
+                ),
             });
             expect(layout.propsForDayContainer({
                 day: moment('2018-10-10'),
