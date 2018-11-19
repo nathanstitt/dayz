@@ -5,16 +5,18 @@ import Event from '../src/api/event';
 
 export
 const testEventRange = (startAtDate, endAtDate) => {
-    const startAt = moment(startAtDate);
-    const endAt = moment(endAtDate).endOf('day');
-    const event  = new Event({ range: moment.range(moment(startAt), moment(endAt)) });
+    const event  = new Event({
+        range: moment.range(moment(startAtDate), endAtDate),
+    });
     const events = new EventsCollection([event]);
     const layout = new Layout({
         events,
-        range: moment.range(event.range().start.startOf('month'),
-            event.range().end.endOf('month')),
+        range: moment.range(
+            moment(startAtDate).startOf('month'),
+            moment(endAtDate).endOf('month'),
+        ),
         display: 'month',
-        day: startAt,
+        day: moment(startAtDate),
     });
     return { events, layout, event };
 };

@@ -4,7 +4,7 @@ import moment from '../src/moment-range';
 import Event from '../src/api/event';
 import Layout from '../src/api/layout';
 import EventComp from '../src/event';
-import EventLayout from '../src/api/event-layout';
+import Duration from '../src/api/duration';
 import EventsCollection from '../src/api/events-collection';
 
 describe('Dayz', () => {
@@ -26,10 +26,10 @@ describe('Dayz', () => {
             day: date,
             range: moment.range(moment(date), moment(date).endOf('day')),
         });
-        const eventLayout = new EventLayout(layout,
+        const duration = new Duration(layout,
             eventModel,
             moment.range(date, date.clone().add(1, 'day')));
-        const event  = mount(<EventComp layout={eventLayout} />);
+        const event  = mount(<EventComp duration={duration} />);
         const style = event.find('.event').prop('style');
         const classList = event.find('.event').prop('className');
         expect(style.top).toEqual('7.69%');
@@ -50,10 +50,10 @@ describe('Dayz', () => {
             day: date,
             range: moment.range(moment(date), moment(date).endOf('day')),
         });
-        const eventLayout = new EventLayout(layout,
+        const duration = new Duration(layout,
             eventModel,
             moment.range(date, date.clone().add(1, 'day')));
-        const event = mount(<EventComp layout={eventLayout} />);
+        const event = mount(<EventComp duration={duration} />);
         expect(eventModel.isSingleDay()).toBe(false);
         const style = event.find('.event').prop('style');
         const classList = event.find('.event').prop('className');

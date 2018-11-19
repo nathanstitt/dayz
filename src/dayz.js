@@ -12,17 +12,15 @@ export default class Dayz extends React.Component {
     static EventsCollection = EventsCollection;
 
     static propTypes = {
-        editComponent:     PropTypes.func,
         date:              PropTypes.object.isRequired,
-        displayHours:      PropTypes.array,
-        display:           PropTypes.oneOf(['month', 'week', 'day']),
         events:            PropTypes.instanceOf(EventsCollection),
-        // onDayClick:        PropTypes.func,
-        // onDayDoubleClick:  PropTypes.func,
-        onEventClick:      PropTypes.func,
-        onEventResize:     PropTypes.func,
+        display:           PropTypes.oneOf(['month', 'week', 'day']),
         timeFormat:        PropTypes.string,
-        dayEvents:         PropTypes.object,
+        displayHours:      PropTypes.array,
+        onEventClick:      PropTypes.func,
+        editComponent:     PropTypes.func,
+        onEventResize:     PropTypes.func,
+        dayEventHandlers:  PropTypes.object,
         highlightDays:     PropTypes.oneOfType(
             [PropTypes.array, PropTypes.func],
         ),
@@ -33,10 +31,17 @@ export default class Dayz extends React.Component {
     }
 
     constructor(props) {
-        super();
-        this.state = this.calculateLayout(props);
+        super(props);
+        this.layoutFromProps();
     }
 
+    componentDidUpdate(prevProps) {
+        // don't calculate layout if update is due to state change
+        if (prevProps !== this.props) {
+            this.layoutFromProps();
+            this.forceUpdate();
+        }
+    }
     componentWillUnmount() {
         this.detachEventBindings();
     }
@@ -45,35 +50,21 @@ export default class Dayz extends React.Component {
         if (this.props.events) { this.props.events.off('change', this.onEventAdd); }
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState(this.calculateLayout(nextProps));
-    }
-
     onEventsChange() {
-        this.setState(this.calculateLayout(this.props));
+        this.forceUpdate();
     }
 
-    calculateLayout(props) {
-        const range = moment.range(moment(props.date).startOf(props.display),
-            moment(props.date).endOf(props.display));
+    layoutFromProps() {
+        const { props } = this;
         if (props.events) {
             this.detachEventBindings();
             props.events.on('change', this.onEventsChange, this);
         }
-        if ('month' === props.display) {
-            range.start.subtract(range.start.weekday(), 'days');
-            range.end.add(6 - range.end.weekday(), 'days');
-        }
-        const newState = {
-            range,
-            layout: new Layout({ ...props, range }),
-        };
-
-        return newState;
+        this.layout = new Layout(Object.assign({}, props));
     }
 
     get days() {
-        return Array.from(this.state.range.by('days'));
+        return Array.from(this.layout.range.by('days'));
     }
 
     renderDays() {
@@ -82,7 +73,7 @@ export default class Dayz extends React.Component {
                 key={day.format('YYYYMMDD')}
                 day={day}
                 position={index}
-                layout={this.state.layout}
+                layout={this.layout}
                 editComponent={this.props.editComponent}
                 handlers={this.props.dayEventHandlers}
                 eventHandlers={this.props.eventHandlers}
@@ -99,7 +90,7 @@ export default class Dayz extends React.Component {
                 <XLabels date={this.props.date} display={this.props.display} />
                 <div className="body">
                     <YLabels
-                        layout={this.state.layout}
+                        layout={this.layout}
                         display={this.props.display}
                         date={this.props.date}
                         timeFormat={this.props.timeFormat}

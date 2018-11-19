@@ -1,12 +1,12 @@
 import moment from '../src/moment-range';
-import EventLayout from '../src/api/event-layout';
+import Duration from '../src/api/duration';
 import Layout from '../src/api/layout';
 import Event from '../src/api/event';
 
 describe('Event Layout calculations', () => {
     describe('day layout', () => {
         let event;
-        let layout;
+        let duration;
 
         beforeEach(() => {
             event = new Event({
@@ -18,7 +18,7 @@ describe('Event Layout calculations', () => {
                 ),
             });
 
-            layout = new EventLayout(
+            duration = new Duration(
                 new Layout({
                     display: 'week',
                     range: moment.range(
@@ -36,9 +36,9 @@ describe('Event Layout calculations', () => {
         });
 
         it('can adjust time', () => {
-            const hour = layout.event.start.hour();
-            layout.adjustEventTime('start', hour + 1, 100);
-            expect(layout.event.start.hour()).toBeGreaterThan(hour);
+            const hour = duration.event.start.hour();
+            duration.adjustEventTime('start', hour + 1, 100);
+            expect(duration.event.start.hour()).toBeGreaterThan(hour);
         });
     });
 });

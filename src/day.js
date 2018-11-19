@@ -93,11 +93,11 @@ export default class Day extends React.Component {
         const singleDayEvents = [];
         const allDayEvents    = [];
         const onMouseMove = asMonth ? null : this.onMouseMove;
-        this.props.layout.forDay(this.props.day).forEach((layout) => {
+        this.props.layout.forDay(this.props.day).forEach((duration) => {
             const event = (
                 <Event
-                    layout={layout}
-                    key={layout.key()}
+                    duration={duration}
+                    key={duration.key()}
                     day={this.props.day}
                     parent={this}
                     onDragStart={this.onDragStart}
@@ -106,7 +106,7 @@ export default class Day extends React.Component {
                     onDoubleClick={this.props.onEventDoubleClick}
                 />
             );
-            (layout.event.isSingleDay() ? singleDayEvents : allDayEvents).push(event);
+            (duration.event.isSingleDay() ? singleDayEvents : allDayEvents).push(event);
         });
         const events = [];
         if (allDayEvents.length || !asMonth) {

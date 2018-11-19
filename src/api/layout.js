@@ -1,4 +1,4 @@
-import EventLayout from './event-layout';
+import Duration from './duration';
 import C from './constants';
 import moment from '../moment-range';
 import EventsCollection from './events-collection';
@@ -17,20 +17,26 @@ function highlightedDaysFinder(days) {
 export default class Layout {
 
     constructor(options) {
+        this.cache = Object.create(null);
         options.date = moment(options.date);
         Object.assign(this, options);
-        this.cache = Object.create(null);
+        const cacheMethod = (
+            ('day' === this.display) ? 'addtoDaysCache' : 'calculateDurations'
+        );
+        this.calculateRange();
+        if (!this.isDisplayingAsMonth && !this.displayHours) {
+            this.displayHours = this.hourRange();
+        } else {
+            this.displayHours = this.displayHours || [0, 24];
+        }
         if (options.highlightDays) {
             this.isDayHighlighted = ('function' === typeof options.highlightDays)
                 ? options.highlightDays : highlightedDaysFinder(options.highlightDays);
         }
         let multiDayCount = 0;
-        const cacheMethod = (
-            ('day' === this.display) ? 'addtoDaysCache' : 'calculateSpanningLayout'
-        );
+
         if (!this.events) { this.events = new EventsCollection(); }
         const { range } = this;
-
         this.events.forEach((event) => {
             // we only care about events that are in the range we were provided
             if (range.overlaps(event.range())) {
@@ -42,10 +48,24 @@ export default class Layout {
         });
         this.multiDayCount = multiDayCount;
         this.calculateStacking();
-        if (!this.isDisplayingAsMonth && !this.displayHours) {
-            this.displayHours = this.hourRange();
-        } else {
-            this.displayHours = this.displayHours || [0, 24];
+    }
+
+    calculateRange() {
+        if (this.range) {
+            return;
+        }
+        this.range = moment.range(
+            moment(this.date).startOf(this.display),
+            moment(this.date).endOf(this.display),
+        );
+
+        if (this.isDisplayingAsMonth) {
+            this.range.start.subtract(
+                this.range.start.weekday(), 'days',
+            );
+            this.range.end.add(
+                6 - this.range.end.weekday(), 'days',
+            );
         }
     }
 
@@ -62,10 +82,15 @@ export default class Layout {
         if (higlight) {
             classes.push(higlight);
         }
+        const handlers = {};
+        Object.keys(this.dayEventHandlers).forEach((k) => {
+            handlers[k] = ev => this.dayEventHandlers[k](day, ev);
+        });
         return {
             className: classes.join(' '),
+            'data-date': cacheKey(day),
             style: { order: position },
-            ...this.dayEventHandlers,
+            ...handlers,
         };
     }
 
@@ -79,9 +104,9 @@ export default class Layout {
     hourRange() {
         const range = [7, 19];
         Array.from(this.range.by('days')).forEach((day) => {
-            this.forDay(day).forEach((layout) => {
-                range[0] = Math.min(layout.event.start.hour(), range[0]);
-                range[1] = Math.max(layout.event.end.hour(), range[1]);
+            this.forDay(day).forEach((duration) => {
+                range[0] = Math.min(duration.event.start.hour(), range[0]);
+                range[1] = Math.max(duration.event.end.hour(), range[1]);
             });
         });
         range[1] += 1;
@@ -92,9 +117,9 @@ export default class Layout {
         const day = start.clone();
         const weeklyEvents = [];
         for (let i = 0; i < 7; i++) {
-            const layouts = this.forDay(day);
-            for (let li = 0, { length } = layouts; li < length; li += 1) {
-                weeklyEvents.push(layouts[li]);
+            const durations = this.forDay(day);
+            for (let li = 0, { length } = durations; li < length; li += 1) {
+                weeklyEvents.push(durations[li]);
             }
             day.add(1, 'day');
         }
@@ -110,21 +135,23 @@ export default class Layout {
         const firstOfWeek = this.range.start.clone().startOf('week');
         do {
             const weeklyEvents = this.getEventsForWeek(firstOfWeek);
-            for (let layoutIndex = 0; layoutIndex < weeklyEvents.length; layoutIndex++) {
-                const layout = weeklyEvents[layoutIndex];
-                // loop through each layout that is before this one
+            for (let durationIndex = 0; durationIndex < weeklyEvents.length; durationIndex++) {
+                const duration = weeklyEvents[durationIndex];
+                // loop through each duration that is before this one
                 let ceilingIndex = 0;
-                for (let pi = layoutIndex - 1; pi >= 0; pi--) {
-                    const prevLayout = weeklyEvents[pi];
-                    if (prevLayout.range.start.isSame(layout.range.start, 'd')) {
+                for (let pi = durationIndex - 1; pi >= 0; pi--) {
+                    const prevDuration = weeklyEvents[pi];
+                    if (prevDuration.range.start.isSame(duration.range.start, 'd')) {
                         ceilingIndex = pi + 1;
                         break;
                     }
                 }
-                for (let pi = ceilingIndex; pi < layoutIndex; pi++) {
-                    const prevLayout = weeklyEvents[pi];
-                    if (layout.range.overlaps(prevLayout.range)) {
-                        layout.stack += 1;
+
+                for (let pi = ceilingIndex; pi < durationIndex; pi++) {
+                    const prevDuration = weeklyEvents[pi];
+
+                    if (duration.range.overlaps(prevDuration.range)) {
+                        duration.stack += 1;
                     }
                 }
             }
@@ -146,36 +173,36 @@ export default class Layout {
 
     // a single day is easy, just add the event to that day
     addtoDaysCache(event) {
-        const layout = new EventLayout(this, event, this.range);
-        this.addToCache(this.range.start, layout);
+        const duration = new Duration(this, event, this.range);
+        this.addToCache(this.range.start, duration);
     }
 
-    // other layouts must break at week boundaries, with indicators if they were/are continuing
-    calculateSpanningLayout(event) {
+    // other durations must break at week boundaries, with indicators if they were/are continuing
+    calculateDurations(event) {
         const end = moment.min(this.range.end, event.range().end);
         const start = moment.max(this.range.start, event.range().start).clone();
         do {
             const range = moment.range(start, start.clone().endOf('week'));
-            const layout = new EventLayout(this, event, range);
-            this.addToCache(start, layout);
+            const duration = new Duration(this, event, range);
+            this.addToCache(start, duration);
             // go to first day of next week
             start.add(7 - start.day(), 'day');
         } while (!start.isAfter(end));
     }
 
-    addToCache(date, eventLayout) {
+    addToCache(date, duration) {
         let found = false;
         for (const key in this.cache) { // eslint-disable-line no-restricted-syntax
-            if (this.cache[key].event === eventLayout.event) {
+            if (this.cache[key].event === duration.event) {
                 found = true;
                 break;
             }
         }
         if (!found) {
-            eventLayout.first = true; // eslint-disable-line no-param-reassign
+            duration.first = true; // eslint-disable-line no-param-reassign
         }
         const dayCache = this.cache[cacheKey(date)] || (this.cache[cacheKey(date)] = []);
-        dayCache.push(eventLayout);
+        dayCache.push(duration);
     }
 
     displayingAs() {

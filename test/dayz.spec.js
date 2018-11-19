@@ -49,4 +49,20 @@ describe('Dayz', () => {
         expect(handlers.onMouseOver).toHaveBeenCalled();
         dayz.unmount();
     });
+
+    it('limits days to min/max displayed', () => {
+        const day = moment('2018-11-14');
+        const events = new Dayz.EventsCollection([{
+            content: 'allmost all day',
+            range: moment.range(
+                day.clone().hours(1), day.clone().hours(23),
+            ),
+        }]);
+        const dayz = mount(
+            <Dayz displayHours={[6, 22]} display='week' date={day} events={events} />,
+        );
+        const { style } = dayz.find('[data-date="20181114"] .event').props();
+        expect(style.top).toEqual('0.00%');
+        expect(style.bottom).toEqual('0.00%');
+    });
 });

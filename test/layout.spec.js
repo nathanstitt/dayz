@@ -46,22 +46,16 @@ describe('Layout calculations', () => {
         });
 
         it('can start before but end on a week', () => {
-            const { layout, event } = testEventRange('2015-10-10', '2015-10-17');
-            expect(layout.forDay(moment('2015-10-10'))).toEqual([expect.objectContaining({
+            const { layout, event } = testEventRange('2015-10-10', '2015-10-11');
+            const forDay = layout.forDay(moment('2015-10-10'))[0];
+            expect(forDay).toMatchObject({
+                first: true,
                 startsBefore: false,
                 endsAfter: true,
                 span: 1,
-                event,
                 stack: 0,
-            })]);
-
-            expect(layout.forDay(moment('2015-10-11'))).toEqual([expect.objectContaining({
-                startsBefore: true,
-                endsAfter: false,
-                span: 7,
                 event,
-                stack: 0,
-            })]);
+            });
         });
 
         it('can start on a week, but end past it', () => {

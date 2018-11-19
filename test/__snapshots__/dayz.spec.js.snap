@@ -102,6 +102,7 @@ exports[`Dayz matches snapshot for day 1`] = `
     >
       <div
         className="day"
+        data-date="20150912"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -180,6 +181,7 @@ exports[`Dayz matches snapshot for month 1`] = `
     >
       <div
         className="day outside"
+        data-date="20150830"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -196,6 +198,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day outside"
+        data-date="20150831"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -212,6 +215,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150901"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -228,6 +232,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150902"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -244,6 +249,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150903"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -260,6 +266,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150904"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -276,6 +283,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150905"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -292,6 +300,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150906"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -308,6 +317,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150907"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -324,6 +334,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150908"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -340,6 +351,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150909"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -356,6 +368,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150910"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -372,6 +385,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150911"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -388,6 +402,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150912"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -404,6 +419,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150913"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -420,6 +436,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150914"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -436,6 +453,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150915"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -452,6 +470,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150916"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -468,6 +487,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150917"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -484,6 +504,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150918"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -500,6 +521,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150919"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -516,6 +538,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150920"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -532,6 +555,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150921"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -548,6 +572,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150922"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -564,6 +589,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150923"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -580,6 +606,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150924"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -596,6 +623,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150925"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -612,6 +640,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150926"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -628,6 +657,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150927"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -644,6 +674,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150928"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -660,6 +691,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150929"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -676,6 +708,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150930"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -692,6 +725,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day outside"
+        data-date="20151001"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -708,6 +742,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day outside"
+        data-date="20151002"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -724,6 +759,7 @@ exports[`Dayz matches snapshot for month 1`] = `
       </div>
       <div
         className="day outside"
+        data-date="20151003"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -875,6 +911,7 @@ exports[`Dayz matches snapshot for week 1`] = `
     >
       <div
         className="day"
+        data-date="20150906"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -899,6 +936,7 @@ exports[`Dayz matches snapshot for week 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150907"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -923,6 +961,7 @@ exports[`Dayz matches snapshot for week 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150908"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -947,6 +986,7 @@ exports[`Dayz matches snapshot for week 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150909"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -971,6 +1011,7 @@ exports[`Dayz matches snapshot for week 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150910"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -995,6 +1036,7 @@ exports[`Dayz matches snapshot for week 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150911"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1019,6 +1061,7 @@ exports[`Dayz matches snapshot for week 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150912"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1097,6 +1140,7 @@ exports[`Dayz renders highlights 1`] = `
     >
       <div
         className="day outside"
+        data-date="20150830"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1113,6 +1157,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day outside"
+        data-date="20150831"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1129,6 +1174,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150901"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1145,6 +1191,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150902"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1161,6 +1208,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150903"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1177,6 +1225,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day highlight"
+        data-date="20150904"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1193,6 +1242,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day highlight"
+        data-date="20150905"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1209,6 +1259,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150906"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1225,6 +1276,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150907"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1241,6 +1293,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150908"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1257,6 +1310,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150909"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1273,6 +1327,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150910"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1289,6 +1344,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150911"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1305,6 +1361,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150912"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1321,6 +1378,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150913"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1337,6 +1395,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150914"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1353,6 +1412,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150915"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1369,6 +1429,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150916"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1385,6 +1446,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150917"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1401,6 +1463,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150918"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1417,6 +1480,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150919"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1433,6 +1497,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150920"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1449,6 +1514,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150921"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1465,6 +1531,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150922"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1481,6 +1548,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150923"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1497,6 +1565,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150924"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1513,6 +1582,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150925"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1529,6 +1599,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150926"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1545,6 +1616,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150927"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1561,6 +1633,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150928"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1577,6 +1650,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150929"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1593,6 +1667,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day"
+        data-date="20150930"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1609,6 +1684,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day outside"
+        data-date="20151001"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1625,6 +1701,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day outside"
+        data-date="20151002"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
@@ -1641,6 +1718,7 @@ exports[`Dayz renders highlights 1`] = `
       </div>
       <div
         className="day outside"
+        data-date="20151003"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={

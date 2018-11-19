@@ -67,7 +67,7 @@ The Dayz component accepts these properties:
  * **events** (optional):  An `Dayz.EventsCollection` instance that contains events that should be displayed on the calendar.
  * **highlightDays**:  either a function or an array of days that should be highlighted.  Each day can be a string date that momentjs accepts, a JS Date object, or a momentjs date.  if using a function, it will be passed the day and should return either false, or a string to use for the className.
  * **dayEventHandlers** event handlers to attach on the Day element, such as onClick, onMouseOver, etc.
-   * **onClick** and **onDoubleClick** will be passed two variables, the event and a `momentjs` date.  Hours/Minutes are added to the date to reflect how far down the Y axis was clicked.
+   * if **onClick** or **onDoubleClick** is given to dayEventHandlers, the call back will be passed two variables, the event and a `momentjs` date.  Hours/Minutes are added to the date to reflect how far down the Y axis was clicked.
  * **display** (optional, defaults to 'month'):  One of month, week, or day.
 
  * **onEventClick**, **onEventDoubleClick** (optional): A function that will be called whenever an event is clicked, it's passed two variables, the event and the layout information for the event.  The layout has an `event` subkey that includes the event itself.

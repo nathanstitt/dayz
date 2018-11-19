@@ -1,14 +1,14 @@
 import React       from 'react';
 import ReactDOM    from 'react-dom';
 import PropTypes   from 'prop-types';
-import EventLayout from './api/event-layout';
+import Duration from './api/duration';
 
 const IsResizeClass = new RegExp('(\\s|^)event(\\s|$)');
 
 export default class Event extends React.Component {
 
     static propTypes = {
-        layout:        PropTypes.instanceOf(EventLayout),
+        duration:        PropTypes.instanceOf(Duration),
         editComponent: PropTypes.func,
         onClick:       PropTypes.func,
         onDoubleClick: PropTypes.func,
@@ -25,13 +25,13 @@ export default class Event extends React.Component {
 
     onClick(ev) {
         if (!this.props.onClick) { return; }
-        this.props.onClick(ev, this.props.layout.event);
+        this.props.onClick(ev, this.props.duration.event);
         ev.stopPropagation();
     }
 
     onDoubleClick(ev) {
         if (!this.props.onDoubleClick) { return; }
-        this.props.onDoubleClick(ev, this.props.layout.event);
+        this.props.onDoubleClick(ev, this.props.duration.event);
         ev.stopPropagation();
     }
 
@@ -46,24 +46,24 @@ export default class Event extends React.Component {
         } else {
             return;
         }
-        this.props.onDragStart(resize, this.props.layout);
+        this.props.onDragStart(resize, this.props.duration);
     }
 
     render() {
         const body = (
             <div className="evbody" onClick={this.onClick}>
-                {this.props.layout.event.render()}
+                {this.props.duration.event.render()}
             </div>
         );
         const Edit = this.props.editComponent;
-        const children = this.props.layout.isEditing()
-            ? (<Edit event={this.props.layout.event} >{body}</Edit>) : body;
+        const children = this.props.duration.isEditing()
+            ? (<Edit event={this.props.duration.event} >{body}</Edit>) : body;
         return (
             <div
                 ref="element"
                 onMouseDown={this.onDragStart}
-                style={this.props.layout.inlineStyles()}
-                className={this.props.layout.classNames()}
+                style={this.props.duration.inlineStyles()}
+                className={this.props.duration.classNames()}
             >
                 {children}
             </div>
