@@ -1,6 +1,5 @@
 import React     from 'react';
 import PropTypes from 'prop-types';
-import moment    from './moment-range';
 import Layout    from './api/layout';
 import Day       from './day';
 import XLabels   from './x-labels';
@@ -42,6 +41,7 @@ export default class Dayz extends React.Component {
             this.forceUpdate();
         }
     }
+
     componentWillUnmount() {
         this.detachEventBindings();
     }
@@ -56,7 +56,7 @@ export default class Dayz extends React.Component {
 
     layoutFromProps() {
         const { props } = this;
-        if (props.events) {
+        if (this.props && props.events) {
             this.detachEventBindings();
             props.events.on('change', this.onEventsChange, this);
         }

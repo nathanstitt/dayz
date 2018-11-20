@@ -83,7 +83,7 @@ export default class Layout {
             classes.push(higlight);
         }
         const handlers = {};
-        Object.keys(this.dayEventHandlers).forEach((k) => {
+        Object.keys(this.dayEventHandlers || {}).forEach((k) => {
             handlers[k] = ev => this.dayEventHandlers[k](day, ev);
         });
         return {
