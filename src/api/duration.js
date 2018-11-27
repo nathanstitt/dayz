@@ -35,7 +35,7 @@ export default class EventDuration {
     }
 
     startsOnWeek() {
-        return 0 === this.event.start.day();
+        return 0 === this.event.start.weekday();
     }
 
     adjustEventTime(startOrEnd, position, height) {
