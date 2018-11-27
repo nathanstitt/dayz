@@ -186,7 +186,7 @@ export default class Layout {
             const duration = new Duration(this, event, range);
             this.addToCache(start, duration);
             // go to first day of next week
-            start.add(7 - start.day(), 'day');
+            start.add(7 - start.weekday(), 'day');
         } while (!start.isAfter(end));
     }
 
