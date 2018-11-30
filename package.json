@@ -1,6 +1,6 @@
 {
   "name": "dayz",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A Day/Week/Month display React component",
   "main": "dist/dayz.js",
   "module": "dist/dayz.esm.js",
