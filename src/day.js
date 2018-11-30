@@ -48,7 +48,10 @@ export default class Day extends React.Component {
         }
         this.lastMouseUp = 0;
         const bounds = this.boundingBox;
-        const perc = ((ev.clientY - bounds.top) / ev.target.offsetHeight);
+        const perc = Math.max(
+            0.0,
+            ((ev.clientY - bounds.top) / ev.target.offsetHeight),
+        );
         const hours = this.props.layout.displayHours[0]
             + ((this.props.layout.minutesInDay() * perc) / 60);
         handler.call(this, ev, this.props.day.clone().startOf('day').add(hours, 'hour'));
