@@ -9,6 +9,7 @@ $dayz-event-default-color      : #dddddd  !default;
 $dayz-event-text-default-color : #2b2b2b  !default;
 $dayz-outside-background-color : #F2F2F2;
 $dayz-event-border-radius      : 4px !default;
+$dayz-min-column-width         : 4rem;
 
 $dayz-event-colors: (
     #4D4D4D, // (gray)
@@ -189,13 +190,14 @@ $dayz-event-text-colors: (
 
     &.month {
         .days {
-            flex-flow: wrap;
+            display: grid;
+            grid-auto-rows: 1fr;
+            grid-template-columns: repeat( 7, minmax($dayz-min-column-width, 1fr) );
             .day {
                 .label {
                     text-align: right;
                     padding: 5px;
                 }
-                width: $day-width;
                 .event {
                     height: $dayz-event-height;
                     &.span-1 .evbody > div {
