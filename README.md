@@ -6,7 +6,7 @@
 * Only includes the minimal amount of features needed.
     * For instance there's no paging controls provided, since they can easily be implemented outside the component.  This allows Dayz to be used both as a traditional next/previous month calendar or as part of a scrolling infinite view.
 * Modern styling and layout
-    * Uses flexbox layout (no tables)
+    * Uses css grid and flexbox layout (no tables)
     * All heights/widths are specified as percentages so the component will size to fit whatever container it's rendered into.
     * Styles are written in [scss](dayz.scss) with variables that can be modified for customized builds.
 * Care is taken to retain elements when switching view types, this allows minimal DOM reflow and allows nice animation effects where events warp into position.
@@ -17,6 +17,7 @@
 
 An interactive demo can be viewed at: http://nathanstitt.github.io/dayz/
 
+The demo source for the demo is [demo.jsx](demo.jsx)
 
 ## Usage
 
@@ -46,7 +47,7 @@ const EVENTS = new Dayz.EventsCollection([
                            date.clone().add(8,'days') ) }
 ]);
 
-class MyComponent extends React.PureComponent {
+class MyComponent extends React.Component {
 
     render() {
         return <Dayz
