@@ -90,6 +90,9 @@ export default class EventDuration {
         if (this.stack) classes.push(`stack-${this.stack}`);
         if (this.isEditing()) classes.push('is-editing');
         if (this.isResizable()) classes.push('is-resizable');
+        if (this.event.className) {
+            classes.push(this.event.className);
+        }
         return classes.join(' ');
     }
 

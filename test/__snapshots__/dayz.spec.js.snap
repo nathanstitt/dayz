@@ -1,5 +1,179 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Dayz limits days to min/max displayed 1`] = `
+"<Dayz displayHours={{...}} display=\\"week\\" date={{...}} events={{...}}>
+  <div className=\\"dayz week\\">
+    <XLabels date={{...}} display=\\"week\\">
+      <div className=\\"x-labels\\">
+        <div className=\\"day-label\\">
+          Sun, Nov 11th
+        </div>
+        <div className=\\"day-label\\">
+          Mon, Nov 12th
+        </div>
+        <div className=\\"day-label\\">
+          Tue, Nov 13th
+        </div>
+        <div className=\\"day-label\\">
+          Wed, Nov 14th
+        </div>
+        <div className=\\"day-label\\">
+          Thu, Nov 15th
+        </div>
+        <div className=\\"day-label\\">
+          Fri, Nov 16th
+        </div>
+        <div className=\\"day-label\\">
+          Sat, Nov 17th
+        </div>
+      </div>
+    </XLabels>
+    <div className=\\"body\\">
+      <YLabels layout={{...}} display=\\"week\\" date={{...}} timeFormat=\\"ha\\">
+        <div>
+          <div className=\\"y-labels\\">
+            <div className=\\"all-day\\" style={{...}}>
+              All Day
+            </div>
+            <div className=\\"hour\\">
+              6am
+            </div>
+            <div className=\\"hour\\">
+              7am
+            </div>
+            <div className=\\"hour\\">
+              8am
+            </div>
+            <div className=\\"hour\\">
+              9am
+            </div>
+            <div className=\\"hour\\">
+              10am
+            </div>
+            <div className=\\"hour\\">
+              11am
+            </div>
+            <div className=\\"hour\\">
+              12pm
+            </div>
+            <div className=\\"hour\\">
+              1pm
+            </div>
+            <div className=\\"hour\\">
+              2pm
+            </div>
+            <div className=\\"hour\\">
+              3pm
+            </div>
+            <div className=\\"hour\\">
+              4pm
+            </div>
+            <div className=\\"hour\\">
+              5pm
+            </div>
+            <div className=\\"hour\\">
+              6pm
+            </div>
+            <div className=\\"hour\\">
+              7pm
+            </div>
+            <div className=\\"hour\\">
+              8pm
+            </div>
+            <div className=\\"hour\\">
+              9pm
+            </div>
+          </div>
+        </div>
+      </YLabels>
+      <div className=\\"days\\">
+        <Day day={{...}} position={0} layout={{...}} editComponent={[undefined]} handlers={{...}} eventHandlers={[undefined]} onEventClick={[undefined]} onEventResize={[undefined]}>
+          <div className=\\"day\\" data-date=\\"20181111\\" style={{...}} onClick={[Function: bound onClick]} onDoubleClick={[Function: bound onDoubleClick]}>
+            <Label day={{...}} className=\\"label\\">
+              <div className=\\"label\\">
+                11
+              </div>
+            </Label>
+            <div className=\\"all-day\\" style={{...}} />
+          </div>
+        </Day>
+        <Day day={{...}} position={1} layout={{...}} editComponent={[undefined]} handlers={{...}} eventHandlers={[undefined]} onEventClick={[undefined]} onEventResize={[undefined]}>
+          <div className=\\"day\\" data-date=\\"20181112\\" style={{...}} onClick={[Function: bound onClick]} onDoubleClick={[Function: bound onDoubleClick]}>
+            <Label day={{...}} className=\\"label\\">
+              <div className=\\"label\\">
+                12
+              </div>
+            </Label>
+            <div className=\\"all-day\\" style={{...}} />
+          </div>
+        </Day>
+        <Day day={{...}} position={2} layout={{...}} editComponent={[undefined]} handlers={{...}} eventHandlers={[undefined]} onEventClick={[undefined]} onEventResize={[undefined]}>
+          <div className=\\"day\\" data-date=\\"20181113\\" style={{...}} onClick={[Function: bound onClick]} onDoubleClick={[Function: bound onDoubleClick]}>
+            <Label day={{...}} className=\\"label\\">
+              <div className=\\"label\\">
+                13
+              </div>
+            </Label>
+            <div className=\\"all-day\\" style={{...}} />
+          </div>
+        </Day>
+        <Day day={{...}} position={3} layout={{...}} editComponent={[undefined]} handlers={{...}} eventHandlers={[undefined]} onEventClick={[undefined]} onEventResize={[undefined]}>
+          <div className=\\"day\\" data-date=\\"20181114\\" style={{...}} onClick={[Function: bound onClick]} onDoubleClick={[Function: bound onDoubleClick]}>
+            <Label day={{...}} className=\\"label\\">
+              <div className=\\"label\\">
+                14
+              </div>
+            </Label>
+            <div className=\\"all-day\\" style={{...}} />
+            <div className=\\"events\\" onMouseMove={[Function: bound onMouseMove]} onMouseUp={[Function: bound onMouseUp]}>
+              <Event duration={{...}} day={{...}} parent={{...}} onDragStart={[Function: bound onDragStart]} onClick={[undefined]} editComponent={[undefined]} onDoubleClick={[undefined]}>
+                <div onMouseDown={[Function: bound onDragStart]} style={{...}} className=\\"event span-1 a-test-day\\">
+                  <div className=\\"evbody\\" onClick={[Function: bound onClick]}>
+                    <div>
+                      allmost all day
+                    </div>
+                  </div>
+                </div>
+              </Event>
+            </div>
+          </div>
+        </Day>
+        <Day day={{...}} position={4} layout={{...}} editComponent={[undefined]} handlers={{...}} eventHandlers={[undefined]} onEventClick={[undefined]} onEventResize={[undefined]}>
+          <div className=\\"day\\" data-date=\\"20181115\\" style={{...}} onClick={[Function: bound onClick]} onDoubleClick={[Function: bound onDoubleClick]}>
+            <Label day={{...}} className=\\"label\\">
+              <div className=\\"label\\">
+                15
+              </div>
+            </Label>
+            <div className=\\"all-day\\" style={{...}} />
+          </div>
+        </Day>
+        <Day day={{...}} position={5} layout={{...}} editComponent={[undefined]} handlers={{...}} eventHandlers={[undefined]} onEventClick={[undefined]} onEventResize={[undefined]}>
+          <div className=\\"day\\" data-date=\\"20181116\\" style={{...}} onClick={[Function: bound onClick]} onDoubleClick={[Function: bound onDoubleClick]}>
+            <Label day={{...}} className=\\"label\\">
+              <div className=\\"label\\">
+                16
+              </div>
+            </Label>
+            <div className=\\"all-day\\" style={{...}} />
+          </div>
+        </Day>
+        <Day day={{...}} position={6} layout={{...}} editComponent={[undefined]} handlers={{...}} eventHandlers={[undefined]} onEventClick={[undefined]} onEventResize={[undefined]}>
+          <div className=\\"day\\" data-date=\\"20181117\\" style={{...}} onClick={[Function: bound onClick]} onDoubleClick={[Function: bound onDoubleClick]}>
+            <Label day={{...}} className=\\"label\\">
+              <div className=\\"label\\">
+                17
+              </div>
+            </Label>
+            <div className=\\"all-day\\" style={{...}} />
+          </div>
+        </Day>
+      </div>
+    </div>
+  </div>
+</Dayz>"
+`;
+
 exports[`Dayz matches snapshot for day 1`] = `
 <div
   className="dayz day"

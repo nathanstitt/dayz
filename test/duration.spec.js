@@ -12,6 +12,7 @@ describe('Event Layout calculations', () => {
             event = new Event({
                 content: 'test event',
                 resizable: { step: 10 },
+                className: 'foo',
                 range: moment.range(
                     '2018-11-16T13:00:00.000Z',
                     '2018-11-16T13:00:00.000Z',
@@ -39,6 +40,11 @@ describe('Event Layout calculations', () => {
             const hour = duration.event.start.hour();
             duration.adjustEventTime('start', hour + 1, 100);
             expect(duration.event.start.hour()).not.toEqual(hour);
+        });
+        it('renders className', () => {
+            expect(duration.classNames()).toEqual(
+                'event span-1 is-continuation is-resizable foo',
+            );
         });
     });
 });

@@ -101,6 +101,10 @@ export default class Event {
         return this.attributes.colorIndex || 0;
     }
 
+    get className() {
+        return this.attributes.className || '';
+    }
+
     remove() {
         this.collection.remove(this);
         this.isDeleted = true;

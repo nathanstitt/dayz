@@ -54,6 +54,7 @@ describe('Dayz', () => {
         const day = moment('2018-11-14');
         const events = new Dayz.EventsCollection([{
             content: 'allmost all day',
+            className: 'a-test-day',
             range: moment.range(
                 day.clone().hours(1), day.clone().hours(23),
             ),
@@ -61,6 +62,7 @@ describe('Dayz', () => {
         const dayz = mount(
             <Dayz displayHours={[6, 22]} display='week' date={day} events={events} />,
         );
+        expect(dayz.debug()).toMatchSnapshot();
         const { style } = dayz.find('[data-date="20181114"] .event').props();
         expect(style.top).toEqual('0.00%');
         expect(style.bottom).toEqual('0.00%');
