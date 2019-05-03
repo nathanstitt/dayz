@@ -140,10 +140,10 @@ describe('Layout calculations', () => {
             });
             expect(layout.propsForDayContainer({
                 day: moment('2018-10-10'),
-            })).toMatchObject({ className: 'day outside' });
+            })).toMatchObject({ className: 'day before outside' });
             expect(layout.propsForDayContainer({
                 day: moment('2018-11-11'),
-            })).toMatchObject({ className: 'day highlight' });
+            })).toMatchObject({ className: 'day after highlight' });
         });
         it('can use a function', () => {
             const layout = testEventMonth({
@@ -154,10 +154,10 @@ describe('Layout calculations', () => {
             });
             expect(layout.propsForDayContainer({
                 day: moment('2018-10-10'),
-            })).toMatchObject({ className: 'day outside' });
+            })).toMatchObject({ className: 'day before outside' });
             expect(layout.propsForDayContainer({
                 day: moment('2018-11-12'),
-            })).toMatchObject({ className: 'day tenth' });
+            })).toMatchObject({ className: 'day after tenth' });
         });
     });
 });

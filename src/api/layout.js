@@ -75,16 +75,25 @@ export default class Layout {
 
     propsForDayContainer({ day, position }) {
         const classes = ['day'];
-        if (this.isDateOutsideRange(day)) {
+        const date = moment(day);
+        if (moment(date).isBefore(this.date)) {
+            classes.push('before');
+        } else if (moment(date).isAfter(this.date)) {
+            classes.push('after');
+        } else {
+            classes.push('current');
+        }
+
+        if (this.isDateOutsideRange(date)) {
             classes.push('outside');
         }
-        const higlight = this.isDayHighlighted(day, this);
+        const higlight = this.isDayHighlighted(date, this);
         if (higlight) {
             classes.push(higlight);
         }
         const handlers = {};
         Object.keys(this.dayEventHandlers || {}).forEach((k) => {
-            handlers[k] = ev => this.dayEventHandlers[k](day, ev);
+            handlers[k] = ev => this.dayEventHandlers[k](date, ev);
         });
         return {
             className: classes.join(' '),

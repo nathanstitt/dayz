@@ -6,7 +6,7 @@
 * Only includes the minimal amount of features needed.
     * For instance there's no paging controls provided, since they can easily be implemented outside the component.  This allows Dayz to be used both as a traditional next/previous month calendar or as part of a scrolling infinite view.
 * Modern styling and layout
-    * Uses css grid and flexbox layout (no tables)
+    * Uses css grid and flexbox layout
     * All heights/widths are specified as percentages so the component will size to fit whatever container it's rendered into.
     * Styles are written in [scss](dayz.scss) with variables that can be modified for customized builds.
 * Care is taken to retain elements when switching view types, this allows minimal DOM reflow and allows nice animation effects where events warp into position.
@@ -70,10 +70,15 @@ The Dayz component accepts these properties:
  * **dayEventHandlers** event handlers to attach on the Day element, such as onClick, onMouseOver, etc.
    * if **onClick** or **onDoubleClick** is given to dayEventHandlers, the call back will be passed two variables, the event and a `momentjs` date.  Hours/Minutes are added to the date to reflect how far down the Y axis was clicked.
  * **display** (optional, defaults to 'month'):  One of month, week, or day.
-
  * **onEventClick**, **onEventDoubleClick** (optional): A function that will be called whenever an event is clicked, it's passed two variables, the event and the layout information for the event.  The layout has an `event` subkey that includes the event itself.
  * **displayHours** (optional): defaults to 7am to 7pm or the earliest/latest event's hour.
  * **timeFormat** (optional): defaults to `ha` configures y labels time format
+
+Dayz applies these css classes:
+ * The reference **date** prop will have a css class "current"
+ * Days before and after that date will get "before" and "after" respectively
+ * highlighted days will be marked as "highlight" by default, or whatever is returned from the function
+
 
 ### Development
 
