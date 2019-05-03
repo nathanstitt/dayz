@@ -25,11 +25,6 @@
   },
   "homepage": "https://github.com/nathanstitt/dayz#readme",
   "dependencies": {
-    "@babel/core": "^7.1.6",
-    "@babel/preset-env": "^7.1.6",
-    "@babel/preset-react": "^7.0.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "regenerator-runtime": "^0.13.1",
     "tiny-emitter": "^2.0.2"
   },
   "peerDependencies": {
@@ -40,6 +35,10 @@
     "react-dom": ">=0.14.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
