@@ -7,6 +7,7 @@ export default class XLabels extends React.Component {
     static propTypes = {
         display: PropTypes.oneOf(['month', 'week', 'day']),
         date:    PropTypes.object.isRequired,
+        dateFormat: PropTypes.string
     }
 
     get days() {
@@ -23,7 +24,9 @@ export default class XLabels extends React.Component {
     }
 
     render() {
-        const format = 'month' === this.props.display ? 'dddd' : 'ddd, MMM Do';
+        const format = 'month' === this.props.display 
+            ? 'dddd' 
+            : this.props.dateFormat ? this.props.dateFormat : 'ddd, MMM Do';
 
         return (
             <div className="x-labels">{this.days.map(day => <div key={day.format('YYYYMMDD')} className="day-label">
