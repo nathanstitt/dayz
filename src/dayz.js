@@ -88,7 +88,11 @@ export default class Dayz extends React.Component {
         const classes = ['dayz', this.props.display];
         return (
             <div className={classes.join(' ')}>
-                <XLabels date={this.props.date} display={this.props.display} dateFormat={this.props.dateFormat} />
+                <XLabels
+                    date={this.props.date}
+                    display={this.props.display}
+                    dateFormat={this.props.dateFormat}
+                />
                 <div className="body">
                     <YLabels
                         layout={this.layout}
