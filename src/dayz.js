@@ -20,6 +20,7 @@ export default class Dayz extends React.Component {
         editComponent:     PropTypes.func,
         onEventResize:     PropTypes.func,
         dayEventHandlers:  PropTypes.object,
+        locale:            PropTypes.string,
         highlightDays:     PropTypes.oneOfType(
             [PropTypes.array, PropTypes.func],
         ),
@@ -27,6 +28,7 @@ export default class Dayz extends React.Component {
 
     static defaultProps = {
         display: 'month',
+        locale: 'en',
     }
 
     constructor(props) {
