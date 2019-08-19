@@ -67,4 +67,10 @@ describe('Dayz', () => {
         expect(style.top).toEqual('0.00%');
         expect(style.bottom).toEqual('0.00%');
     });
+
+    it('localizes to specified locale', () => {
+        const dayz = renderer.create(<Dayz display='month' date={date} locale='de' />);
+        expect(dayz.toJSON()).toMatchSnapshot();
+        dayz.unmount();
+    });
 });
