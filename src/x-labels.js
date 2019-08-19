@@ -23,15 +23,15 @@ export default class XLabels extends React.Component {
         return days;
     }
 
-    render() {
-        let format = this.props.dateFormat || 'ddd, MMM Do';
-        if ('month' === this.props.display) {
-            format = 'dddd';
-        }
+    get dateFormat() {
+        const defaultFormat = 'month' === this.props.display ? 'dddd' : 'ddd, MMM Do';
+        return this.props.dateFormat || defaultFormat;
+    }
 
+    render() {
         return (
             <div className="x-labels">{this.days.map(day => <div key={day.format('YYYYMMDD')} className="day-label">
-                {day.format(format)}
+                {day.format(this.dateFormat)}
             </div>)}
             </div>
         );
