@@ -184,11 +184,6 @@ exports[`Dayz localizes to specified locale 1`] = `
     <div
       className="day-label"
     >
-      Sonntag
-    </div>
-    <div
-      className="day-label"
-    >
       Montag
     </div>
     <div
@@ -215,6 +210,11 @@ exports[`Dayz localizes to specified locale 1`] = `
       className="day-label"
     >
       Samstag
+    </div>
+    <div
+      className="day-label"
+    >
+      Sonntag
     </div>
   </div>
   <div
