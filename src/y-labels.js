@@ -22,7 +22,7 @@ export default class YLabels extends React.Component {
     }
 
     renderLabels() {
-        const day = moment();
+        const day = moment().startOf('hour');
         return this.hours.map(hour => <div key={hour} className="hour">{day.hour(hour).format(this.props.timeFormat)}</div>);
     }
 
