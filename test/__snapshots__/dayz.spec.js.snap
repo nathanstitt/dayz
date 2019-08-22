@@ -3,7 +3,7 @@
 exports[`Dayz limits days to min/max displayed 1`] = `
 "<Dayz displayHours={{...}} display=\\"week\\" date={{...}} events={{...}} locale=\\"en\\">
   <div className=\\"dayz week\\">
-    <XLabels date={{...}} display=\\"week\\" locale=\\"en\\">
+    <XLabels date={{...}} display=\\"week\\" dateFormat={[undefined]} locale=\\"en\\">
       <div className=\\"x-labels\\">
         <div className=\\"day-label\\">
           Sun, Nov 11th
