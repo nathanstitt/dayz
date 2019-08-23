@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 export default class XLabels extends React.Component {
 
     static propTypes = {
-        display: PropTypes.oneOf(['month', 'week', 'day']),
-        date:    PropTypes.object.isRequired,
+        display:    PropTypes.oneOf(['month', 'week', 'day']),
+        date:       PropTypes.object.isRequired,
         dateFormat: PropTypes.string,
+        locale:     PropTypes.string.isRequired,
     }
 
     get days() {
@@ -15,7 +16,7 @@ export default class XLabels extends React.Component {
         if ('day' === this.props.display) {
             days.push(moment(this.props.date));
         } else {
-            const day = moment(this.props.date).startOf('week');
+            const day = moment(this.props.date).locale(this.props.locale).startOf('week');
             for (let i = 0; i < 7; i += 1) {
                 days.push(day.clone().add(i, 'day'));
             }
@@ -31,7 +32,7 @@ export default class XLabels extends React.Component {
     render() {
         return (
             <div className="x-labels">{this.days.map(day => <div key={day.format('YYYYMMDD')} className="day-label">
-                {day.format(this.dateFormat)}
+                {day.locale(this.props.locale).format(this.dateFormat)}
             </div>)}
             </div>
         );
