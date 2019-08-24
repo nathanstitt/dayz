@@ -37,7 +37,9 @@ export default class Event {
 
     set(attributes, options) {
         let changed = false;
-        for (const key in attributes) { // eslint-disable-line no-restricted-syntax
+        const keys = Object.keys(attributes);
+        for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
             if (this.attributes[key] !== attributes[key]) {
                 changed = true;
                 break;

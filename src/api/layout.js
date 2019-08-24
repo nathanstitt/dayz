@@ -201,7 +201,9 @@ export default class Layout {
 
     addToCache(date, duration) {
         let found = false;
-        for (const key in this.cache) { // eslint-disable-line no-restricted-syntax
+        const keys = Object.keys(this.cache);
+        for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
             if (this.cache[key].event === duration.event) {
                 found = true;
                 break;
