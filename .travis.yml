@@ -1,7 +1,8 @@
 sudo: false
 language: node_js
 node_js:
-  - "7"
+  - "8"
 after_failure:
   - npm list
 script: ./script/cibuild
+cache: yarn
