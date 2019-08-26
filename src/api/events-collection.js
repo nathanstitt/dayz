@@ -44,12 +44,12 @@ export default class EventsCollection {
             return eventAttrs;
         }
 
-        const attrs = Object.assign({}, eventAttrs);
+        const attrs = { ...eventAttrs };
         const rangeEnd = moment.min(attrs.range.end, eventDay.endOf('day')).toDate();
         const rangeStart = moment.max(attrs.range.start, eventDay.startOf('day')).toDate();
         const range = { range: moment.range(rangeStart, rangeEnd) };
 
-        return Object.assign(attrs, range);
+        return { ...attrs, ...range };
     }
 
     forEach(fn) {
