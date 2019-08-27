@@ -1,125 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dayz applies custom date format 1`] = `
-<div
-  className="dayz day"
->
-  <div
-    className="x-labels"
-  >
-    <div
-      className="day-label"
-    >
-      Saturday 12.09
-    </div>
-  </div>
-  <div
-    className="body"
-  >
-    <div>
-      <div
-        className="y-labels"
-      >
-        <div
-          className="hour"
-        >
-          7am
-        </div>
-        <div
-          className="hour"
-        >
-          8am
-        </div>
-        <div
-          className="hour"
-        >
-          9am
-        </div>
-        <div
-          className="hour"
-        >
-          10am
-        </div>
-        <div
-          className="hour"
-        >
-          11am
-        </div>
-        <div
-          className="hour"
-        >
-          12pm
-        </div>
-        <div
-          className="hour"
-        >
-          1pm
-        </div>
-        <div
-          className="hour"
-        >
-          2pm
-        </div>
-        <div
-          className="hour"
-        >
-          3pm
-        </div>
-        <div
-          className="hour"
-        >
-          4pm
-        </div>
-        <div
-          className="hour"
-        >
-          5pm
-        </div>
-        <div
-          className="hour"
-        >
-          6pm
-        </div>
-        <div
-          className="hour"
-        >
-          7pm
-        </div>
-      </div>
-    </div>
-    <div
-      className="days"
-    >
-      <div
-        className="day current"
-        data-date="20150912"
-        onClick={[Function]}
-        onDoubleClick={[Function]}
-        style={
-          Object {
-            "order": 0,
-          }
-        }
-      >
-        <div
-          className="label"
-        >
-          12
-        </div>
-        <div
-          className="all-day"
-          style={
-            Object {
-              "display": "none",
-            }
-          }
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`Dayz limits days to min/max displayed 1`] = `
 "<Dayz displayHours={{...}} display=\\"week\\" date={{...}} events={{...}} locale=\\"en\\">
   <div className=\\"dayz week\\">
@@ -152,6 +32,9 @@ exports[`Dayz limits days to min/max displayed 1`] = `
       <YLabels layout={{...}} display=\\"week\\" date={{...}} timeFormat=\\"ha\\">
         <div>
           <div className=\\"y-labels\\">
+            <div className=\\"all-day\\" style={{...}}>
+              All Day
+            </div>
             <div className=\\"hour\\">
               6am
             </div>
@@ -961,6 +844,16 @@ exports[`Dayz matches snapshot for day 1`] = `
         className="y-labels"
       >
         <div
+          className="all-day"
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        >
+          All Day
+        </div>
+        <div
           className="hour"
         >
           7am
@@ -1759,6 +1652,16 @@ exports[`Dayz matches snapshot for week 1`] = `
       <div
         className="y-labels"
       >
+        <div
+          className="all-day"
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        >
+          All Day
+        </div>
         <div
           className="hour"
         >

@@ -102,11 +102,11 @@ describe('Layout calculations', () => {
             const forWeek = layout.getEventsForWeek(
                 moment('2018-11-11T13:00:00.000Z'),
             );
-            expect(forWeek).toHaveLength(5);
+            expect(forWeek).toHaveLength(3);
             expect(forWeek[0].event.content).toEqual('3-day');
             expect(forWeek[0].stack).toEqual(0);
-            expect(forWeek[1].event.content).toEqual('3-day');
-            expect(forWeek[1].stack).toEqual(0);
+            expect(forWeek[1].event.content).toEqual('1-day');
+            expect(forWeek[1].stack).toEqual(1);
             expect(forWeek[2].stack).toEqual(0);
         });
     });

@@ -15,10 +15,10 @@ export default class EventsCollection {
 
     static Event = Event;
 
-    constructor(events = []) {
+    constructor(events = [], options = { displayAllDay: true }) {
         this.events = [];
         for (let i = 0, { length } = events; i < length; i += 1) {
-            if ((events[i] instanceof Event)) {
+            if (options.displayAllDay || (events[i] instanceof Event)) {
                 this.add(events[i], { silent: true });
             } else {
                 Array.from(events[i].range.by('day')).map(date => (
