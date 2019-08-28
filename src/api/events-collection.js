@@ -1,4 +1,5 @@
 import Event from './event';
+import moment from '../moment-range';
 
 const Emitter = require('tiny-emitter');
 
@@ -14,21 +15,41 @@ export default class EventsCollection {
 
     static Event = Event;
 
-    constructor(events = []) {
+    constructor(events = [], options = { displayAllDay: true }) {
         this.events = [];
         for (let i = 0, { length } = events; i < length; i += 1) {
-            this.add(events[i], { silent: true });
+            if (options.displayAllDay || (events[i] instanceof Event)) {
+                this.add(events[i], { silent: true });
+            } else {
+                Array.from(events[i].range.by('day')).map(date => (
+                    this.add(events[i], { silent: true, eventDay: date.clone() })
+                ));
+            }
         }
     }
 
     add(eventAttrs, options = {}) {
-        const event = (eventAttrs instanceof Event) ? eventAttrs : new Event(eventAttrs);
+        const attrs = this.prepareEventAttributes(eventAttrs, options.eventDay);
+        const event = (eventAttrs instanceof Event) ? eventAttrs : new Event(attrs);
         event.collection = this;
         this.events.push(event);
         if (!options.silent) {
             this.emit('change');
         }
         return event;
+    }
+
+    prepareEventAttributes(eventAttrs, eventDay) {
+        if (eventDay === undefined) {
+            return eventAttrs;
+        }
+
+        const attrs = { ...eventAttrs };
+        const rangeEnd = moment.min(attrs.range.end, eventDay.endOf('day')).toDate();
+        const rangeStart = moment.max(attrs.range.start, eventDay.startOf('day')).toDate();
+        const range = { range: moment.range(rangeStart, rangeEnd) };
+
+        return { ...attrs, ...range };
     }
 
     forEach(fn) {
