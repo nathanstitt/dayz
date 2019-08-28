@@ -66,6 +66,10 @@ The Dayz component accepts these properties:
 
  * **date** (required):     An `momentjs` instance that controls what range is displayed. The calendar will automatically calculate the month or week that contains this date and display the appropriate range.
  * **events** (optional):  An `Dayz.EventsCollection` instance that contains events that should be displayed on the calendar.
+   * `Dayz.EventsCollection` accepts two arguments:
+     * An array of events
+     * a list of optional properties.  Currently the only option that can be set is:
+       * **displayAllDay**, If set will show all day events at the top of the week and day views.  If false, all day events will fill completly fill the column.  defaults to true.
  * **highlightDays**:  either a function or an array of days that should be highlighted.  Each day can be a string date that momentjs accepts, a JS Date object, or a momentjs date.  if using a function, it will be passed the day and should return either false, or a string to use for the className.
  * **dayEventHandlers** event handlers to attach on the Day element, such as onClick, onMouseOver, etc.
    * if **onClick** or **onDoubleClick** is given to dayEventHandlers, the call back will be passed two variables, the event and a `momentjs` date.  Hours/Minutes are added to the date to reflect how far down the Y axis was clicked.
