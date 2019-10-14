@@ -76,7 +76,8 @@ export default class Event {
     }
 
     isSingleDay() {
-        return 24 > this.attributes.range.end.diff(this.attributes.range.start, 'hours');
+        const maxDiff = this.attributes.range.start.isDST() ? 25 : 24;
+        return maxDiff > this.attributes.range.end.diff(this.attributes.range.start, 'hours');
     }
 
     daysMinuteRange() {

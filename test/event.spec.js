@@ -62,4 +62,14 @@ describe('Dayz', () => {
         expect(classList).toContain('span-1');
         expect(classList).toContain('is-continued');
     });
+
+    it('renders a single-day event when summer time changes to winter time', () => {
+        const dstDate = moment('2019-10-27');
+        const eventModel = new Event({
+            content: 'test',
+            range: moment.range(moment(dstDate).startOf('day'), moment(dstDate).endOf('day')),
+        });
+
+        expect(eventModel.isSingleDay()).toBe(true);
+    });
 });
