@@ -20,7 +20,7 @@ export default class XLabels extends React.Component {
         } else {
             let startOfType = 'week';
             const day = moment(this.props.date).locale(this.props.locale);
-            if (this.props.weekStartsOn) {
+            if (this.props.weekStartsOn !== undefined) {
                 startOfType = 'isoWeek';
                 day.startOf(startOfType);
                 if (0 === this.props.weekStartsOn && 1 === day.isoWeekday()) {

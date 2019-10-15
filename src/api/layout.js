@@ -55,8 +55,8 @@ export default class Layout {
             return;
         }
 
-        const start = moment(this.date);
-        const end = moment(this.date);
+        const start = moment(this.date).locale(this.locale);
+        const end = moment(this.date).locale(this.locale);
 
         if ('week' === this.display) {
             if (this.weekStartsOn !== undefined) {
@@ -81,11 +81,16 @@ export default class Layout {
         );
 
         if (this.isDisplayingAsMonth) {
-            let startWeekday = this.range.start.weekday();
+            let startWeekday;
             let maxWeekday = 6;
-            if (this.weekStartsOn && 1 === this.weekStartsOn) {
-                startWeekday -= 1;
-                maxWeekday += 1;
+            if (this.weekStartsOn !== undefined) {
+                startWeekday = this.range.start.isoWeekday();
+                if (1 === this.weekStartsOn) {
+                    startWeekday -= 1;
+                    maxWeekday += 1;
+                }
+            } else {
+                startWeekday = this.range.start.weekday();
             }
             this.range.start.subtract(
                 startWeekday, 'days',
