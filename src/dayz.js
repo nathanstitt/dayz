@@ -25,7 +25,7 @@ export default class Dayz extends React.Component {
         highlightDays:     PropTypes.oneOfType(
             [PropTypes.array, PropTypes.func],
         ),
-        weekStartsOn:      PropTypes.number,
+        weekStartsOn:      PropTypes.oneOf([0, 1]),
     }
 
     static defaultProps = {
