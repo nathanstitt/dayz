@@ -43,9 +43,10 @@ export default class XLabels extends React.Component {
 
     render() {
         return (
-            <div className="x-labels">{this.days.map(day => <div key={day.format('YYYYMMDD')} className="day-label">
-                {day.locale(this.props.locale).format(this.dateFormat)}
-            </div>)}
+            <div className="x-labels">
+                {this.days.map(day => <div key={day.format('YYYYMMDD')} className="day-label">
+                    {day.locale(this.props.locale).format(this.dateFormat)}
+                </div>)}
             </div>
         );
     }
