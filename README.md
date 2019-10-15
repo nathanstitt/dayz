@@ -77,6 +77,8 @@ The Dayz component accepts these properties:
  * **onEventClick**, **onEventDoubleClick** (optional): A function that will be called whenever an event is clicked, it's passed two variables, the event and the layout information for the event.  The layout has an `event` subkey that includes the event itself.
  * **displayHours** (optional): defaults to 7am to 7pm or the earliest/latest event's hour.
  * **timeFormat** (optional): defaults to `ha` configures y labels time format
+ * **locale** (optional): defaults to `en`. A string to determine the localization.
+ * **weekStartsOn** (optional): defaults to `undefined`. Determines whether the week should start on Monday or Sunday. By default it uses what the localization offers (see `locale` prop). It can accept either `0` to start the week on Sunday or `1` to start the week on Monday.
 
 Dayz applies these css classes:
  * The reference **date** prop will have a css class "current"
