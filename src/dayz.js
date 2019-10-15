@@ -25,6 +25,7 @@ export default class Dayz extends React.Component {
         highlightDays:     PropTypes.oneOfType(
             [PropTypes.array, PropTypes.func],
         ),
+        weekStartsOn:      PropTypes.number,
     }
 
     static defaultProps = {
@@ -95,6 +96,7 @@ export default class Dayz extends React.Component {
                     display={this.props.display}
                     dateFormat={this.props.dateFormat}
                     locale={this.props.locale}
+                    weekStartsOn={this.props.weekStartsOn}
                 />
                 <div className="body">
                     <YLabels
