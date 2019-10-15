@@ -1,6 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import moment from '../src/moment-range';
-import { testEventMonth, testEventRange, testEventDay } from './testing-layouts';
+import { testEventMonth, testEventRange, testEventDay, testWeekStartsOn } from './testing-layouts';
 
 describe('Layout calculations', () => {
     describe('day layout', () => {
@@ -158,6 +158,60 @@ describe('Layout calculations', () => {
             expect(layout.propsForDayContainer({
                 day: moment('2018-11-12'),
             })).toMatchObject({ className: 'day after tenth' });
+        });
+    });
+
+    describe('weekStartsOn', () => {
+        describe('month layout', () => {
+            describe('default', () => {
+                it('starts the week on Sunday for "en" locale', () => {
+                    const layout = testWeekStartsOn({ locale: 'en' });
+                    expect(layout.range.start.isoWeekday()).toBe(7);
+                });
+
+                it('starts the week on Monday for "de" locale', () => {
+                    const layout = testWeekStartsOn({ locale: 'de' });
+                    expect(layout.range.start.isoWeekday()).toBe(1);
+                });
+            });
+
+            describe('weekStartsOn set', () => {
+                it('starts the week on Sunday when 0', () => {
+                    const layout = testWeekStartsOn({ locale: 'de', weekStartsOn: 0 });
+                    expect(layout.range.start.isoWeekday()).toBe(7);
+                });
+
+                it('starts the week on Monday when 1', () => {
+                    const layout = testWeekStartsOn({ locale: 'en', weekStartsOn: 1 });
+                    expect(layout.range.start.isoWeekday()).toBe(1);
+                });
+            });
+        });
+
+        describe('week layout', () => {
+            describe('default', () => {
+                it('starts the week on Sunday for "en" locale', () => {
+                    const layout = testWeekStartsOn({ locale: 'en' });
+                    expect(layout.range.start.isoWeekday()).toBe(7);
+                });
+
+                it('starts the week on Monday for "de" locale', () => {
+                    const layout = testWeekStartsOn({ locale: 'de' });
+                    expect(layout.range.start.isoWeekday()).toBe(1);
+                });
+            });
+
+            describe('weekStartsOn set', () => {
+                it('starts the week on Sunday when 0', () => {
+                    const layout = testWeekStartsOn({ locale: 'de', weekStartsOn: 0 });
+                    expect(layout.range.start.isoWeekday()).toBe(7);
+                });
+
+                it('starts the week on Monday when 1', () => {
+                    const layout = testWeekStartsOn({ locale: 'en', weekStartsOn: 1 });
+                    expect(layout.range.start.isoWeekday()).toBe(1);
+                });
+            });
         });
     });
 });

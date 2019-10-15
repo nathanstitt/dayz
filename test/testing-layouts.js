@@ -67,3 +67,13 @@ const testEventMonth = (options = {}) => {
     }, options));
     return layout;
 };
+
+export
+const testWeekStartsOn = (options = {}, display = 'month', events = new EventsCollection([])) => {
+    const layout = new Layout(Object.assign({
+        date: '2019-10-15',
+        display,
+        events,
+    }, options));
+    return layout;
+};
