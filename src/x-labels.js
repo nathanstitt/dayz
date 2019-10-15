@@ -9,7 +9,7 @@ export default class XLabels extends React.Component {
         date:         PropTypes.object.isRequired,
         dateFormat:   PropTypes.string,
         locale:       PropTypes.string.isRequired,
-        weekStartsOn: PropTypes.number,
+        weekStartsOn: PropTypes.oneOf([0, 1]),
     }
 
     get days() {
