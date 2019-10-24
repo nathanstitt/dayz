@@ -54,17 +54,49 @@ export default class Layout {
         if (this.range) {
             return;
         }
+
+        const start = moment(this.date).locale(this.locale);
+        const end = moment(this.date).locale(this.locale);
+
+        if ('week' === this.display) {
+            if (this.weekStartsOn !== undefined) {
+                start.startOf('isoWeek');
+                end.endOf('isoWeek');
+                if (0 === this.weekStartsOn && 1 === start.isoWeekday()) {
+                    start.subtract(1, 'day');
+                    end.subtract(1, 'day');
+                }
+            } else {
+                start.startOf(this.display);
+                end.endOf(this.display);
+            }
+        } else {
+            start.startOf(this.display);
+            end.endOf(this.display);
+        }
+
         this.range = moment.range(
-            moment(this.date).startOf(this.display),
-            moment(this.date).endOf(this.display),
+            start,
+            end,
         );
 
         if (this.isDisplayingAsMonth) {
+            let startWeekday;
+            let maxWeekday = 6;
+            if (this.weekStartsOn !== undefined) {
+                startWeekday = this.range.start.isoWeekday();
+                if (1 === this.weekStartsOn) {
+                    startWeekday -= 1;
+                    maxWeekday += 1;
+                }
+            } else {
+                startWeekday = this.range.start.weekday();
+            }
             this.range.start.subtract(
-                this.range.start.weekday(), 'days',
+                startWeekday, 'days',
             );
             this.range.end.add(
-                6 - this.range.end.weekday(), 'days',
+                maxWeekday - this.range.end.isoWeekday(), 'days',
             );
         }
     }

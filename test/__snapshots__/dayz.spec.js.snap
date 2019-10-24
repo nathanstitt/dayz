@@ -3,7 +3,7 @@
 exports[`Dayz limits days to min/max displayed 1`] = `
 "<Dayz displayHours={{...}} display=\\"week\\" date={{...}} events={{...}} locale=\\"en\\">
   <div className=\\"dayz week\\">
-    <XLabels date={{...}} display=\\"week\\" dateFormat={[undefined]} locale=\\"en\\">
+    <XLabels date={{...}} display=\\"week\\" dateFormat={[undefined]} locale=\\"en\\" weekStartsOn={[undefined]}>
       <div className=\\"x-labels\\">
         <div className=\\"day-label\\">
           Sun, Nov 11th
@@ -225,29 +225,12 @@ exports[`Dayz localizes to specified locale 1`] = `
     >
       <div
         className="day before outside"
-        data-date="20150830"
-        onClick={[Function]}
-        onDoubleClick={[Function]}
-        style={
-          Object {
-            "order": 0,
-          }
-        }
-      >
-        <div
-          className="label"
-        >
-          30
-        </div>
-      </div>
-      <div
-        className="day before outside"
         data-date="20150831"
         onClick={[Function]}
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 1,
+            "order": 0,
           }
         }
       >
@@ -264,7 +247,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 2,
+            "order": 1,
           }
         }
       >
@@ -281,7 +264,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 3,
+            "order": 2,
           }
         }
       >
@@ -298,7 +281,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 4,
+            "order": 3,
           }
         }
       >
@@ -315,7 +298,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 5,
+            "order": 4,
           }
         }
       >
@@ -332,7 +315,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 6,
+            "order": 5,
           }
         }
       >
@@ -349,7 +332,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 7,
+            "order": 6,
           }
         }
       >
@@ -366,7 +349,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 8,
+            "order": 7,
           }
         }
       >
@@ -383,7 +366,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 9,
+            "order": 8,
           }
         }
       >
@@ -400,7 +383,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 10,
+            "order": 9,
           }
         }
       >
@@ -417,7 +400,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 11,
+            "order": 10,
           }
         }
       >
@@ -434,7 +417,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 12,
+            "order": 11,
           }
         }
       >
@@ -451,7 +434,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 13,
+            "order": 12,
           }
         }
       >
@@ -468,7 +451,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 14,
+            "order": 13,
           }
         }
       >
@@ -485,7 +468,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 15,
+            "order": 14,
           }
         }
       >
@@ -502,7 +485,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 16,
+            "order": 15,
           }
         }
       >
@@ -519,7 +502,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 17,
+            "order": 16,
           }
         }
       >
@@ -536,7 +519,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 18,
+            "order": 17,
           }
         }
       >
@@ -553,7 +536,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 19,
+            "order": 18,
           }
         }
       >
@@ -570,7 +553,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 20,
+            "order": 19,
           }
         }
       >
@@ -587,7 +570,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 21,
+            "order": 20,
           }
         }
       >
@@ -604,7 +587,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 22,
+            "order": 21,
           }
         }
       >
@@ -621,7 +604,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 23,
+            "order": 22,
           }
         }
       >
@@ -638,7 +621,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 24,
+            "order": 23,
           }
         }
       >
@@ -655,7 +638,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 25,
+            "order": 24,
           }
         }
       >
@@ -672,7 +655,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 26,
+            "order": 25,
           }
         }
       >
@@ -689,7 +672,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 27,
+            "order": 26,
           }
         }
       >
@@ -706,7 +689,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 28,
+            "order": 27,
           }
         }
       >
@@ -723,7 +706,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 29,
+            "order": 28,
           }
         }
       >
@@ -740,7 +723,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 30,
+            "order": 29,
           }
         }
       >
@@ -757,7 +740,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 31,
+            "order": 30,
           }
         }
       >
@@ -774,7 +757,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 32,
+            "order": 31,
           }
         }
       >
@@ -791,7 +774,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 33,
+            "order": 32,
           }
         }
       >
@@ -808,7 +791,7 @@ exports[`Dayz localizes to specified locale 1`] = `
         onDoubleClick={[Function]}
         style={
           Object {
-            "order": 34,
+            "order": 33,
           }
         }
       >
