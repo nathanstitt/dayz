@@ -21,7 +21,7 @@ export default class EventsCollection {
             if (options.displayAllDay) {
                 this.add(events[i], { silent: true });
             } else {
-                Array.from(events[i].range.by('day')).map(date => (
+                Array.from(events[i].range.snapTo('days').by('day')).map(date => (
                     this.add(events[i], { silent: true, eventDay: date.clone() })
                 ));
             }
