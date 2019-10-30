@@ -3,33 +3,61 @@ import Event from '../src/api/event';
 import moment from '../src/moment-range';
 
 describe('Events Collection', () => {
-    it('creates events from object', () => {
-        const collection = new EventsCollection([
-            { range: moment.range('2011-10-01', '2011-10-02') },
-        ]);
-        expect(collection.events.length).toEqual(1);
-        const event = collection.events[0];
-        expect(event).toEqual(expect.any(Event));
-        expect(event.range().isSame(moment.range('2011-10-01', '2011-10-02'))).toBe(true);
+    describe('display events as all day events', () => {
+        it('creates events from object', () => {
+            const collection = new EventsCollection([
+                { range: moment.range('2011-10-01', '2011-10-02') },
+            ]);
+            expect(collection.events.length).toEqual(1);
+            const event = collection.events[0];
+            expect(event).toEqual(expect.any(Event));
+            expect(event.range().isSame(moment.range('2011-10-01', '2011-10-02'))).toBe(true);
+        });
     });
 
-    it('creates events from object', () => {
-        const collection = new EventsCollection(
-            [{ range: moment.range('2011-10-01', '2011-10-02 12:00:01') }],
-            { displayAllDay: false },
-        );
-        expect(collection.events.length).toEqual(2);
+    describe('display events as multiple NOT all day events', () => {
+        describe('range is more than one day', () => {
+            it('creates events from object', () => {
+                const collection = new EventsCollection(
+                    [{ range: moment.range('2011-10-01', '2011-10-02 12:00:01') }],
+                    { displayAllDay: false },
+                );
+                expect(collection.events.length).toEqual(2);
 
-        const event = collection.events[0];
-        expect(event).toEqual(expect.any(Event));
-        expect(event.range().isSame(
-            moment.range('2011-10-01 00:00:00', '2011-10-01 23:59:59.999'),
-        )).toBe(true);
+                const event = collection.events[0];
+                expect(event).toEqual(expect.any(Event));
+                expect(event.range().isSame(
+                    moment.range('2011-10-01 00:00:00', '2011-10-01 23:59:59.999'),
+                )).toBe(true);
 
-        const event_b = collection.events[1];
-        expect(event_b).toEqual(expect.any(Event));
-        expect(event_b.range().isSame(
-            moment.range('2011-10-02 00:00:00', '2011-10-02 12:00:01'),
-        )).toBe(true);
+                const event_b = collection.events[1];
+                expect(event_b).toEqual(expect.any(Event));
+                expect(event_b.range().isSame(
+                    moment.range('2011-10-02 00:00:00', '2011-10-02 12:00:01'),
+                )).toBe(true);
+            });
+        });
+
+        describe('range is less than one day', () => {
+            it('creates events from object', () => {
+                const collection = new EventsCollection(
+                    [{ range: moment.range('2011-10-01 20:00:00', '2011-10-02 08:00:00') }],
+                    { displayAllDay: false },
+                );
+                expect(collection.events.length).toEqual(2);
+
+                const event = collection.events[0];
+                expect(event).toEqual(expect.any(Event));
+                expect(event.range().isSame(
+                    moment.range('2011-10-01 20:00:00', '2011-10-01 23:59:59.999'),
+                )).toBe(true);
+
+                const event_b = collection.events[1];
+                expect(event_b).toEqual(expect.any(Event));
+                expect(event_b.range().isSame(
+                    moment.range('2011-10-02 00:00:00', '2011-10-02 08:00:00'),
+                )).toBe(true);
+            });
+        });
     });
 });
