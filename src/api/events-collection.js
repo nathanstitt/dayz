@@ -15,15 +15,18 @@ export default class EventsCollection {
 
     static Event = Event;
 
-    constructor(events = [], options = { displayAllDay: true }) {
+    constructor(events = [], options = { displayAllDay: true, displayLabelForAllDays: true }) {
         this.events = [];
         for (let i = 0, { length } = events; i < length; i += 1) {
             if (options.displayAllDay) {
                 this.add(events[i], { silent: true });
             } else {
-                Array.from(events[i].range.snapTo('days').by('day')).map(date => (
-                    this.add(events[i], { silent: true, eventDay: date.clone() })
-                ));
+                Array.from(events[i].range.snapTo('days').by('day')).map((date, j) => {
+                    if (false === options.displayLabelForAllDays && j > 0) {
+                        events[i].content = ' ';
+                    }
+                    return this.add(events[i], { silent: true, eventDay: date.clone() });
+                });
             }
         }
     }
