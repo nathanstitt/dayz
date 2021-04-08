@@ -31,7 +31,7 @@ yarn add dayz
 import React from 'react';
 import Dayz from 'dayz';
 // could also import the sass if you have a loader at dayz/dayz.scss
-import 'dayz/dist/styles.css';
+import "dayz/dist/dayz.css";
 import moment from 'moment';
 
 // would come from a network request in a "real" app
