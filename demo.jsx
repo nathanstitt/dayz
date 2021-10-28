@@ -13,7 +13,7 @@ class DayzTestComponent extends React.Component {
         this.editComponent = this.editComponent.bind(this);
         this.changeDisplay = this.changeDisplay.bind(this);
         this.onEventResize = this.onEventResize.bind(this);
-        const date = moment('2021-10-08');
+        const date = moment('2015-09-11');
         this.state = {
             date,
             display: 'month',
