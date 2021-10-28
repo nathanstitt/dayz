@@ -4,11 +4,11 @@
 
 ## Features
 * Only includes the minimal amount of features needed.
-    * For instance there's no paging controls provided, since they can easily be implemented outside the component.  This allows Dayz to be used both as a traditional next/previous month calendar or as part of a scrolling infinite view.
+    * For instance, there is no paging controls provided, since they can easily be implemented outside the component.  This allows Dayz to be used both as a traditional next or previous month calendar or as part of a scrolling infinite view.
 * Modern styling and layout
     * Uses css grid and flexbox layout
     * All heights/widths are specified as percentages so the component will size to fit whatever container it's rendered into.
-    * Styles are written in [scss](dayz.scss) with variables that can be modified for customized builds.
+    * Styles are written in [scss](dayz.scss) with variables which can be modified for customized builds.
 * Care is taken to retain elements when switching view types, this allows minimal DOM reflow and allows nice animation effects where events warp into position.
 
 ![Dayz Monthly Screenshot](http://nathanstitt.github.io/dayz/dayz-weekly-screenshot.png)
@@ -68,9 +68,9 @@ The Dayz component accepts these properties:
  * **events** (optional):  An `Dayz.EventsCollection` instance that contains events that should be displayed on the calendar.
    * `Dayz.EventsCollection` accepts two arguments:
      * An array of events
-     * a list of optional properties. Currently two option that can be set is:
-       * **displayAllDay**, If set will show all day events at the top of the week and day views.  If false, all day events will fill completly fill the column.  defaults to true.
-       * **displayLabelForAllDays**, If set to `false`, for events that are shown on multiple days only the first event will have the `content` attribute shown. In any other case `content` will be shown on every days. This prop works only if `displayAllDay` is `false`.
+     * a list of optional properties. Currently two options that can be set are:
+       * **displayAllDay**, If set to `true` it will show all day events at the top of the week and day views.  If `false`, all day events will completly fill the column.  defaults to `true`.
+       * **displayLabelForAllDays**, If set to `false`, for events that are shown on multiple days only the first event will have the `content` attribute shown. In any other case `content` will be shown on every day. This prop works only if `displayAllDay` is `false`.
  * **highlightDays**:  either a function or an array of days that should be highlighted.  Each day can be a string date that momentjs accepts, a JS Date object, or a momentjs date.  if using a function, it will be passed the day and should return either false, or a string to use for the className.
  * **dayEventHandlers** event handlers to attach on the Day element, such as onClick, onMouseOver, etc.
    * if **onClick** or **onDoubleClick** is given to dayEventHandlers, the call back will be passed two variables, the event and a `momentjs` date.  Hours/Minutes are added to the date to reflect how far down the Y axis was clicked.
@@ -90,5 +90,6 @@ Dayz applies these css classes:
 ### Development
 
 - `npm start` starts up a local development web-server which rebuilds files when changed
+   - the demo can then be accessed at http://localhost:2222/docs/ 
 - `npm test` runs unit tests
 - `npm run build` compiles files in preparation for publishing
