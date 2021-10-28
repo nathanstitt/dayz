@@ -13,7 +13,7 @@ class DayzTestComponent extends React.Component {
         this.editComponent = this.editComponent.bind(this);
         this.changeDisplay = this.changeDisplay.bind(this);
         this.onEventResize = this.onEventResize.bind(this);
-        const date = moment('2015-09-11');
+        const date = moment('2021-10-08');
         this.state = {
             date,
             display: 'month',
@@ -83,11 +83,19 @@ class DayzTestComponent extends React.Component {
         );
     }
 
+    setDate = (ev) => {
+        const dte = moment(ev.target.value);
+        if (dte.isValid()) {
+            this.setState({ ...this.state, date: moment(ev.target.value) });
+        }
+    }
+
     render() {
         return (
             <div className="dayz-test-wrapper">
 
                 <div className="tools">
+                    <input type="text" onBlur={this.setDate} defaultValue={this.state.date.format('YYYY-MM-DD')} />
                     <label>
                         Month: <input type="radio"
                                       name="style" value="month" onChange={this.changeDisplay}

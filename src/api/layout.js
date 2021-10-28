@@ -95,9 +95,11 @@ export default class Layout {
             this.range.start.subtract(
                 startWeekday, 'days',
             );
-            this.range.end.add(
-                maxWeekday - this.range.end.isoWeekday(), 'days',
-            );
+
+            const additionalDays = (maxWeekday + 1 === this.range.end.isoWeekday())
+                ? 6 : (maxWeekday - this.range.end.isoWeekday());
+
+            this.range.end.add(additionalDays, 'days');
         }
     }
 
