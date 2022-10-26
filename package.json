@@ -71,7 +71,7 @@
     "jest-cli": "^24.9.0",
     "moment": "^2.22.2",
     "moment-range": "^4.0.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "npm-release": "^1.0.0",
     "react": "^16.9.0",
     "react-addons-test-utils": "^15.6.2",
